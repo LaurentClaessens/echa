@@ -1,0 +1,103 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\input{e_echa}
+\input{prefig}
+
+
+\makeindex
+
+\begin{document}
+\corrPolitique{2}
+
+%	\input{garde}
+%	\input{garde2}
+\input{pre_texte}
+
+
+\tableofcontents
+
+\chapter{Introduction}
+	\input{intro_libre}
+
+\chapter{Principes généraux de la physique}
+	\input{meca4_rappel}
+	\input{prin_generaux}
+
+\chapter{Optique géométrique}
+	\input{opt_refr}
+	\input{Snell}
+	\input{MiroirsPlan}
+	\input{MiroirSpherique}
+	\input{LentillesMinces}
+
+\chapter{Un petit peu d'algèbre}
+	\input{degreun}
+	 \input{inequs}
+
+\chapter{De la géométrie}
+	\input{geometrie}
+
+\chapter{Les fonctions}
+	\input{fonctions}
+
+\chapter{Limite, topologie et continuité}	
+	\input{limite_infini}
+	\input{topologie}
+	\input{continue}
+	\input{limite}
+
+\chapter{Dérivation et intégration}
+	\input{derivation}
+
+\chapter{Mouvement, forces et travail}
+	\input{meca4_cine}
+	\input{meca4_forces}
+	\input{meca4_E}
+	\input{travail}
+	\input{meca4_exercices}
+
+\chapter{De la gravitation}
+	\input{gravitation}
+
+\chapter{Électricité}
+	\input{resistance}
+
+\chapter{Relativité}
+	\input{relativiste}
+
+\chapter{Exercices pré requis université}
+	\input{exoUnif}
+
+\chapter{Correction de certains exercices}
+\immediate\closeout\FichCorr
+	\input{corr}
+
+\appendix
+
+\chapter*{Appendices}
+
+\pagestyle{plain}
+\addcontentsline{toc}{chapter}{Appendix}
+
+\setcounter{section}{0}
+\renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
+\renewcommand{\thenumtho}{\Alph{section}.\arabic{numtho}}
+\renewcommand{\thesection}{\Alph{section}}
+
+
+\corrChapitre{Corrigés systématiques}		% C'est ici que viennent les corrigés si \corrPolitique{1}
+
+	\input{faq}
+	\input{fdl-1.3.tex}
+\printindex
+
+\end{document}
+
+Les sites desquels je me suis inspiré
+  * http://www.scarabus.info/Documents_sciences/Physique/Masse_poids.htm
+  * Le CoursMecaniqueCorrigesanslix.pdf dans lequel je suis à la page 18.
+     www.cvgg.org
