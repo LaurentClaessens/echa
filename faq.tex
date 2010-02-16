@@ -1,0 +1,94 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+   \section{Foire aux questions}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------------------------------------------------------------------------------------------
+					\subsection{Division euclidienne de polynômes}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Un élément de réponse à la question\\
+\url{http://www.enseignons.be/forum/mathematiques-f25/topic15748.html}
+
+\vspace{1cm}
+
+Lorsqu'on divise le nombre $a$ par $b$, le but est de trouver un nombre $x$ tel que $bx=a$. Si on veut faire une division entière, on a souvent un reste. Par exemple si on divise $57$ par $7$, nous obtenons $8$ et un reste de $1$, parce que
+\begin{equation}
+	57=7\cdot 8 +1.
+\end{equation}
+Le but de la man\oe uvre, quand on divise $a$ par $b$, est d'obtenir $q$ et $r$ tels que
+\begin{equation}
+	a = q\cdot b+r
+\end{equation}
+où $q$ est le plus grand possible. Le nombre $r$ est appelé le \defe{reste}{Reste} de la division $a/b$.
+
+Tout cela est bien connu depuis des années, et le moyen pour y arriver est l'\defe{algorithme d'Euclide}{Algorithme d'Euclide}, mieux connu sous le nom de \og division écrite\fg{}.
+
+\begin{exercice}
+Calcule $44/8$ avec une division écrite, et identifie le reste.
+\end{exercice}
+
+Maintenant, nous allons faire la même chose avec des polynômes. Essayons de diviser $x^3+2x^2-1$ par $x+7$. Pour commencer, nous posons la division écrite comme d'habitude :
+\begin{equation}
+	\input{divEuclideFAQ0.pstricks}
+\end{equation}
+Ce faisant (et tout le long du calcul), fais bien attention à remplacer les termes \og manquant\fg par des zéros. Ici, il n'y avait pas de termes en $x$, et nous l'avons remplacé par zéro. L'alignement est très important.
+
+
+Maintenant, on regarde terme à terme. Donc, on se demande d'abord combien de fois $x+7$ rentre dans $x^3$. Le secret est de faire rentrer à chaque fois le terme de plus haut degré sans se soucier des autres termes. Ici, on ne se soucie donc pas du $7$, et on essaye de faire rentrer juste le $x$. Combien de fois $x$ rentre dans $x^3$ ? Réponse : $x^2$ fois. Nous écrivons donc $x^2$ comme premier terme du quotient, et on soustrait comme d'habitude dans une division écrite :
+\begin{equation}
+	\input{divEuclideFAQ1.pstricks}
+\end{equation}
+Ce que l'on a soustrait est $x^2(x+7)$.
+
+Maintenant, on recommence en partant du résultat de la soustraction. Combien de fois $x+7$ rentre dans $-5x^2$ ? Réponse : $-5x$ fois. Et nous avançons d'un pas supplémentaire :
+\begin{equation}
+	\input{divEuclideFAQ2.pstricks}
+\end{equation}
+Nous pouvons encore faire un pas :
+\begin{equation}
+	\input{divEuclideFAQ3.pstricks}
+\end{equation}
+Étant donné que ce qu'il reste maintenant est de degré plus petit que $x+7$, nous ne pouvons plus avancer. Nous avons donc
+\begin{equation}
+	 x^3+2x^2-1 = (x^2-5x+35)(x+7) - 246.
+\end{equation}
+Le résultat de la division est $x^2-5x+35$, et le reste est $-246$.
+
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+					\subsection{À venir\ldots}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\ldots une réponse à la question\\
+\url{http://www.enseignons.be/forum/mathematiques-f25/topic16331.html}
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Angles dans un parallélogramme}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Éléments de réponses à la question
+\href{http://www.enseignons.be/forum/post286341.html}{http://www.enseignons.be/forum/post286341.html}.
+
+
+\newcommand{\CaptionFigParallelograme}{Le parallélogramme}
+\input{Fig_Parallelograme.pstricks}
+
+
+Prouvons que les angles opposés dans un parallélogramme sont égaux. Pour cela, regardons le parallélogramme de la figure \ref{LabelFigParallelograme}, et regardons les angles $\widehat{abd}$ et $\widehat{acd}$.
+
+Nous prolongeons le côté $ac$ et traçons depuis $b$ la perpendiculaire à $ac$. En d'autres termes, nous \og complétons\fg{} le rectangle dont notre parallélogramme est un peu déformé.
+
+D'abord, étant donné que $bd$ est parallèle à $ac$, la droite $bk$ est perpendiculaire aux deux en même temps. Donc l'angle $\widehat{dbk}$ est droit et l'angle $\widehat{abk}$ est le complémentaire de l'angle $\widehat{abd}$ que nous étudions.
+
+Dans le triangle rectangle $bka$, l'angle $\widehat{bak}$ est donc le même que notre angle $b$ parce qu'il est complémentaire du complémentaire. Vu maintenant que la droite $ba$ est parallèle à la droite $dc$, l'angle $\widehat{bak}$ est le même que l'angle $\widehat{dca}$.
+

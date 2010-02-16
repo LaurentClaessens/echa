@@ -1,0 +1,22 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\begin{corrige}{212}
+
+En vertu du théorème \ref{ThoLimCont}  (limite et continuité), il est suffisant de montrer que pour tout $a\in\eR$,
+\[ 
+  \lim_{x\to a}\cos(x)=\cos(a).
+\]
+C'est bien pour ça que ce théorème est génial : il permet de prouver des continuités en calculant des limites. Nous avons par la proposition \ref{PropChmVarLim} :
+\begin{equation}
+\lim_{x\to a}\cos(x)=\lim_{\epsilon\to 0}\cos(a+\epsilon)=\lim_{\epsilon\to0}\Big( \cos(a)\cos(\epsilon)-\sin(a)\sin(\epsilon) \Big),
+\end{equation}
+en utilisant la formule \eqref{EqLimLinRes}, nous trouvons à calculer
+\[ 
+  \cos(a)\Big(\lim_{\epsilon\to 0}\cos(\epsilon)\Big)-\sin(a)\Big( \lim_{\epsilon\to 0}\sin(\epsilon)\Big).
+\]
+\end{corrige}
+

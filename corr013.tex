@@ -1,0 +1,100 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+%Copyright (c) 2006 Claessens Laurent. Permission is granted to copy, distribute and/or modify this document under the terms of the  GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A  copy of the license is included in the section entitled "GNU Free Documentation License".
+
+
+\begin{figure}[ht]
+\centering
+
+%   Première sous-figure
+
+\subfigure[Première addition]{%
+\begin{pspicture}(-0.5,-2)(4,2)
+   \psset{PointSymbol=none, PointName=none}
+   \prefigzerotreize
+
+\pstMarqueForce{O}{A}{0.5;30}{$\fF_1$}
+\pstMarqueForce{O}{B}{0.5;0.3}{$\fF_2$}
+\pstMarqueForce{O}{C}{0.5;0.3}{$\fF_3$}
+   \pstTranslation{O}{B}{A}[Fq]
+
+{\psset{linecolor=blue} \pstMarqueForce{O}{Fq}{0.3;0}{$\overrightarrow{F}_4$} }
+\end{pspicture}
+}						% Fin de la première sous-figure
+%  Seconde sous-figure 
+\subfigure[Seconde addition]{%
+\begin{pspicture}(-0.5,-2)(4,2)
+   \psset{PointSymbol=none, PointName=none}
+   \prefigzerotreize
+   \pstTranslation{O}{B}{A}[Fq]
+\pstMarqueForce{O}{C}{0.5;0.3}{$\fF_3$}
+\pstMarqueForce{O}{Fq}{0.5;0.3}{$\fF_4$}
+   \pstTranslation{O}{C}{Fq}[Fc]
+{\psset{linecolor=blue} \pstMarqueForce{O}{Fc}{0.3;0}{$\overrightarrow{F}_5$} }
+\end{pspicture}
+}						% La fin de la seconde sous-figure
+\caption{Exercice de composition de forces}\label{fig:exo:comp:corr}
+\end{figure}
+
+
+\begin{corrige}{013}
+Regardez la figure \ref{fig:exo:comp:corr}. D'abord on construit $\overrightarrow{F}_4=\overrightarrow{F}_1+\overrightarrow{F}_2$ en ne regardant pas $\overrightarrow{F}_3$. Pour cela, on met juste $\fF_1$ et $\fF_2$ bout à bout. Peu importe si on met $\fF_1$ au bout de $\fF_2$ ou le contraire : le résultat sera le même.
+
+
+Ensuite on oublie $\fF_1$ et $\fF_2$ et on additionne $\fF_4$ avec $\fF_3$.
+
+Montrons à présent comment décomposer $\fF_1$ en $\fF_2$ et $\fF_3$ sur la figure \ref{fig_decom013}. La première chose à faire est de prolonger les axes \emph{dans les deux sens} ainsi que dessiner des parallèles à ces axes passant par le bout de la force à décomposer. Ensuite, les points d'intersection donnent la décomposition.
+
+Un autre exemple de décomposition de forces est donné à la figure \ref{fig:Force_decomp} se trouvant à la page \pageref{fig:Force_decomp}.
+
+\begin{figure}[ht]
+\centering
+   \psset{PointSymbol=none, PointName=none}
+\subfigure[Prolonger les axes et trouver les points d'intersection]{%
+\begin{pspicture}(-1,-2.3)(4,2.5)
+   \prefigzerotreize
+
+\pstMarqueForce{O}{A}{0.5;30}{$\fF_1$}
+\pstMarqueForce{O}{B}{0.5;-50}{$\fF_2$}
+\pstMarqueForce{O}{C}{0.5;0}{$\fF_3$}
+
+  \pstDecompForce{O}{A}{O}{B}{O}{C}{dFu}{dFd}
+  \pstSymO{O}{dFu,dFd}[sdFu,sdFd]		% Comme ça, ça va prolonger dans les deux sens
+   {%
+\psset{linecolor=red,linestyle=dotted}
+\pstLineAB[nodesepA=-0.5,nodesepB=1.2]{dFu}{sdFu}
+\pstLineAB[nodesepA=-0.5,nodesepB=-0.4]{dFd}{sdFd}
+   }
+
+   {%
+\psset{linecolor=green,linestyle=dotted}
+\pstLineAB[nodesepA=-1.2,nodesepB=-1.2]{dFu}{A}
+\pstLineAB[nodesepA=-1.2,nodesepB=-1.2]{dFd}{A}
+   }
+\end{pspicture}
+                              }			% Fin de la première sous-fugure
+\subfigure[Décomposer la force]{%
+\begin{pspicture}(-0.5,-2)(3.5,2)
+   \prefigzerotreize
+
+
+\pstMarqueForce{O}{A}{0.5;30}{$\fF_1$}
+\pstMarqueForce{O}{B}{0.5;-50}{$\fF_2$}
+\pstMarqueForce{O}{C}{0.5;0}{$\fF_3$}
+  \pstDecompForce{O}{A}{O}{B}{O}{C}{dFu}{dFd}
+
+   {%
+\psset{linecolor=blue}
+\pstMarqueForce{O}{dFu}{0.5;0.3}{}
+\pstMarqueForce{O}{dFd}{0.5;0.3}{} 
+   }
+\end{pspicture}
+                       }		% Fin de la deuxième sous-figure
+\caption{Décomposition de forces}\label{fig_decom013}
+\end{figure}
+
+\end{corrige}

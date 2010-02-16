@@ -1,0 +1,87 @@
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+					\section{Exercices}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{figure}
+\centering
+\subfigure[Dynamomètre qui porte une masse $m$ d'un côté, et qui est accrochée à un mur de l'autre]{%
+\label{subfig:dynaun}
+\begin{pspicture}(-1.2,1)(4.8,-3)
+   \psset{PointSymbol=none, PointName=none}
+   \pstGeonode(0,0){hgD}(2.25,-1){bdD}
+   \psframe(hgD)(bdD)
+   \rput(0,-0.5){\multips(0,0)(0.75,0){3}{\zigzag}}
+   \pstGeonode(0,-0.5){Rg}(2.25,-0.5){Rd}
+   \rput(Rd){\pstGeonode(1,0){hC}}
+   \rput(hC){\pstGeonode(0,-0.2){cC}}
+   \rput(cC){\pstGeonode(0.2,0){dC}}
+   \pstCircleOA[fillstyle=crosshatch]{cC}{hC}
+   \psline(Rd)(hC)
+   \pstArcOAB[linewidth=0.05]{cC}{dC}{hC}
+   \rput(dC){\pstGeonode(0,-2){cP}}
+   \psline(dC)(cP)
+   \rput(cP){\pstGeonode(-0.5,0){Pg},\pstGeonode(0.5,-0.3){Pd}}
+   \rput(Pd){\rput(0.4,0.2){$m$}}
+   \psframe[framearc=0.9, fillstyle=solid, fillcolor=black](Pg)(Pd)
+   \rput(Rg){\pstGeonode(-1,1){Mu},\pstGeonode(-0.75,-1){Md}}
+   \psframe[fillstyle=crosshatch](Mu)(Md)
+   \psline(Rg)(Md|Rg)
+\end{pspicture}
+}
+%\quad
+\subfigure[Dynamomètre qui porte une masse $m$ de chaque côt\'e]{%
+\label{subfig:dynadeux}
+\begin{pspicture}(-2,0.5)(4.7,-3.2)
+   \psset{PointSymbol=none, PointName=none}
+   \pstGeonode(0,0){hgD}(2.25,-1){bdD}
+   \psframe(hgD)(bdD)
+   \rput(0,-0.5){\multips(0,0)(0.75,0){3}{\zigzag}}
+   \pstGeonode(0,-0.5){Rg}(2.25,-0.5){Rd}
+   \rput(Rd){\pstGeonode(1,0){hC}}
+   \rput(hC){\pstGeonode(0,-0.2){cC}}
+   \rput(cC){\pstGeonode(0.2,0){dC}}
+   \pstCircleOA[fillstyle=crosshatch]{cC}{hC}
+   \psline(Rd)(hC)
+   \pstArcOAB[linewidth=0.05]{cC}{dC}{hC}
+   \rput(dC){\pstGeonode(0,-2){cP}}
+   \psline(dC)(cP)
+   \rput(cP){\pstGeonode(-0.5,0){Pg},\pstGeonode(0.5,-0.3){Pd}}
+   \rput(Pd){\rput(0.4,0.2){$m$}}
+   \psframe[framearc=0.9, fillstyle=solid, fillcolor=black](Pg)(Pd)
+% Construction du symetrique
+   \pstMiddleAB{hgD}{bdD}{mD}\rput(mD){\pstGeonode(0,1){mDb}}
+    \pstOrtSym{mD}{mDb}{Rd,hC,dC,bC,cP,Pg,Pd,cC,hC}[sRd,shC,sdC,sbC,scP,sPg,sPd,scC,shC]
+   \pstCircleOA[fillstyle=crosshatch]{scC}{shC}
+   \psline(sRd)(shC)
+   \pstArcOAB[linewidth=0.05]{scC}{sdC}{shC}
+   \psline(sdC)(scP)
+   \psframe[framearc=0.9, fillstyle=solid, fillcolor=black](sPg)(sPd)
+    \rput(sPg){\rput(0.4,-0.2){$m$}}
+%\psframe(-2,0.5)(4.7,-3.2)
+\end{pspicture}
+}
+\caption{Dynamomètres de l'exercice \ref{exo:dyno_un}}\label{fig:exodyno}
+\end{figure}
+
+\Exo{011}
+
+\Exo{013}
+
+\Exo{014}
+\Exo{016}
+\Exo{017}
+\Exo{018}
+
+\Exo{019}
+
+\Exo{020}
+
+\Exo{023}
+
+\Exo{026}
+
+\Exo{027}
+\Exo{028}
+\Exo{030}
+\Exo{038}
+\Exo{039}

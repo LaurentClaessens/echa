@@ -1,0 +1,501 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\section{Système de référence}
+%--------------------------------
+
+\subsection{Besoin d'un système de référence}
+%//////////////////////////////////////////////
+
+Lorsqu'on traverse la campagne dans un joli petit train, il n'est pas rare d'observer une vache qui se déplace à \unit{90}{\kilo\meter\per\hour}. Oui, mais \unit{90}{\kilo\meter\per\hour} par rapport au train ! par rapport au sol, la vache se balade gentiment. Si je suis dans un TGV qui avance à \unit{300}{\kilo\meter\per\hour} et que je cours vers l'arrière le plus vite possible, un voyageur me verra passer à \unit{25}{\kilo\meter\per\hour} tandis qu'un piéton me verra passer à \unit{275}{\kilo\meter\per\hour}. Quand on donne une vitesse, il est donc indispensable de préciser par rapport à quel objet on la mesure.
+
+Pour les distances, c'est pareil. Dire \og Vienne est à \unit{250}{\kilo\meter} \fg{} c'est presque comme demander la différence entre un canard. À \unit{250}{\kilo\meter} \emph{de quoi} ? Entre un canard \emph{et quoi} ? Il faut prendre un point de repère.
+
+Et en prime, pour désigner la position d'un objet, il faut non seulement donner la distance entre l'objet et le point de référence, mais il faut aussi donner la direction. En effet, si un élève dit qu'il habite à \unit{5}{\kilo\meter} de l'école, ça n'aide pas tellement pour savoir comment aller chez lui.
+
+Pour réaliser tout cela, on utilise la notion de \defe{système d'axe}{Système d'axe} dont nous allons dire quelque mots dans les minutes qui viennent.  
+
+\subsection{Référentiel spatial}
+
+ Sur un terrain de foot, on prend par exemple un coin comme point de repère (qu'on appelle l'\defe{origine du système d'axe}{Origine!d'un système d'axe}) et les lignes blanches de la longueur et de la largeur du terrain comme axes. Disons qu'on les gradue en mètres. Pour désigner le goal proche du coin choisi, on va dire qu'il est à \unit{20}{\meter} dans la direction de l'axe de la largeur, tandis que l'arbitre de ligne sera par exemple à \unit{60}{\meter} dans la direction de la longueur. Pour désigner l'autre goal, c'est plus compliqué. Il faut dire \emph{à la fois} \unit{20}{\meter} dans la direction de la largeur et \unit{100}{\meter} dans la direction de la longueur.
+
+Si on avait choisi le centre du terrain comme point de repère, on aurait eut un petit problème. Les deux goals 
+sont à \unit{50}{\meter} dans la direction de la longueur. Mais pour désigner l'un des deux, il faut dire \emph{dans quel sens}. C'est pour cela qu'on oriente l'axe -- c'est à dire qu'on met une flèche dessus. Disons qu'on a orienté l'axe vers le goal de l'équipe $A$. Alors on dit que le goal de $A$ est situé à \unit{50}{\meter}    tandis que le goal de l'équipe $B$ est à \unit{-50}{\meter}. Le signe moins indique qu'il faut parcourir la distance dans le sens inverse de celui de la flèche placé sur l'axe.
+
+
+\begin{figure}[ht]
+\begin{center}
+\begin{pspicture}(-2,-2)(2,2)
+  \psaxes[dotsep=1pt]{->}(0,0)(-2,-2)(2,2)
+  \psdots[dotscale=2](0,1)
+  \psdots[dotstyle=diamond,dotscale=2](1,-1)
+  \rput(2.3,-0.3){$X$}
+  \rput(-0.3,2){$Y$}
+  \rput(0.2,0.2){o}
+\end{pspicture}
+\end{center}
+\caption{Un système d'axe}\label{fig:coord}
+\end{figure}
+
+Un système d'axe induit des coordonnées. Sur la figure \ref{fig:coord}, le gros point noir est à la coordonnée $(0,1)$ tandis que que le diamant est en $(1,-1)$. Traditionnellement on désigne l'origine des axes par la lettre \og o\fg{}.
+
+\begin{exercice}
+En t'inspirant de ce qui a été dit, dessines une carte sur laquelle se trouve (approximativement) Bruxelles, Paris, Berlin, Londres et Genève
+\begin{enumerate}
+\item Dessiner un repère à deux dimensions,
+\item choisir les unités et les échelles,
+\item donner sous la forme de couples $(x,y)$ la position des 5 villes 
+\item placer les points $(1,1)$, $(-3,2)$
+\item si tu connais le théorème de Pythagore, tu peux calculer la distance entre ces points et l'origine.
+\end{enumerate}
+\end{exercice}
+
+\subsection{Combien de dimensions ?}
+
+\subsubsection{Une dimension} Lorsqu'on traite un mouvement se déroulant sur une droite, on dit que le problème a \emph{une dimension}. C'est le cas  d'un train qui se déplace entre deux villes. La caractéristique d'un mouvement à une dimension est qu'il faut un seul nombre pour donner la position. Dans l'exemple du train : la distance entre le train et la ville de départ suffit.
+
+Un mouvement a une dimension est un mouvement à deux paramètres : un pour la position et un pour la vitesse.
+
+\subsubsection{Deux dimensions} Lorqu'un mouvement se passe dans un plan, on dit que le problème a \emph{deux dimensions}. C'est le cas d'un joueur sur un terrain de foot. On a alors besoin de deux nombres pour donner la position : une abcisse et une ordonnée. 
+
+Un mouvement a deux dimensions est un mouvement à quatre paramètres : deux pour la position et deux pour la vitesse (qui est un vecteur à deux composantes).
+
+\subsubsection{Trois dimensions} Un mouvement se déroulant dans l'espace est un mouvement à \emph{trois dimensions}. C'est le cas d'un avion pour lequel on a besoin de trois nombres pour donner sa position : longitude, latitude et altitude.
+
+Un mouvement a trois dimensions est un mouvement à six paramètres : trois pour la position et trois pour la vitesse (qui est un vecteur à trois composantes).
+
+\subsection{Référentiel temporel}
+%///////////////////////////////////
+
+Qu'est-ce que le temps ? Voici une question qui a inspiré de looooogues pages de réflexions plus ou mois profondes. On va retenir cette définition simple et indémodable qu'Einstein a donnée : \defe{le temps}{Temps} c'est ce qu'on mesure avec \emph{une horloge}. 
+
+Une \defe{repère temporel}{Repère!temporel} est le choix (arbitraire) d'un instant de référence à partir duquel on va compter les durées. Le repère temporel pour un film est l'instant où les lampes de la salle de cinéma s'éteignent. Quand on dit \og à la quinzième minute du film\fg, on veut dire \og quinze minutes après que les lumières se soient éteintes\fg. Il y a des repères plus tordus comme le départ d'une fusée : quand on dit \og à la troisième minute du vol\fg, cela signifie \og trois minutes après le décollage \fg, et quand on est dans le compte à rebours \emph{avant} le décollage, on compte avec des nombres \emph{négatifs} : on dit \og jour J-1\fg.
+
+
+\section{Mouvement et repos}
+%-----------------------------
+
+\subsection{Définitions}
+%//////////////////////////
+
+Un point matériel est \defe{en mouvement}{Mouvement} par rapport à un référentiel spatial donné si sa position \emph{varie} au cours du temps. Un point matériel est \defe{au repos}{Repos} par rapport à un référentiel spatial donné si sa position \emph{reste constante} au cours du temps.
+
+Il est important de comprendre que le concept de repos ou de mouvement n'est pas \og absolu\fg{} mais \emph{relatif} à un système de référence donné. On a envie de dire d'un enfant bien sage qui ne cours pas dans tout les sens et qui est gentiment assis en train de lire qu'il est au repos. Il n'en reste pas moins qu'il bouge à une vitesse de \unit{10758}{\kilo\meter\per\hour} autour du Soleil ! Dire qu'il ne bouge pas est tout relatif.
+
+\begin{exemple}
+Si on fixe un repère spatial sur le quai d'une gare, le train qui passe sera bel et bien en mouvement. Mais si je fixe mon repère sur la banquette sur laquelle je suis assis, eh bien je dirai que les autres voyageurs sont au repos. Le type qui dort devant moi a beau avancer à \unit{90}{\kilo\meter\per\hour}   par rapport au quai de la gare, il ne s'éloigne pas de moi; pas plus que du roman d'Émile Zola que j'ai dans les mains !
+\end{exemple}
+
+
+Voir  aussi les exercices \ref{exo:mouv} et \ref{exo:mouv2}.  
+
+\subsubsection{Trajectoire d'un point matériel}
+%//////////////////////////////////////////////
+
+La \defe{trajectoire}{Trajectoire} d'un objet qui bouge est la \og trace\fg{} que l'objet laisse dans l'espace pendant son mouvement. C'est l'ensemble de tous les points par lesquels l'objet est passé durant son mouvement.
+
+\begin{exemple}
+La trajectoire d'un cycliste au tour de France est une ligne fermée qui part de Paris et finit à Paris. En général cette trajectoire ne passe que par des routes. De temps en temps certains cyclistes empruntent une trajectoire qui passe par un champ (Amstrong 2004).
+
+La trajectoire d'une balle de volley servie est une belle courbe allongée qui part du serveur et termine idéalement par terre de l'autre côté du filet. Sinon, la trajectoire suivra un trajet un peu compliqué pour passer dans les mains de trois joueurs avant de repasser le filet dans l'autre sens.
+ \end{exemple}
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-5.5,-1)(1.5,5)
+   \psaxes{->}(0,0)(-5.5,-1.35)(2.5,5.3)
+   \def\F{x 2 add 2 exp -1 2 div mul 9 2 div add}
+   \psplot{-5}{1.2}{\F}
+   \markpoint[PosAngle=90]{-2}{4.5}{S}
+   \markpoint[PosAngle=120]{-5}{0}{A}
+   \markpoint[PosAngle=45]{1}{0}{B}
+    \markpoint[PosAngle=0]{1.2}{-0.55}{C}
+\end{pspicture}
+\caption{Trajectoire balistique d'un boulet de canon}\label{fig:trajectoire}
+\end{figure}
+
+La figure \ref{fig:trajectoire} montre la trajectoire d'un boulet de canon tiré du sol en $A$ qui suit une belle parabole (sommet en $S$) pour toucher la terre en $B$ et s'enfoncer dans le sol jusqu'à $C$. Vu que l'origine des axes se trouve au niveau du sol et que l'axe est dirigé vers le haut, le point $S$ a une composante verticale positive tandis que le point $C$ a une coordonnée verticale négative.
+
+\subsection{Vecteur déplacement, vecteur position}
+%////////////////////////////////////////////////////
+
+La figure \ref{fig:pos_deplace} montre la trajectoire d'un point au cours du temps. La position $P(0)$ est la position à l'instant initial. Ce n'est pas spécialement le début du mouvement, c'est juste la position au moment où on a décidé de mettre le chrono à zéro. Pas plus que la Révolution française ne marque le début de l'histoire du monde malgré que les révolutionnaires aient décidés de faire commencer leur calendrier à ce moment (dans ce calendrier, nous sommes en l'an CCXVI). 
+
+Le point $P(1)$ est l'endroit où est l'objet au temps $1$, etc\ldots
+
+Les vecteurs $\overrightarrow{OP(0)}$, $\overrightarrow{OP(1)}$, $\overrightarrow{OP(2)}$, $\overrightarrow{OP(t)}$,  sont des \emph{vecteurs position}, tandis que le vecteur $\overrightarrow{P(1)P(t)}$ est un \emph{vecteur déplacement}.
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-1.95,-0.95)(3.95,3.95)
+   \psaxes{->}(0,0)(-3.95,-0.95)(2.95,3.5)
+   \pstGeonode[PosAngle=45](0,0){O}
+   \pstGeonode[PosAngle={90,90,90,90,-90}, CurveType=curve, 
+               PointName={none, $P(0)$, $P(1)$, $P(2)$, $P(t)$,none},
+               PointSymbol={none,default,default,default,default,none}]
+                  (-3.3,2.3){B1}(-3,2.5){P0}(-1,2){P1}(1,2.5){P2}(2,1){Pt}(2.3,1.6){B2}
+      \psset{linestyle=dashed}
+      \psline{->}(O)(P0)
+      \psline{->}(O)(P1)
+      \psline{->}(O)(P2)
+      \psline{->}(O)(Pt)
+      \psline{->}(P1)(Pt)
+\end{pspicture}
+\caption{Vecteur position et déplacement}\label{fig:pos_deplace}
+\end{figure}
+
+Voir l'exercice \ref{exo:deplac}, \ref{exo:deplac2}.
+
+
+\subsection{Exercices}
+%--------------------
+
+\Exo{001}
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-3.5,-3)(4,3)
+   \psaxes{->}(0,0)(-2,-3)(4.5,2)
+   \pstGeonode[PosAngle={90,90,90,45,45,-90}, CurveType=curve, 
+               PointName={none,B,C,D,E,F,none},
+               PointSymbol={none,default,default,default,default,default,none}]
+                  (-1.5,0.5){A}(-1,0){B}(0,2){C}(1,1){D}(2,0){E}(3,-2){F}(3.5,-2.4){G}
+\end{pspicture}
+\caption{Petit exercice.}\label{exo:coord}
+\end{figure}
+
+\Exo{003}
+\Exo{004}
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-2,-1)(3,4)
+   \psaxes{->}(0,0)(-1,-1)(3,4)
+   \markpoint[PosAngle=90]{3}{0}{A}
+   \markpoint[PosAngle=120]{0}{0}{B}
+   \markpoint[PosAngle=45]{0}{4}{C}
+\end{pspicture}
+\caption{Itinéraire d'un limaçon}\label{fig:deplac2}
+\end{figure}
+
+\Exo{005}
+
+\section{Vitesse moyenne et instantanée}		\label{SecVitmoyinst}
+%-------------------------------------------
+
+Lorsqu'un sportif cours le $100$ mètres en $11$ secondes, on dit qu'il le fait avec une \emph{vitesse moyenne} de $100/11=9.09$ mètres par secondes. Mais, le sportif partant à l'arrêt, il est évident qu'il n'a pas couru à vitesse constante : il a d'abord accéléré. Affin de décrire correctement le mouvement de la course, la vitesse moyenne de \unit{9.09}{\meter\per\second} est intéressante, mais ce n'est pas tout. Il faudrait aussi savoir la vitesse après une seconde, après deux secondes, \ldots
+
+La définition de la \defe{vitesse moyenne}{Vitesse moyenne} d'un mobile qui s'est déplacé d'une distance $d$ en un temps $\Delta t$ est :
+\begin{equation}
+  v_{moy}=\frac{ d }{ \Delta t }.
+\end{equation}
+Cela est une notion familière.
+
+Si on veut savoir la vitesse du sportif exactement une seconde après le départ de la course, il faut être plus subtil. Une bonne idée est de mesurer la distance qu'il a parcourue entre $0.9$ secondes et $1.1$ secondes, et de diviser cette distance par $0.2$. Ainsi on a la vitesse moyenne du sportif dans un intervalle de temps de $0.2$ secondes autour du moment qui nous intéresse. Nous pouvons espérer que la vitesse du coureur n'ait pas trop variée pendant ce laps de temps, et donc on peut dire que cela est sa vitesse.
+
+Pour quelqu'un qui cours, $0.2$ secondes, c'est satisfaisant. Mais si on étudie une balle de fusil qui sort du canon, en réalité $0.2$ secondes c'est énorme ! Il faudra utiliser des intervalles de temps beaucoup plus petit.
+
+Donc, \emph{plus on veut avoir une idée précise de la vitesse, plus il faut la mesurer sur un intervalle court}. D'où l'idée de définir la \defe{vitesse instantanée}{Vitesse instantanée} d'un mobile au temps $t_0$ comme la vitesse moyenne du mobile pendant un temps \emph{infiniment court} autour de $t_0$. 
+
+Si $x(t)$ est la position du mobile au temps $t$ ($x$ est une fonction de $t$), la vitesse moyenne du mobile durant un temps $\Delta t$ après $t_0$ est donnée par
+\[ 
+  v_{moy}=\frac{ x(t+\Delta t) -x(t) }{ \Delta t }.
+\]
+Le principe de la vitesse instantanée est de voir ce que cela donne lorsque $\Delta t$ devient très petit. On note cela avec la formule
+\[ 
+  v=\lim_{\Delta t\to 0}\frac{ x(t+\Delta t) - x(t) }{ \Delta t },
+\]
+et tu verras au cours de math que c'est exactement la notion de \emph{dérivée}.
+
+\begin{exemple}		\label{ExoDerrmouvunif}
+Comme exemple très simple, regardons quelle est la vitesse instantanée d'un mobile se déplaçant à vitesse constante $v$ et partant d'une position initiale $x_0$. La position du mobile en fonction du temps est donnée par $x(t)=x_0+vt$. On a donc le calcul suivant :
+\[ 
+  v(t_0)=\frac{ x(t_0+\Delta t)-x(t) }{ \Delta t }=\frac{ x_0+v(t_0+\Delta t)-(x_0+vt_0) }{ \Delta t }=\frac{ v\Delta t }{ \Delta t }=v
+\]
+Donc quand on a une vitesse constante, la vitesse instantanée est bien la vitesse que l'on connaît.
+\end{exemple}
+
+L'exemple suivant est à lire plus tard.
+
+\begin{exemple}		\label{ExDerchutelobre}
+Prenons un exemple à peine plus compliqué, mais que tu vas bouffer dans ton cours de math jusqu'à plus faim. Quelle est la vitesse instantanée d'un objet en chute libre après deux secondes ?
+
+Tu sais que la distance parcourue en fonction du temps est $h(t)=gt^2/2$, donc le calcul à faire est
+\begin{align*}
+  v(2)	&=\lim_{\Delta t\to 0}\frac{ h(2+\Delta t)-h(2) }{ \Delta t }=\lim_{\Delta t\to 0}\frac{ g(2+\Delta t)^2-g2^2 }{ 2\Delta t }\\
+	&=\lim_{\Delta t\to 0}\frac{ g(4+4\Delta t+(\Delta t)^2)-4g }{ 2\Delta t }=\lim_{\Delta t\to 0}g\frac{ 4\Delta t+\Delta t^2 }{ 2\Delta t }.
+\end{align*}
+Jusqu'ici, nous n'avons rien fait d'autre que remplacer $h(t)$ par sa valeur en fonction du temps, appliqué un produit remarquable. Maintenant, nous allons gentiment simplifier\footnote{Les puristes poseront la condition d'existence $\Delta t\neq 0$.} par $\Delta t$. 
+\[ 
+  v(2)=\lim_{\Delta t\to 0}g\frac{ 4+\Delta t }{ 2 }.
+\]
+Maintenant on peut s'occuper de cette limite : quand $\Delta t$ est franchement petit (prends par exemple $\Delta t=0.000001$), c'est pas lui qui change grand chose à côté du $4$. Notre stratégie est donc de \og faire comme si\footnote{Les puristes qui auront posé la condition d'existence doivent se dire que ce qu'on fait pour l'instant est le mal absolu. Ils verront cependant que cette \og simplification par zéro\fg{}  n'es pas totalement fautive.}\fg{}  $\Delta t=0$. On fait $4+\Delta t=4$, ce qui est justifié parce qu'on suppose que $\Delta t$ est aussi petit qu'on veut. En tout cas l'erreur que l'on fait en \og oubliant\fg{}  le $\Delta t$ n'est pas très grande.
+
+Nous avons donc que
+\[ 
+  v(2)=g\frac{ 4 }{ 2 }=\unit{2g}{\meter\per\second}.
+\]
+Et heureusement, nous avons retrouvé ce que l'on savait : avec une accélération $g$, on a une vitesse $2g$ après deux secondes.
+\end{exemple}
+
+\section{Accélération moyenne et instantanée}
+%-----------------------------------------------
+
+Un TGV part de Bruxelles vers Paris. Pendant un certain temps entre les deux, il a avancé à \unit{300}{\kilo\meter\per\hour}. Au départ à Bruxelles, le TGV était au repos, puis il a accéléré jusqu'à \unit{300}{\kilo\meter\per\hour}, il a gardé cette vitesse pendant un certain temps avant de ralentir pour s'arrêter sur le quai de Paris.
+
+Mais le train n'a pas accéléré de façon constante, ne fut-ce que parce que tant qu'il est à l'intérieur de Bruxelles, il ne peut pas faire n'importe quoi ! Si il avance à \unit{300}{\kilo\meter\per\hour}(=\unit{83,3}{\meter\per\second}) après une demi-heure de trajet ($=\unit{1800}{\second}$), on dit que son accélération moyenne est de $\unit{83,3/1800=0,05}{\meter\per\square\second}$.
+
+On définit l'\defe{accélération moyenne}{Accélération moyenne} comme la variation de vitesse divisée par le temps :
+\[ 
+  a_{moy}=\frac{ \Delta v }{ \Delta t }.
+\]
+Tu remarqueras les unités \emph{a priori} un peu bizarres : $\meter\per\square\second$. En effet, les unités d'une vitesse (qui apparaît au numérateur) sont \meter\per\second, et celles de l'intervalle de temps (qui est au dénominateur) sont \second.
+
+De la même manière que pour déterminer une vitesse à un moment donné de façon précise il fallait considérer des intervalles de temps de plus en plus petit, pour avoir l'\defe{accélération instantanée}{Accélération!instantanée}, il faut mesurer la variation de vitesse sur des intervalles de temps infiniment courts :
+\begin{equation}		\label{EqDefAcclvlim}
+	a=\lim_{\Delta t\to 0}\frac{ v(t+\Delta t)-v(t) }{ \Delta t },
+\end{equation}
+si $v(t)$ est la vitesse du mobile au temps $t$.
+
+
+En résumé, on peut dire que l'accélération est à la vitesse ce que la vitesse est à la position.
+
+\section{Mouvement rectiligne uniforme (MRU)}
+%-------------------------------------------
+
+On dit qu'un mobile effectue un \defe{mouvement rectiligne uniforme}{MRU} quand il se déplace en ligne droite à vitesse constante. La formule qui donne la position en fonction du temps d'un objet se déplaçant à la vitesse $v$ est simple :
+\begin{equation}
+  x(t)=x_0+vt.
+\end{equation}
+En effet, la définition de la vitesse au temps $t$ est que 
+\[ 
+  v(t)=\frac{ x(t)-x_0 }{ t }.
+\]
+Comme la vitesse est constante, $v(t)=v$, et en isolant $x(t)$ dans cette équation, on trouve la formule annoncée.
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Exercices}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\Exo{MRU0001}                                                             
+\Exo{MRU0002}                                                             
+\Exo{MRU0003}                                                             
+\Exo{MRU0004}                                                             
+\Exo{MRU0005}                                                             
+\Exo{MRU0006}                                                             
+\Exo{MRU0007}                                                             
+\Exo{MRU0008}                                                             
+\Exo{MRU0009}                                                             
+\Exo{MRU0010}                                                             
+\Exo{MRU0011}                                                             
+\Exo{MRU0012}                                                             
+\Exo{MRU0013}                                                             
+\Exo{MRU0014}                                                             
+\Exo{MRU0015}                                                             
+\Exo{MRU0016}                                                             
+\Exo{MRU0017}                                                             
+\Exo{MRU0018}                                                             
+\Exo{MRU0019}                                                             
+\Exo{MRU0020}                                                             
+\Exo{MRU0021}                                                             
+\Exo{MRU0022}                                                             
+\Exo{MRU0023}                                                             
+\Exo{MRU0024}                                                             
+\Exo{MRU0025}                                                             
+\Exo{MRU0026}                                                             
+\Exo{MRU0027}                                                             
+\Exo{MRU0028}                                                             
+\Exo{MRU0029}                                                             
+\Exo{MRU0030}                                                             
+\Exo{MRU0031}                                                             
+\Exo{MRU0032}                                                             
+\Exo{MRU0033}                                                             
+\Exo{MRU0034}                                                             
+\Exo{MRU0035}                                                             
+\Exo{MRU0036}                                                             
+\Exo{MRU0037}                                                             
+\Exo{MRU0038}                                                             
+\Exo{MRU0039}                                                             
+\Exo{MRU0040}                                                             
+\Exo{MRU0041}                                                             
+\Exo{MRU0042}                                                             
+\Exo{MRU0043}                                                             
+\Exo{MRU0044}                                                             
+\Exo{MRU0045}                                                             
+\Exo{MRU0046}                                                             
+\Exo{MRU0047}                                                             
+\Exo{MRU0048}                                                             
+\Exo{MRU0049}                                                             
+\Exo{MRU0050}                                                             
+\Exo{MRU0051}                                                             
+\Exo{MRU0052}                                                             
+\Exo{MRU0053}                                                             
+\Exo{MRU0054}                                                             
+\Exo{MRU0055}                                                             
+\Exo{MRU0056}                                                             
+\Exo{MRU0057}                                                             
+\Exo{MRU0058}                                                             
+\Exo{MRU0059}                                                             
+\Exo{MRU0060}                                                             
+\Exo{MRU0061}                                                             
+\Exo{MRU0062}                                                             
+\Exo{MRU0063}                                                             
+\Exo{MRU0064}                                                             
+\Exo{MRU0065}                                                             
+\Exo{MRU0066}                                                             
+\Exo{MRU0067}                                                             
+\Exo{MRU0068}                                                             
+\Exo{MRU0069}                                                             
+\Exo{MRU0070}                                                             
+\Exo{MRU0071}                                                             
+\Exo{MRU0072}                                                             
+\Exo{MRU0073}                                                             
+\Exo{MRU0074}                                                             
+\Exo{MRU0075}                                                             
+\Exo{MRU0076}                                                             
+\Exo{MRU0077}                                                             
+\Exo{MRU0078}                                                             
+\Exo{MRU0079}                                                             
+\Exo{MRU0080}                                                             
+\Exo{MRU0081}                                                             
+\Exo{MRU0082}                                                             
+\Exo{MRU0083}                                                             
+\Exo{MRU0084}                                                             
+\Exo{MRU0085}                                                             
+\Exo{MRU0086}
+\Exo{MRU0087}
+\Exo{MRU0088}
+\Exo{MRU0089}
+\Exo{MRU0090}
+\Exo{MRU0091}
+\Exo{MRU0092}
+\Exo{MRU0093}
+\Exo{MRU0094}
+\Exo{MRU0095}
+\Exo{MRU0096}
+\Exo{MRU0097}
+\Exo{MRU0098}
+\Exo{MRU0099}
+\Exo{MRU0100}
+
+ 
+\section{Mouvement uniformément accéléré (MRUA)}		\label{SecMRUA}
+%+++++++++++++++++++++++++++++++++++++++++
+
+\subsection{Théorie}
+%-------------------
+
+Nous avons vu ce qu'est l'accélération. Maintenant est venu le moment d'étudier le mouvement d'un objet qui connaît une accélération constante. Un tel mobile a une vitesse qui augmente avec le temps selon la formule
+\[ 
+  v(t)=at+v_0.
+\]
+La définition de la vitesse moyenne entre le moment initial et le moment $t$ est 
+\begin{equation}		\label{Eqvmoymruaxx}
+v_{moy}=\frac{ x(t)-x_0 }{ t },
+\end{equation}
+d'où on déduit que $x(t)=v_{moy}t+x_0$. Affin de trouver une expression satisfaisante pour $x(t)$, nous allons avoir besoin d'un petit calcul contenant deux subtilités. Ouvre grand tes neurones, ça ne va pas être facile ! D'abord, on sait que la vitesse moyenne peut également être calculée par la formule
+\[ 
+  v_{moy}=\frac{ v(t)+v_0 }{ 2 }.
+\]
+Cette formule est vraie parce que l'accélération est constante. En remettant cette forme pour $v_{moy}$ dans la formule \eqref{Eqvmoymruaxx} on trouve
+ \begin{equation}
+\begin{split}
+  x(t)&=\frac{ 1 }{2}\big( v(t)+v_0 \big)t+x_0\\
+	&=\frac{ 1 }{2}\big( v(t)-v_0+v_0+v_0 \big)t+x_0.
+\end{split}
+\end{equation}
+Pour obtenir la deuxième ligne, on a ajouté $+v_0-v_0$ dans la parenthèse. C'est comme si au lieu d'écrire $7+5$, on avait écrit $7-5+5+5$. C'était la première subtilité. En remettant de l'ordre dans les termes,
+\[ 
+  x(t)=\frac{ 1 }{2}\big( v(t)-v_0 \big)t+\frac{ 2v_0 }{ 2 }t+x_0.
+\]
+Deuxième subtilité : à côté de la première parenthèse, on remplace $t\to \frac{ t^2 }{ t }$. Là encore c'est permis parce que ça revient à multiplier par $1$. On a donc
+\[ 
+\begin{split}
+  x(t)&=\frac{ 1 }{2}\left( \frac{ v(t)-v_0 }{ t } \right) t^2+v_0t+x_0\\
+	&=\frac{ at^2 }{ 2 }+v_0t+x_0,
+\end{split}
+\]
+où la seconde ligne est obtenue en utilisant la définition de l'accélération. Il est important de retenir la dernière formule qui donne la position en fonction du temps et de l'accélération dans le cas d'une accélération constante :
+\begin{equation}			\label{EqMouvAccatc}
+x(t)=\frac{ at^2 }{ 2 }+v_0t+x_0.
+\end{equation}
+
+\begin{exercice}
+	Un bon sportif de \unit{73}{\kilo\gram} cours une distance ce \unit{100}{\meter} en onze secondes. Quelle est sa vitesse moyenne ? En réalité, il commence la course au repos et accélère. 
+\begin{itemize}
+\item Supposons qu'il accélère de façon uniforme durant toute la course. Quelle est cette accélération ? 
+\item Supposons maintenant que son mouvement soit le suivant : il accélère uniformément durant la moitié de la longueur, et puis il continue à vitesse constante. Quelle est cette accélération, combien de temps dure-t-elle ?
+\item Mêmes questions si le sportif accélère uniformément durant la moitié du \emph{temps} de la course.
+\end{itemize}
+\end{exercice}
+
+\begin{pourquoidonc}
+	Quelle est l'accélération d'un mobile qui accélère du repos jusqu'à une vitesse $v$ sur une distance $d$ ?
+\end{pourquoidonc}
+\label{PgPourquoiAccDeDistance}
+
+Le problème avec cette question est que la fameuse formule du MRUA $d=at^2/2$ ne lie pas directement la vitesse à l'accélération. La vitesse, elle, est donnée par $v=at$. La subtilité est d'écrire le système
+\begin{subequations}
+	\begin{numcases}{}
+		v=at\\
+		d=\frac{ 1 }{2}at^2
+	\end{numcases}
+\end{subequations}
+D'après la question, les paramètres $v$ et $d$ sont donnés. Ces deux équations contiennent donc les inconnues $t$ et $a$. Deux équations pour deux inconnues, ça doit être jouable. Nous pouvons isoler $t$ dans la première équation : $t=v/a$, et substituer cette valeur de $t$ dans la seconde équation :
+\begin{equation}
+	d=\frac{ 1 }{2}a\left( \frac{ v }{ a } \right)^2.
+\end{equation}
+Nous pouvons extraire $a$ de cette expression :
+\begin{equation}
+	a=\frac{ v^2 }{ 2d }.
+\end{equation}
+
+\begin{exercice}		\label{ExoVeloAccDistance}
+	Un \href{http://velorution.be/medias/illustrations/jpg_dessin553_titom_auto_museum.jpg}{cycliste} remarque qu'il accélère de $0$ à $\unit{18}{\meter\per\second}$ sur une distance de $\unit{10}{\meter}$. Quelle est son accélération ?
+
+	À quelle vitesse arrivera ce cycliste si il maintient la même accélération pendant $\unit{15}{\meter}$.
+\end{exercice}
+
+\begin{exercice}		\label{ExoTrainAccDistance}
+	Un train de masse $m$, initialement au repos, subit une accélération $a$. À quelle vitesse avance-t-il après qu'il ait parcouru une distance $d$ ?
+\end{exercice}
+
+Maintenant, c'est plus tard, donc tu peux lire l'exemple \ref{ExDerchutelobre} de la page \pageref{ExDerchutelobre}.
+
+\subsection{La chute libre}
+%--------------------------
+
+Il y a une chose que tu ne sais peut être pas encore, mais que tu apprendra certainement, c'est que quand un objet tombe, il accélère avec une accélération de \unit{9.81}{\meter\per\square\second}. Disons le plus clairement : quand un objet est en chute libre (sur Terre), il suit subit une accélération verticale de \unit{9.81}{\meter\per\square\second}. À partir de maintenant, nous noterons $g$ cette accélération.
+
+Prends un objet en main, et lâche le. Au départ, mettons qu'il soit à un mètre du sol et il a une vitesse nulle (parce que tu le tenais). Étant donné que l'objet attrape une accélération $g$, la distance qu'il parcours en un temps $t$ est 
+\[ 
+  \frac{ gt^2 }{ 2 }.
+\]
+Donc après un temps $t$, l'objet sera à un mètre moins cette distance du sol (parce qu'il tombe). Si maintenant on note $h_0$ la hauteur d'où tu lâche l'objet, sa hauteur en fonction du temps sera
+\[ 
+  h(t)=h_0-\frac{ gt^2 }{ 2 }.
+\]
+
+Insistons sur un point. J'ai dit qu'un objet en chute libre aura \emph{toujours} une accélération $g$. Oui, mais un objet plus lourd ne tombera pas un peu plus vite ? Non ! Fais l'expérience en laissant tomber une balle de basket et un stylo l'un à côté de l'autre; tu verras qu'ils tombent ensemble.
+\begin{loiphyz}
+Tous les objets tombent avec la même accélération, indépendamment de leur masse.
+\end{loiphyz}
+Oui, mais une feuille de papier tombe quand même moins vite qu'une enclume ! Cette loi n'est donc pas tout à fait exacte. Qu'est-ce qui ce passe ?
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Chute libre et frottements}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Chiffonne la feuille de papier en boule, et tu verras que maintenant, elle tombe déjà presque à la même vitesse que la basse de basket.
+
+Ce qui fait la différence entre une feuille de papier, une boulette de papier et une balle de basket, c'est le frottement de l'air. C'est ça qui ralentit fort la feuille, qui ralentit un peu la boulette et qui ne ralentit presque pas la balle de basket. Nous pouvons maintenant préciser la loi :
+\begin{loiphyz}
+Lorsqu'on peut négliger les frottements, tous les objets tombent avec la même accélération (et donc la même vitesse) quelle que soit leur masse. Cette accélération vaut $g=\unit{9.81}{\meter\per\square\second}$ sur Terre.
+\end{loiphyz}
+Remarque : cette valeur varie un peu d'un endroit à l'autre de la Terre, mais varie \emph{énormément} d'une planète à l'autre.
+
+\Exo{006}

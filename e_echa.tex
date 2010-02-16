@@ -1,0 +1,503 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+\documentclass[a4paper,12pt]{book}
+%\documentclass[a4paper,12pt,draft]{book}
+
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{cases}
+
+%\usepackage[notcite,notref]{showkeys}
+
+\usepackage{eso-pic}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-eucl}
+\usepackage{pst-plot}
+\usepackage{pst-math}
+\usepackage{pstricks-add}
+\usepackage{subfigure}
+
+
+\usepackage{multido}
+\usepackage{fp}
+\usepackage{ifthen}
+\usepackage{graphicx}
+
+\usepackage{makeidx}
+\usepackage{isotope}
+\usepackage[cdot,thinqspace,amssymb]{SIunits} 
+ % L'option amssymb sert à éviter un conflit avec la commande \square de amssymb. Note qu'elle n'est plus accessible. Si tu en as besoin, faudra RTFM
+%ftp://ftp.belnet.be/packages/ctan/macros/latex/contrib/SIunits/SIunits.pdf
+
+\usepackage{verbatim}
+\usepackage[ps2pdf]{hyperref} 		%Doit être appelé en dernier.
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Trucs mathématiques
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\eR}{\mathbbm{R}}
+\newcommand{\eZ}{\mathbbm{Z}}
+\newcommand{\eQ}{\mathbbm{Q}}
+\newcommand{\eN}{\mathbbm{N}}
+\newcommand{\efrac}[2]{\frac{ \displaystyle #1 }{\displaystyle #2 }}
+
+\DeclareMathOperator{\dom}{dom}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Numérotations en tout genre
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{tocdepth}{3}		% Profondeur de la table des matières
+\setcounter{secnumdepth}{2}		% Profondeur dans le texte
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Les lignes magiques pour le texte en français.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry} 
+\usepackage[english,frenchb]{babel}
+
+\usepackage{SystemeCorr}
+
+\newcounter{bidon}
+\newcommand{\Vbidon}{klmkm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Des choses de géométrie et de dessins
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Résumé des principales commandes :
+
+%	\pstMarquePoint[<+style+>]{<+Point à marquer+>}{<+position relative+>}{<+À noter+>}
+
+%	\pstInterLL{<+point1+>}{<+point2+>}{<+repoint1+>}{<+repoint2+>}{<+intersection+>}
+
+%	\pstTranslation{<+debut segment+>}{<+fin segment+>}{<+point accroche+>}[<+point final+>]
+%	\pstRotation[RotAngle=<+angle+>]{<+debut segment+>}{<+bout segment+>}[<+point final+>]
+%	\pstHomO[HomCoef=<+Coef d'omothetie+>]{<+centre+>}{<+point initial+>}[<+point final+>]
+%	\pstTransHom{<+debut segment+>}{<+fin segment+>}{<+point accroche+>}{<+coef homo+>}{<+point final+>}
+%	\pstTransRot{<+debut segment+>}{<+fin segment+>}{<+point accroche+>}{<+angle rotation+>}{<+point final+>}
+%	\pstProjectionOrth{<+Premier point axe+>}{<+second point axe+>}{<+point a traiter+>}{<+point final+>}
+
+%	\psaxes(<+là où les axes se croisent+>)(<+bas gauche+>)(<+haut droi+>)
+
+%%%%%%%%%%% Fin du résumé %%%%%%%%%%%%%
+
+% La macro pstLigneLongueur
+% #1	Optionnel : ce sont les parametres de tracé
+% #2	Premier point de la ligne
+% #3	Second point de la ligne
+% #4	Longueur de la ligne souhaitée
+%
+%   Cela trace une droite de longueur spécifiée qui passe par les deux points donnés. 
+\newcommand{\pstLigneLongueur}[4][]{%
+   \pstMiddleAB{#2}{#3}{interC}						% Trouver le milieu du segment donné
+   \pstInterLC[Diameter=\pstDistVal{#4}]{#2}{#3}{interC}{}{interP}{interQ}		% Points d'intersection entre la droite et le cercle de diamètre #4
+   \pstLineAB[#1]{interP}{interQ}
+}
+
+
+% La macro ValeurFonction
+% #1	est le nom de la fonction à calculer. Cette dernière doit être une macro à un argument du genre 3*#1+5/#1
+% #2	est la valeur de la variable en laquelle on veut calculer la fonction
+% #3	est le nom de la variable FP dans laquelle le résultat sera écrit.
+\newcommand{\ValeurFonction}[3]{\FPeval{#3}{#1{#2}}}
+
+% La macro pstPointSurCourbe
+% #1	est le nom de la fonction
+% #2	est le x où l'on veut le point
+% #3	est le nom du point pstricks qui sera en x sur la courbe.
+\newcommand{\pstPointSurCourbe}[3]{%
+\ValeurFonction{#1}{#2}{inter}
+\pstGeonode(#2,\inter){#3}
+}
+
+\newcommand{\pstTortue}[2]{%
+\pstTranslation{O}{#1}{TorPos}[#2]
+\pstGeonode(#2){TorPos}
+}
+
+% La macro markpoint
+% #1	(optionel) est le style dans lequel le point va être marqué
+% #2,#3	les coordonées du point
+% #4	le nom du point
+%
+% Le tout crée un point aux coordonnées données et trace des lignes en pointillé du point vers les axes.
+\newcommand{\markpoint}[4][]{%
+		\pstGeonode[#1](#2,#3){#4}
+		\psline[linestyle=dashed](0,#3)(#2,#3)(#2,0)
+			}
+
+
+\newcommand{\zigzag}{\psline(0,0)(0.25,0.3)(0.5,-0.3)(0.75,0)}
+\newcommand{\psPtRel}[3]{ \rput(#1){\pstGeonode(#2)}{#3} }
+
+
+\newcommand{\pstBoite}[5]{%
+\rput(#1){\pstGeonode(#2,0){ibdm}}
+\pstHomO[HomCoef=0.5]{#1}{ibdm}[ihd]
+\rput(ihd){\pstGeonode(-#2,-#3){ibg}}
+\psframe(ihd)(ibg)
+\pstMiddleAB{ibg}{ihd}{#4}
+\pstHomO[HomCoef=2]{#1}{#4}[#5]
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Des constructions géométriques
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Pour la commande \pstTransHom
+%1 Début du segment
+%2 fin du segment
+%3 Le point d'accroche
+%3 Le coef d'homotéthie
+%5 Le nom du point obtenu
+
+\newcommand{\pstTransHom}[5]{%		
+\pstTranslation{#1}{#2}{#3}[inter]
+\pstHomO[HomCoef=#4]{#3}{inter}[#5]
+}
+
+\newcommand{\pstTransRot}[5]{%
+\pstTranslation{#1}{#2}{#3}[inter]
+\pstRotation[RotAngle=#4]{#3}{inter}[#5]
+}
+
+% La commande suivante donne les points de tangence passant par un point donné à un cercle donné.
+% #1 : centre du cercle
+% #2 : un point du cercle
+% #3 : le point d'où doit partir les tangentes
+% #4 et #5 : les points de tangence
+\newcommand{\pstTangenteOPM}[5]{%
+\pstMiddleAB{#1}{#3}{inter}
+\pstInterCC{#1}{#2}{inter}{#3}{#4}{#5}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Mécanique et forces
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% La macro \pstMarqueForce prend les arguments suivants :
+% 1 est le départ
+% 2 est l'arrivée
+% 3 est l'endroit par rapport à l'arrivée où on va mettre le label
+% 4 est le label en question
+\newcommand{\pstMarqueForce}[4]{%
+\psline[arrows=->](#1)(#2)
+\rput(#2){\rput(#3){#4}}
+}
+
+% La macro \pstMarquePoint prend les arguments suivants :
+% - 1 est optionnel : il donne le style de point qui va arriver
+% - 2 est le point (au sens pstrick) qui doit être marqué
+% - 3 est la position où va se trouver la marque par rapport au point pstrick. Typiquement c'est (0.3;90) en coordonnées polaires
+% - 4 est ce qu'on va y noter
+\newcommand{\pstMarquePoint}[4][PointSymbol=none]{%
+\rput(#2){\rput(#3){#4}}				% Mettre le symbole du point là où il doit être
+\pstGeonode[#1](#2){mpinter}				% Cette ligne fait apparaître un point à l'endroit que l'on marque.
+							%   étant donné le \psset{PointSymbol=none} dans lequel toutes les figures se trouvent,
+							%   ceci ne fait pas grand chose si on ne donne pas à \pstMarquePoint l'argument optionnel
+							%   du type PointSymbol=* par exemple.
+}
+
+% La macro suivante prend comme arguments :
+% - début et fin d'une force
+%math - début et fin d'un premier vecteur
+% - début et fin d'un second vecteur
+% Puis place les points qui décomposent la force dans les noms des deux derniers arguments
+
+\newcommand{\pstDecompForce}[8]{%
+  \psset{PointSymbol=none, PointName=none}
+\pstTranslation{#3}{#4}{#1}[ibBu]
+\pstTranslation{#5}{#6}{#1}[ibBd]
+
+\pstTranslation{#3}{#4}{#2}[jbBu]
+\pstTranslation{#5}{#6}{#2}[jbBd]
+
+\pstInterLL{#2}{jbBd}{#1}{ibBu}{#7}
+\pstInterLL{#2}{jbBu}{#1}{ibBd}{#8}
+}
+
+% Pour pstProjectionOrth
+% 1 et 2 définissent une droite
+% 3 est un point
+% 4 est la projection orthogonale de ce point sur le droite
+\newcommand{\pstProjectionOrth}[4]{%
+  \psset{PointSymbol=none, PointName=none}
+	\pstRotation[RotAngle=90]{#1}{#2}[PrInter]
+	\pstTranslation{#1}{PrInter}{#3}[PrInter2]
+	\pstInterLL{#1}{#2}{#3}{PrInter2}{#4}
+}
+
+\newcommand{\tabconvun}[4]{%
+\begin{tabular}{lcl}
+en \kilo\meter\per\hour		&:& \unit{#1}{\kilo\meter\per\hour}\\
+en \meter\per\second		&:& \unit{#2}{\meter\per\second}\\
+en \kilo\meter\per\second	&:& \unit{#3}{\kilo\meter\per\second}\\
+en \milli\meter\per\second	&:& \unit{#4}{\milli\meter\per\second}
+\end{tabular}
+}
+
+\newcommand{\tabconvunmh}[4]{%
+\begin{tabular}{lcl}
+en \kilo\meter\per\hour		&:& \unit{#1}{\kilo\meter\per\hour}\\
+en \meter\per\second		&:& \unit{#2}{\meter\per\second}\\
+en \kilo\meter\per\second	&:& \unit{#3}{\kilo\meter\per\second}\\
+en \meter\per\hour		&:& \unit{#4}{\meter\per\hour}
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Optique géométrique
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\pstRayon}[3][linecolor=yellow]{%
+  \psset{PointSymbol=none, PointName=none}
+\pstMiddleAB{#2}{#3}{inter}
+{
+\psset{linecolor=red}
+\psset{#1}
+%\psline[arrows=->](#2)(inter)  % Ce qui serait bien c'est d'avoir la longueur du segment, de la diviser par deux et de mettre la flèche bien au milieu.
+%\psline(#2)(#3)
+\psline[ArrowInside=->](#2)(#3)
+} % fin du psset
+}
+
+% Pour pstDioptre
+% 2 et 3 sont deux points qui définissent la droite du dioptre. En particulier, 1 est celui où aboutit le rayon incident
+% 4 est le point d'où vient le rayon incident
+% 5 et 6 sont les deux indices de réfraction
+% 7 et 8 sont les points du réfléchi et du réfracté avec distance égale à la distance 1-3. Le réfracté est en (0,0) si il n'existe pas.
+%
+%   En ce qui concerne la réflexion totale, je crois que ce qui se passe c'est que dans ce cas il n'y a pas d'intersection entre le cercle et la ligne
+% dans ma construction. Du coup elle est mise au centre du cercle et donc le rayon se réduit à un point.
+%
+%  Attention : il y a un argument optionnel. En fait le rayon réfracté est construit comme l'intersection entre un cercle et une droite. Or il y a deux intersections. Dans les cas usuels (de haut vers le bas), #8 est le bon. Mais si c'est le mauvais, alors on récupère l'autre dans l'argument optionnel.
+\newcommand{\pstDioptre}[8][Diinter]{%
+  \psset{PointSymbol=none, PointName=none}
+	\pstGeonode(#2){DiO}(#3){DiP}(#4){DiRi}
+	\pstRotation[RotAngle=90]{DiO}{DiP}[DiQ]				% Le segment OQ désigne la normale au plan OP.
+   	\pstDecompForce{DiO}{DiRi}{DiO}{DiP}{DiO}{DiQ}{DiRix}{DiRiy}		% Décompose le rayon incident en parallèle et normal au plan du dioptre
+  \FPeval{Dicoefrel}{#5/#6}
+	\pstTransHom{DiRi}{DiRiy}{DiO}{\Dicoefrel}{DiRex}			% La composante x du rayon entrant est n1/n2 fois celle du rayon incident
+
+   	\pstTranslation{DiO}{DiRex}{DiQ}[DiR]
+   	\pstInterLC{DiRex}{DiR}{DiO}{DiRi}{#8}{#1}				% Voila qui conclu le rayon réfracté. Tu notes que le #8 est celui qu'on utilise par défaut tandis que #1 est 
+										%   l'argument optionnel au cas o on considère un rayon qui va du bas vers le haut.
+
+	\pstTranslation{DiRi}{DiRiy}{DiRiy}[#7]					% Place le rayon réfléchi
+}
+
+% Pour pstMiroir
+% 1 et 2 désignent la ligne du miroir
+% 3 est le point lumineux
+% 4 est un point du rayon qui s'échappe de 3
+% 5 est l'image
+% 6 est le point de tombée du rayon sur le miroir
+% 7 est un point du rayon réfléchi (celui qui est ausi loin de 6 que 5)
+%
+\newcommand{\pstMiroir}[7]{%
+\pstRotation[RotAngle=90]{#1}{#2}[MiPerp]
+\pstDecompForce{#1}{#3}{#1}{#2}{#1}{MiPerp}{MiNor}{MiC}		% Calcule le projeté perpendiculaire au miroir de l'image
+\pstTranslation{#3}{MiNor}{MiNor}[#5]				% Place l'image
+\pstInterLL{#1}{#2}{#3}{#4}{#6}					% Place le point de percée du rayon lumineux sur le miroir
+\pstTranslation{#5}{#6}{#6}[#7]					% Place le fameux point du rayon réfléchi
+}
+
+% Pour pstMiroirSph
+% 1 est le centre
+% 2 est le point de la sphère qui correspond à l'axe optique
+% 3 est le point dont il faut calculer l'image
+% 4 est le foyer (calculé)
+% 5 et 6 sont les points d'intersection du rayon parallèle avec le miroir et un point du prolongement du côté opposé au foyer
+% 7 et 8 sont la même chose, mais pour le rayon passant par le centre
+% 9 est enfin le point image !
+\newcommand{\pstMiroirSph}[9]{%
+\pstMiddleAB{#1}{#2}{#4}		% Voila qui place déjà le foyer
+\pstTranslation{#1}{#2}{#3}[MiAl]
+\pstInterLC{#3}{MiAl}{#1}{#2}{Miautr}{#5}
+\pstInterLC{#3}{#1}{#1}{#2}{Miautr}{#7}
+\pstInterLL{#5}{#4}{#3}{#1}{#9}		% Place l'image
+\pstTranslation{#9}{#5}{#5}[#6]		% Place un point de prolongement pour le rayon réfléchit qui venait parallèlement à l'axe optique. Il est à la distance entre le point de tombée 
+					%   sur le miroir et l'image.
+\pstTranslation{#9}{#7}{#7}[#8]
+}
+
+% Pour pstTraceMiroirSph
+% 1 est le centre
+% 2 est le point de la sphère qui correspond à l'axe optique
+% 3 est le foyer
+% 4 L'angle sous lequel on va tracer le miroir
+% 5 Le premier point du bord du miroir
+% 6 Le second point du bord du miroir
+\newcommand{\pstTraceMiroirSph}[6]{%
+\pstRotation[RotAngle=#4]{#1}{#2}[#6]
+\pstRotation[RotAngle=-#4]{#1}{#2}[#5]
+\pstMiddleAB{#1}{#2}{#3}
+}
+
+% Pour pstLentille.
+% 1 centre optique
+% 2 foyer
+% 3 le haut de l'objet, càd le point A
+% 4 intersection du rayon passant par le foyer avec la lentille
+% 5 image de A
+% 6 le point B (projection de A sur l'axe optique)
+% 7 image de B (projection de A' sur ce même axe)résume %%%%%%%%%%%%%
+
+\newcommand{\repere}{%
+\psset{ticksize=.7pt,linewidth=.7\pslinewidth,labelsep=2.5pt}
+\pstGeonode[PosAngle=-135]{O}
+\pcline{->}(0,0)(1,0)\rput(0.5,-0.4){$\vec i$}
+\pcline{->}(0,0)(0,1)\rput(-0.5,0.5){$\vec j$}
+		    }
+
+
+\newcommand{\pstLentille}[7]{%
+ \pstRotation[RotAngle=90]{#1}{#2}[leninterP]		% Pour se donner la direction de la lentille
+ \pstInterLL{#3}{#2}{#1}{leninterP}{#4}			% L'endroit où le rayon passant par le foyer intersecte la lentille
+ \pstTranslation{#2}{#1}{#4}[leninterQ]			% se donne la droite sur laquelle repart le rayon parallèlement
+ \pstInterLL{#3}{#1}{#4}{leninterQ}{#5}			% Trouve l'image de A
+ \pstProjection{#2}{#1}{#3}[#6]
+ \pstProjection{#2}{#1}{#5}[#7]
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Les théorèmes et choses attenantes
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcounter{numtho}
+\newcounter{numloiphyz}
+
+\newtheoremstyle{mes_tho}%
+		{9pt}{9pt}%
+		{\itshape}%
+		{}%
+		{\bfseries}{.}%
+		{\newline}%
+		{}%
+
+\newtheoremstyle{mes_exemples}%
+		{9pt}{9pt}%
+		{}%
+		{}%
+		{\bfseries}{.}%
+		{\newline}%
+		{}%
+
+
+\newtheoremstyle{mes_exclamations}%
+		{9pt}{9pt}%
+		{}%
+		{}%
+		{\bfseries}{}%
+		{\newline}%
+		{}%
+
+\theoremstyle{mes_exemples}	\newtheorem{exemple}[numtho]{Exemple}
+				\newtheorem{remark}[numtho]{Remarque}
+				\newtheorem{amusement}[numtho]{Amusement}
+				\newtheorem{erreur}[numtho]{Error}
+				%\newtheorem{exercice}{Exercice}			% Les exercices ne se numérotent pas avec les autres, pour que les références soient plus faciles à suivre dans la partie corrigée.
+
+
+\theoremstyle{mes_tho}
+			\newtheorem{theoreme}[numtho]{Théoreme}
+			\newtheorem{lemma}[numtho]{Lemme}
+			\newtheorem{proposition}[numtho]{Proposition}
+			\newtheorem{corollary}[numtho]{Corollaire}
+			\newtheorem{theorem}[numtho]{Théorème}
+			\newtheorem{definition}[numtho]{Définition}
+			\newtheorem{loiphyz}[numloiphyz]{Loi numéro}
+
+\newenvironment{enplus}{\bgroup\footnotesize\begin{amusement}}{\end{amusement}\egroup}
+
+
+% Le fichier DefsExclamations contient les définitions d'environements du type
+%	 \newenvironment{idee}{\bgroup\green \begin{pour_idee}}{\end{pour_idee}\egroup}
+% ce fichier est créé par le scripte externe DefsExclamations.py. Taper
+%
+% ./DefsExclamations.py > DefsExclamations.tex
+
+\input{DefsExclamations}
+
+
+% Il y a une astuce pour définir plein de théorèmes en un coup dans la discussion suivante
+% http://groups.google.fr/group/fr.comp.text.tex/browse_thread/thread/ca9175f9043466fb?hl=fr#
+
+% Un bogue à propos de l'affichage de couleur en haut de page dans okular est posté ici :
+% https://bugs.kde.org/show_bug.cgi?id=202612
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\newcommand{\defe}[2]{\textbf{#1}\index{#2}}
+%\newcommand{\abstracty}{Résumé de ce qui t'attend}
+\makeatletter
+  \newenvironment{abstract}{%
+      \if@twocolumn
+        \section*{\abstractname}%
+      \else
+        \small
+        \begin{center}%
+          {\bfseries \abstractname \vspace{-.5em}\vspace{\z@}}%
+        \end{center}%
+        \quotation
+      \fi}
+      {\if@twocolumn\else\endquotation\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Les macros qui font des choses
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\tq}{\mid}
+%\newcommand{\emu}{^{-1}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bDx}{\mathbf{\Delta x}}
+\newcommand{\fF}{\overrightarrow{F}}
+\newcommand{\fP}{\overrightarrow{P}}
+\newcommand{\fG}{\overrightarrow{G}}
+\newcommand{\fR}{\overrightarrow{R}}
+\newcommand{\fAB}{\overrightarrow{AB}}
+\newcommand{\fh}{\overrightarrow{h}}
+\newcommand{\fv}{\overrightarrow{v}}
+
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\mO}{\mathcal{O}}
+

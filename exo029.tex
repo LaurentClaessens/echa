@@ -1,0 +1,118 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-0.5,-0.5)(6.5,3)
+   \psset{PointSymbol=none, PointName=none}
+   \prefigzerounhuit
+   \psline(A)(C)
+   \psline(C)(B)
+   \psline(A)(B)
+%   \pstCircleAB[fillstyle=crosshatch,fillcolor=black]{Oa}{Ob}			% Placer la boule
+
+% Dessin du chariot
+
+\pstHomO[HomCoef=0.3]{A}{B}[Oa]			% Place de la première roue
+\pstHomO[HomCoef=0.4]{A}{B}[Pa]			% Place de la seconde roue
+\pstRotation[RotAngle=90]{Oa}{B}[Obu]
+\pstHomO[HomCoef=0.07]{Oa}{Obu}[Ob] 		% Rayon des roues
+\pstMiddleAB{Oa}{Ob}{Oc}
+
+   \pstTranslation{Oa}{Pa}{Ob,Oc}[Pb,Pc]	
+
+\pstHomO[HomCoef=1.5]{Pc}{Oc}[Cg]
+\pstHomO[HomCoef=1.5]{Oc}{Pc}[Cd]		% Longueur du chariot
+\pstTranslation{Oa}{Ob}{Cd}[pCdh]
+\pstTranslation{Oa}{Ob}{Cg}[pCgh]
+\pstHomO[HomCoef=1.5]{Cd}{pCdh}[Cdh]		% Hauteur du chariot
+\pstHomO[HomCoef=1.5]{Cg}{pCgh}[Cgh]
+
+   \pstCircleAB{Oa}{Ob}
+   \pstCircleAB{Pa}{Pb}
+
+   \psline(Cg)(Cgh)
+   \psline(Cgh)(Cdh)
+   \psline(Cd)(Cdh)
+   \psline(Cg)(Cd)
+
+% La poulie doit être placée de telle manière à ce que sa tangente passant par le centre du chariot soit parallèle au plan incliné.
+
+\pstTransHom{Oa}{B}{Cc}{1.3}{Iu}	% Placer le point de tangence. Le nombre ici est la longeur de la corde
+\pstTransHom{Cc}{Oa}{Iu}{1}{cP}		% Le centre de la poulie; son rayon est celui de la boule
+
+\rput(cP){\pstGeonode(0.3;0){pP}}	% Le point de la poulie qui a sa tangente verticale
+
+
+\pstTransHom{C}{B}{C}{0.8}{aP}		% L'atache de la poulie à 0.8 de la hauteur entre C et B
+\psline(aP)(cP)
+\pstCircleOA{cP}{pP}			% Dessiner la poulie
+
+
+%\pstInterCC{Cc}{cP}{cP}{pP}{Iu}{Id}		% Cette ligne ne sert à rien.
+
+% Trouver et tracer la tangente, c'est à dire la corde parallle à la pente.
+% Le point percd est un point de la ligne de la corde situé à l'intérieur du chariot. Je commence donc par trouver l'intersection entre la corde et le bord du chariot.
+   \pstInterLC{Cc}{Iu}{Cc}{Oa}{percu}{percd}
+   \pstInterLL{percd}{Iu}{Cd}{Cdh}{aC}
+   \psline[linestyle=dashed](aC)(Iu)
+	\rput(aC){\psdot}	
+
+% Placer la masse qui pend
+\rput(pP){\pstGeonode(0,-1.3){bC}}							
+% Dessiner la corde verticale, et la masse qui pend
+   \psline[linestyle=dashed](pP)(bC)					
+   \psellipse[fillstyle=solid,fillcolor=lightgray](bC)(0.5,0.2)
+\rput(bC){\pstGeonode(0,-1){bG}}							% Placer le bout de la gravitation
+   \pstMarqueForce{bC}{bG}{0.3,0}{$\fG$}
+
+\end{pspicture}
+\caption{Masse qui tire un chariot rempli d'or via une poulie pour l'exercice  \ref{exo029}.}\label{fig_exo029}
+\end{figure}
+
+%
+% Cette figure permet de placer la poulie où on veut et me alors la corde tangente. Cependant, la corde
+%   n'est alors pas spécialement parallèle au plan incliné.
+%
+%\begin{figure}[h]
+%\centering
+%\begin{pspicture}(-0.5,0)(4,2)
+
+%   \psset{PointSymbol=none, PointName=none}
+%   \prefigzerounhuit
+%   \psline(A)(C)
+%   \psline(C)(B)
+%   \psline(A)(B)
+%   \pstCircleAB[fillstyle=crosshatch,fillcolor=black]{Oa}{Ob}
+%   \pstMiddleAB{Oa}{Ob}{Cc}
+%\rput(B){\pstGeonode(0.5,0.7){cP}}			% Placer le centre de la poulie
+%\rput(cP){\pstGeonode(0.3;0){pP}}			% Un point de la poulie, c'est à dire définir le rayon
+
+%\psline(B)(cP)						% Dessiner la poulie
+%\pstCircleOA{cP}{pP}
+
+%\pstInterCC{Cc}{cP}{cP}{pP}{Iu}{Id}			% Trouver et tracer la tangente
+%   \pstInterLC{Cc}{Iu}{Cc}{Oa}{percu}{percd}
+%   \psline[linestyle=dashed](percd)(Iu)
+
+%\rput(pP){\pstGeonode(0,-1.3){bC}}			% Placer la masse
+%   \psline[linestyle=dashed](pP)(bC)		% Dessiner la corde
+%   \psellipse[fillstyle=solid,fillcolor=lightgray](bC)(0.5,0.2)
+%\rput(bC){\pstGeonode(0,-1){bG}}			% Placer le bout de la gravitation
+%   \pstMarqueForce{bC}{bG}{0.3,0}{$\fG$}
+
+
+
+%\end{pspicture}
+%\caption{Masse qui tire une boule en pendouillant à une poulie pour l'exercice  \ref{exo029}}\label{fig_exo029}
+%\end{figure}
+
+\begin{exercice}\label{exo029}
+
+Le chercheur d'or de l'exercice \ref{exo025} n'en a pas fini. Il doit maintenant monter une pente. Il attache donc sa ferrite rouillée de \unit{5}{\kilo\gram} au bout d'une poulie et la lâche dans le vide comme dessiné sur la figure \ref{fig_exo029}. Le chariot pèse toujours \unit{2.5}{\kilo\gram} en comptant l'or. Quelle vitesse atteint le chariot après \unit{10}{\meter} si $AB=\unit{12}{\meter}$ et $CB=\unit{2}{ \meter}$. Remarquez que la corde est parallèle au plan incliné.
+
+\corrref{029}
+\end{exercice}

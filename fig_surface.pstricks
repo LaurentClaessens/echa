@@ -1,0 +1,34 @@
+% Fichier généré automatiquement. Toute modification à la main est futile.
+\begin{figure}[ht]
+\psset{xunit=1,yunit=1}
+
+\centering
+\begin{pspicture}(-0.99,-0.99)(7.0,6.10708788797)
+\psset{PointSymbol=none,PointName=none,algebraic=true}
+
+\psaxes[labels=none,ticks=none]{->}(0.0,0.0)(-0.99,-0.99)(7.0,6.0)
+\pscustom[hatchcolor=blue,linestyle=dashed,fillcolor=blue,linecolor=black,fillstyle=vlines]{
+\psline(0.0,0.0)(0.0,3.97222222222)
+\psplot{0}{5.0}{-((x+0.5)/3)^2+4+x}
+\psline(5.0,5.63888888889)(5.0,0.0)
+}
+\psplot[]{-0.5}{7}{-((x+0.5)/3)^2+4+x}
+\pscustom[hatchcolor=red,linestyle=dashed,fillcolor=red,linecolor=red,fillstyle=vlines]{
+\psline(5.0,0.0)(5.0,5.63888888889)
+\psplot{5.0}{6.0}{5.63888888889}
+\psline(6.0,5.63888888889)(6.0,0.0)
+}
+\psplot[linecolor=red]{5.0}{6.0}{5.63888888889}
+\pstGeonode[PointSymbol=none,PointName=none](5.0,5.63888888889){aaa}
+\pstGeonode[PointSymbol=*](5.0,5.63888888889){aaa}
+\rput(aaa){\rput(0.3;90){$f(x)$}}
+\pstGeonode[PointSymbol=none,PointName=none](5.0,0.0){aab}
+\pstGeonode[PointSymbol=*](5.0,0.0){aab}
+\rput(aab){\rput(0.3;-90){$x$}}
+\pstGeonode[PointSymbol=none,PointName=none](6.0,0.0){aad}
+\pstGeonode[PointSymbol=*](6.0,0.0){aad}
+\rput(aad){\rput(0.3;-60){$x+\Delta x$}}
+\end{pspicture}
+
+\caption{L'aire en-dessous d'une courbe. Le rectangle rouge, d'aire $f(x)\Delta x$, approxime de combien l'aire en-dessous de la fonction $f$ augmente lorsqu'on passe de $x$ à $x+\Delta x$.}\label{fig_surface}
+\end{figure}

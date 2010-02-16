@@ -1,0 +1,10 @@
+\newcounter{contBla}
+\renewcommand{\thecontBla}{}
+\newtheoremstyle{exclamations}{9pt}{9pt}{}{}{\bfseries}{}{\newline}{}
+\theoremstyle{exclamations}
+\newtheorem{pour_idee}[contBla]{Idée !}
+\newtheorem{pour_pourquoidonc}[contBla]{Comment ? Pourquoi ?}
+\newtheorem{pour_probleme}[contBla]{Y'a une faute ?}
+\newenvironment{idee}{\bgroup \green \begin{pour_idee}}{\end{pour_idee}\egroup}
+\newenvironment{pourquoidonc}{\bgroup \blue \begin{pour_pourquoidonc}}{\end{pour_pourquoidonc}\egroup}
+\newenvironment{probleme}{\bgroup \red \begin{pour_probleme}}{\end{pour_probleme}\egroup}

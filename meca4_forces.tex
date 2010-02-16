@@ -1,0 +1,220 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\section{Les forces}
+%++++++++++++++++++
+
+Il n'y a pas moyen de comprendre les compositions de forces sans avoir un peu joué à GravityWars\footnote{\texttt{sudo apt-get install gravitywars}\\ Si tu finis le second niveau, tu seras en mesure de comprendre les compositions de forces, le tir balistique, ainsi que les décompositions de vitesses et de forces en composantes horizontales et verticales.} 
+
+\subsection{Quelque définitions}
+%---------------------------------
+
+%http://fr.wikipedia.org/wiki/Force_(physique)
+
+Une \href{http://fr.wikipedia.org/wiki/Force_(physique)}{force} \emph{n'est pas} déterminée par sa seule intensité. Une force doit se penser comme une flèche attachée au point, c'est à dire à un \emph{vecteur}. Il est important de garder en tête que les vecteurs ou les forces ne sont que des flèches. Mathématiquement, c'est donc juste donné par deux points : le point de départ de la flèche et son point d'arrivée, voir figure \ref{fig_vecto_exemple}.
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-1.95,-0.95)(3.95,3.95)
+\psset{PointSymbol=none, PointName=none}
+   \pstGeonode[PosAngle={270,20}, PointName={$A$,$B$}](0,0){A}(1,2){B}
+   \pstMarqueForce{A}{B}{0.3;0}{}
+   \pstMiddleAB{A}{B}{C}
+   \pstMarquePoint{C}{0.5,0}{$\overrightarrow{AB}$}
+\end{pspicture}
+\caption{Un vecteur ou une force, c'est juste deux points. Le premier, $A$, est le point d'application tandis que le second,  $B$, détermine à la fois le sens et la direction et l'intensité de la force; cette dernière n'est autre que la longueur de la flèche, c'est à dire la distance entre $A$ et $B$.}\label{fig_vecto_exemple}
+\end{figure}
+
+Une force se mesure à son effet : elle accélère le corps auquel elle est appliquée. Plus grande est la force, plus grande est l'accélération; mais plus l'objet est lourd, moins il accélère. Ceci justifie la formule
+\[ 
+  a=\frac{ F }{ m }
+\]
+que l'on notera souvent $F=ma$. Tu peux retenir qu'une force est grosso-moddo l'effort qu'on donne pour faire bouger un objet.
+
+\begin{exemple}
+La force que la terre exerce sur une enclume déposée par terre est appelée \defe{poids}{Poids} du l'enclume. L'origine de cette force est la gravitation.
+\end{exemple}
+
+Une force se voit souvent à des effets indirects comme 
+\begin{itemize}
+\item une déformation du corps
+\item l'échauffement du corps
+\item la modification de la vitesse du corps
+\item etc.
+\end{itemize}
+\begin{exercice}
+Donnez quelque exemples de ce qu'on pourrait mettre à la place du \emph{et caetera}.
+\end{exercice}
+Il est cependant important de remarquer que d'un point de vue microscopique, une force a un seul effet possible : accélérer des particules. Échauffer un corps correspond bien à accélérer les molécules qui le compose. L'exemple de la déformation est plus compliqué, tu peux en discuter avec ton professeur. Disons simplement qu'une force peut stabiliser un objet qui autrement aurait accéléré.
+
+\subsection{Le dynamomètre}
+%--------------------------
+
+Le \defe{dynamomètre}{dynamomètre}, est un appareil qui permet de mesurer une force. Le principe est simple : il s'agit d'un ressort sur lequel on applique la force. Bien entendu le ressort s'allonge. Mais on sait que l'allongement du ressort est proportionnelle à la force. Donc la première fois on met une force de \unit{1}{\newton}, on note l'allongement (mettons \unit{3}{\centi\meter}). Ensuite si on applique une force qui allonge le ressort de \unit{7}{\centi\meter}, on saura que la force vaut $\unit{7/3=3.5}{\newton}$.
+
+\subsection{Masse et poids}
+%-----------------------------
+
+Dans la vie courante, on confond souvent la masse et le poids, par exemple en disant que \og mon poids est \unit{67}{\kilo\gram}\fg. Cela est complètement faux parce que des \kilo\gram, c'est une masse et non un poids. Bon alors; c'est quoi, la différence ?
+
+ 
+\subsubsection{La masse}
+ La masse d'un objet représente la quantité de matière qui constitue l'objet. La quantité de matière ne varie pas avec l'endroit où l'on se trouve dans l'univers. La masse est donc une propriété intrinsèque d'un objet; elle est invariante.
+ 
+  L'unité principale de masse est le kilogramme (\kilo\gram), et se mesure avec une balance.
+ 
+ 
+\subsubsection{Le poids}	\label{SubSubSecPoids}
+Le poids d'on objet est la force de gravitation qui s'exerce sur l'objet. Le poids est une force qui varie donc en fonction de l'endroit où l'on se trouve dans l'univers parce que le champ de gravitation n'est pas partout le même; nous en reparlerons au point \ref{SubSecPoidsGr}. Sur Terre, nous subissons la gravité de la Terre; sur la Lune, on a la gravité de la Lune; quand on est dans l'espace, on n'a plus du tout de gravité,\ldots
+
+ L'unité principale de poids est le newton (\newton),et se mesure à l'aide d'un dynamomètre. 
+ 
+Pour calculer le poids, nous utilisons la formule suivante : 
+\[ 
+  P=mg
+\]
+où les symboles signifient ceci :
+\begin{itemize}
+\item 
+  $P$, le poids exprimé en newton,
+\item 
+ $m$, la masse exprimée en kilogramme
+\item 
+ $g$, la gravité (l'accélération ou l'intensité de la pesanteur) exprimée en \meter\per\square\second. Ce $g$ est une propriété de l'endroit où l'on se trouve. Il ne sera pas le même sur Terre ou sur la Lune, voir tableau \ref{TabgPlans}
+\end{itemize}
+
+
+Pourquoi, dans la vie de tous les jours, on peut se permettre de confondre le poids et la masse ? Parce que la vie de tous les jours se passe sur Terre. Or sur Terre, on a partout la même gravitation; du coup \emph{tant qu'on reste sur Terre}, le poids est aussi un invariant\footnote{Cela n'est même pas tout à fait vrai si on tient compte de la non-sphéricité de la Terre et d'autres joyeusetés du genre.}.
+
+\begin{table}[ht]
+\centering
+ \begin{tabular}{lccccccc}
+	{\bf Astre}				& Terre	& Lune	& Mercure	& Vénus	& Mars	& Jupiter	& Saturne\\
+        $g$ (\newton\per\kilo\gram)		& 9,8	& 1,6	& 2,9		& 8,3	& 3,6	& 26 		& 11,5
+ \end{tabular}
+\caption{La valeur de la gravitation sur quelque planètes} \label{TabgPlans}
+\end{table}
+
+\section{Les lois de Newton}
+%+++++++++++++++++++++++++++
+%http://fr.wikipedia.org/wiki/Philosophiae_Naturalis_Principia_Mathematica
+%http://fr.wikipedia.org/wiki/1687
+
+Les lois de Newton contiennent, en trois énoncés, l'ensemble de la mécanique moderne. La \href{http://fr.wikipedia.org/wiki/Philosophiae\_Naturalis\_Principia\_Mathematica}{mécanique selon Newton} est parue en \href{http://fr.wikipedia.org/wiki/1687}{1687} et a dû attendre la fin du dix-neuvième siècle pour que les physiciens commencent à avoir envie de la revoir parce que l'életromagnétisme ainsi que l'intérieur des atomes répondent à des lois plus compliquées. Quoi qu'il en soit, les lois simples de Newton permettent d'expliquer des tonnes de phénomènes et feront l'objet de toute notre attention dans ce cours.
+
+La mécanique de Newton s'exprime en trois lois à partir desquelles on peut déduire tout le reste.
+
+\subsection{Première loi : inertie}
+%-----------------------------------
+
+\subsubsection{Énoncé et exemples}
+%////////////////////////////////
+
+\setcounter{numloiphyz}{0}
+\begin{loiphyz}
+Lorsque que la somme des forces agissant sur un objet est nulle, l'objet sur un mouvement rectiligne uniforme.
+\end{loiphyz}
+Autrement dit : derrière tout changement de vitesse (y compris de direction), se cache une force qui agit.
+
+Sous forme mathématique moderne, le premier principe s'énonce avec une petite formule :
+\begin{equation}
+ \mathrm{MRU}\Longleftrightarrow \sum \fF^{\mathrm{ext}}=0,
+\end{equation}
+c'est à dire qu'on a un MRU si et seulement si la somme des forces externes s'appliquant à l'objet est nulle.
+
+Il est difficile de donner des exemples de ce principe parce qu'il y a des forces partout; sur Terre il y a au moins toujours la gravitation ou les frottements de l'air. Nous n'allons donc pas donner beaucoup d'exemples de mobiles qui suivent un MRU, mais nous allons surtout faire le contraire : des exemples de mobiles ne suivant pas de MRU sous l'action d'une force.
+
+
+\begin{exemple}
+Le seul exemple que je connaisse de MRU est le cas tout bête de l'enclume posée sur le sol. Elle ne bouge pas, et ne va pas se mettre à bouger spontanément. Question force, elle est soumise à la gravitation qui la tire vers le bas, et à la réaction du sol qui la pousse vers le haut avec une intensité exactement égale à celle de la gravité. La somme des deux forces est dont nulle et donc l'enclume ne bouge pas.
+\end{exemple}
+
+
+\begin{exemple}
+Tu laisse tomber une pomme; elle accélère vers le sol avant de s'y écraser (et donc de s'y arrêter). Dans la phase de chute, la pomme est soumise à la gravitation qui la fait accélérer vers le bas. Au moment d'entrer en contact avec le sol, les molécules qui forment le sol, qui sont très soudées entre elles et qui n'ont pas envie de laisser entrer la pomme, exercent un force énorme sur la pomme pour l'arrêter net (en une fraction de seconde).
+\end{exemple}
+
+\begin{exemple}
+Un cycliste avance à vitesse constante dans une montée. Dans ce cas, il y a au moins trois forces : la gravitation qui tire vers le bas, les frottements du pneu sur la route qui tirent vers l'arrière (qui freinent le vélo) et les mollets du cycliste qui tirent vers l'avant (et donc aussi un peu vers le haut).
+
+ Quand ces trois forces se compensent exactement, le vélo monte à vitesse constante. Si la gravitation est la plus forte, le vélo va perdre de la vitesse et finir par descendre. Et si c'est le cycliste le plus fort, le vélo va même accélérer.
+\end{exemple}
+
+
+\subsubsection{Le problème de ce principe}
+%/////////////////////////////////////////
+
+%http://fr.wikipedia.org/wiki/Force\_de\_Coriolis
+%http://fr.wikipedia.org/wiki/Gaspard-Gustave\_Coriolis
+%http://fr.wikipedia.org/wiki/Relativité\_générale
+%http://fr.wikipedia.org/wiki/Einstein
+
+Dépose une balle dans un train à l'arrêt. La balle ne bouge pas. Très bien. Mais quand le train va accélérer, la balle va partir vers l'arrière, alors aucune force apparent ne l'ait poussée. Cela ne met pas à mal le principe d'inertie. En effet, la balle reste au repos \emph{par rapport au sol}; c'est le train qui part et la balle qui reste sur place. C'est à force de frotter contre le sol du train ou de se cogner contre un siège que la balle va prendre la vitesse du train.
+
+On appelle \defe{repère d'inertie}{Repère d'inertie} un repère dans lequel le principe d'inertie est vrai. Manifestement, un train qui accélère n'est pas un repère d'inertie. L'exemple de la balle dans le train suggère que la Terre soit notre repère d'inertie.
+
+Pas de bol, quand on regarde les mouvements des nuages, on remarque que ---dans l'hémisphère nord--- ils sont toujours déviés vers leur droite sans qu'aucune force apparente ne s'applique. C'est la \href{http://fr.wikipedia.org/wiki/Force\_de\_Coriolis}{force de} \href{http://fr.wikipedia.org/wiki/Gaspard-Gustave\_Coriolis}{Coriolis}. Encore une fois, cela n'est pas en contradiction avec le principe d'inertie : en fait c'est la Terre qui tourne en-dessous des nuages qui font croire que les nuages tournent.
+
+On ne peut donc pas prendre la Terre comme repère fixe à partir duquel appliquer le principe d'inertie. On prendrait le Soleil (ça commence à être éloigné) ? Même pas : le Soleil tourne autour du centre de la galaxie. Et puis, la galaxie entière est en mouvement accéléré vers la galaxie d'Andromède \ldots
+
+Sous son aspect anodin, le principe d'inertie pose une des questions les plus fondamentales de la physique : existe-t-il des référentiels d'inertie ? Le problème du principe d'inertie est que tout bouge dans l'univers, et rien ne suit de MRU !
+
+ Il faudra attendre le début du vingtième siècle, l'année 1915, pour que les physiciens se résignent à abandonner le principe d'inertie lorsque \href{http://fr.wikipedia.org/wiki/Einstein}{Einstein} énonce sa \href{http://fr.wikipedia.org/wiki/Relativité\_générale}{relativité générale} , géniale théorie de la gravitation et de la géométrie de l'espace-temps.
+
+Dans le cadre de ce cours, nous allons considérer la Terre comme immobile, c'est à dire comme un repère d'inertie.
+
+\subsection{Deuxième loi (loi fondamentale de la dynamique)}
+%///////////////////////////////////////////////////////////
+
+La seconde loi complète la première. La première dit ce qu'il se passe quand il n'y a pas de forces (MRU). Lorsqu'il y a une force, la seconde loi dit qu'on a une accélération.
+
+\begin{loiphyz}
+L'accélération est proportionnelle à la somme des forces extérieures, et le coefficient de proportionnalité est la masse :
+\begin{equation}
+  \sum\fF^{\mathrm{ext}}=m\overrightarrow{a}
+\end{equation}
+\end{loiphyz}
+Il faut remarquer que cette égalité est une égalité \emph{vectorielle}. Cela a plusieurs conséquences :
+\begin{itemize}
+\item l'accélération suit la force résultante non seulement en norme, mais également en direction et en sens,
+\item si plusieurs forces tirent un objet selon des sens différents,il est possible que certaines forces s'annulent tandis que d'autres s'additionnent.
+\end{itemize}
+
+\subsection{Troisième loi : action et réaction}
+%//////////////////////////////////////////////
+
+Lorsqu'on dépose un ballon sur le sol, le ballon ne s'enfonce pas dans le sol, malgré que le ballon soit attiré vers le bas par la pesanteur. Il se fait que le sol exerce une force \emph{de réaction} sur le ballon. Cela est un cas particulier d'une règle très générale : chaque fois qu'on a une force qui s'applique, on en a une autre en réaction.
+
+\begin{loiphyz}
+Si un corps $A$ exerce une force $\overrightarrow{F}$ sur le corps $B$, alors le corps $B$ exerce une force $-\overrightarrow{F}$ sur $A$. La première force est appelée \emph{action} et la seconde \emph{réaction}. Si on note $\overrightarrow{R}$ la force de réaction, on a mathématiquement :
+\begin{equation}   \label{EqActReact}
+  \overrightarrow{F}=-\overrightarrow{R}.
+\end{equation}
+
+\end{loiphyz}
+
+
+\begin{exemple}
+Parfois ces deux forces s'annulent. Par exemple, quand une cruche est posée sur une table, elle subit {\bf deux} forces.
+\begin{itemize}
+\item son poids dirigé vers le bas (qui fait une action sur la table)
+\item la réaction de la table, dirigée vers le haut.
+\end{itemize}
+Ces deux forces s'annulent parce qu'elle s'appliquent toutes les deux à la boule. La preuve : la cruche ne bouge pas, elle ne s'enfonce pas dans la table, et ne s'envole pas toute seule.
+\end{exemple}
+
+\begin{exemple}
+Parfois les deux ne s'annulent pas. Au moment où on lâche un objet, l'objet subit \emph{une seule force} : son poids, l'action de la terre sur l'objet. La réaction de l'objet sur la terre s'applique à la terre. Par conséquent, l'objet tombe.
+
+Dans ce cas-ci, ce qu'il faut bien remarquer c'est que l'action et la réaction ne s'appliquent pas au même point. Elles ne peuvent donc pas s'annuler.
+\end{exemple}
+
+Ce second exemple demande une précision sur l'égalité \eqref{EqActReact}. En effet si on dit que pour être égales, deux forces doivent avoir le même point d'application, alors cette égalité est fausse. En réalité, l'égalité \eqref{EqActReact} est une égalité de \emph{vecteurs libres}, c'est à dire une égalité de vecteurs \og sauf peut-être de leur point d'application\fg.
+
+\section{Le ressort}
+%+++++++++++++++++++
+
+
+

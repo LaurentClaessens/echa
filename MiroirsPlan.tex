@@ -1,0 +1,134 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\section{Miroirs plans}
+%++++++++++++++++++++++
+
+\subsection{Le principe général}
+%-------------------------------
+
+%http://fr.wikipedia.org/wiki/Optique_géométrique
+Lorsqu'une source lumineuse $A$ est placée devant un \href{http://fr.wikipedia.org/wiki/Miroir_plan}{miroir plan} $M$, tout rayon issu de $A$ se réfléchit sur le \href{http://fr.wikipedia.org/wiki/Miroir}{miroir}. Les prolongements des rayons lumineux se coupent en un point $A'$ (voir la figure \ref{FigMiroirPlan}) qui sera l'image de $A$.
+
+L'\oe il qui reçoit les rayons réfléchis a l'illusion que ces rayons sont issus du point $A'$. On dit que $A'$ est l'\defe{image}{} du point $A$. Étant donné que cette image ne peut pas être reçue sur un écran (vas voir de \href{http://fr.wikipedia.org/wiki/De_l'autre_côté_du_miroir}{l'autre côté du miroir} de ton salon si tu n'y crois pas),  on dit que l'image est \defe{virtuelle}{}. C'est une \href{http://fr.wikipedia.org/wiki/Illusion_d'optique}{illusion d'optique}. 
+
+La figure \ref{FigMiroirPlan} montre le chemin suivit par différents rayons lumineux issus du point $A$. Deux choses sont à remarquer :
+\begin{enumerate}
+\item toutes les prolongations, notées en pointillés, se coupent au même point,
+\item le rayon qui arrive perpendiculairement (point $B$) se réfléchit en retournant simplement sur ses pas.
+\end{enumerate}
+
+\newcommand{\PreFigMP}{%
+\pstGeonode(0,1){C}(1.5,0){A}(0,2){E}(0,-0.5){G}	
+\pstGeonode(0,-2){Bl}(0,3){El}
+\pstMiroir{E}{C}{A}{E}{pti}{ptp1}{ptr1}
+\pstMiroir{E}{C}{A}{G}{pti}{ptp4}{ptr4}
+\pstMiroir{E}{C}{A}{C}{pti}{ptp2}{ptr2}
+\pstMiroir{E}{C}{A}{MiNor}{pti}{ptp3}{ptr3}
+}
+\begin{figure}
+\centering
+\begin{pspicture}(-2,-2)(2,4)
+ %\psframe[linecolor=blue](-2,-2)(2,4)
+	\psset{PointSymbol=none, PointName=none}
+	\PreFigMP
+
+	\psline(El)(Bl)
+	\pstMarquePoint{A}{0.3;0}{$A$}
+	\pstMarquePoint{E}{0.3;180}{$E$}
+	\pstMarquePoint{C}{0.3;180}{$C$}
+	\pstMarquePoint{B}{0.3;135}{$B$}
+	\pstMarquePoint{pti}{0.3;180}{$A'$}
+
+	\pstRayon[linecolor=red]{A}{ptp1}\pstRayon[linecolor=red]{ptp1}{ptr1}
+	\pstRayon[linecolor=blue]{A}{ptp2}\pstRayon[linecolor=blue]{ptp2}{ptr2}
+	\pstRayon[linecolor=green]{A}{ptp3}\pstRayon[linecolor=green]{ptp3}{ptr3}
+	\pstRayon[linecolor=magenta]{A}{ptp4}\pstRayon[linecolor=magenta]{ptp4}{ptr4}
+
+\psline[linestyle=dotted,linecolor=red](ptp1)(pti)
+\psline[linestyle=dotted,linecolor=blue](ptp2)(pti)
+\psline[linestyle=dotted,linecolor=green](ptp3)(pti)
+\psline[linestyle=dotted,linecolor=magenta](ptp4)(pti)
+
+\end{pspicture}
+
+\caption{Différents rayons lumineux issus de $A$, et le chemin qu'ils suivent à cause du miroir.}  \label{FigMiroirPlan}
+\end{figure}
+
+\subsection{Image réelle et image virtuelle}
+%--------------------------------------
+
+Lorsque l'image d'un objet est formée par l'intersection des rayons lumineux directement issus de l'objet, on dit que l'image est \defe{réelle}{Image!réelle}. Une image réelle se trouve à un endroit où la lumière passe réellement. L'exemple typique d'une image réelle est un écran de cinéma.
+
+Si par contre l'image de l'objet est située à l'intersection des \emph{prolongements} des rayons réfléchis, nous disons que l'image est \defe{virtuelle}{Image!virtuelle}. On ne peut la recevoir sur un écran. Elle se trouve à un endroit où la lumière ne passe pas réellement; c'est donc toujours une illusion d'optique. L'image d'un objet par un miroir plan est l'exemple le plus simple d'image virtuelle.
+
+\subsection{Rotation d'un miroir plan}
+%-------------------------------------
+
+Lorsqu'un miroir plan tourne d'un angle $\alpha$ autour d'un axe situé dans son plan, le rayon réfléchi tourne d'un angle $2\alpha$.
+
+\subsection{Images multiples}
+%----------------------------
+
+Si deux miroirs plans forment un angle de \unit{90}{\degree} entre eux, et que l'on place un objet $A$ dans l'angle, on obtient 3 images de $A$. Si $a$ (diviseur de \unit{360}{\degree}) est l'angle entre les miroirs, le nombre d'images sera de
+\[ 
+  \frac{ 360 }{ a }-1.
+\]
+Étudions le cas de l'angle droit en regardant la figure \ref{FigDeuxMiroirsDroits}. Les images $A_{1}$ et $A_{2}$ sont juste les images usuelles par les deux miroirs, pas besoin d'explications pour elles. La troisième image provient du fait que les rayons réfléchis par le miroir $M_{1}$ arrivent sur le miroir $M_{2}$ et s'y réfléchissent en produisant une image virtuelle $A_{3}$.
+
+À ton avis, où vont se couper les prolongations des rayons rouges et bleus qui se propagent entre les deux miroirs ?
+
+Ce phénomène d'images multiple peut être souvent observé dans les toilettes des trains quand plusieurs miroirs sont placés.
+
+
+\newcommand{\PreFigMultiple}{%
+\pstGeonode(0,0){B}(0,2){A}(2,0){C}(1.5,1.5){L}
+\pstMiroir{B}{C}{L}{B}{pti1}{ptp1}{ptr1}
+\pstMiroir{A}{B}{L}{B}{pti2}{ptp2}{ptr2}
+\pstHomO[HomCoef=0.2]{B}{C}[E]
+\pstHomO[HomCoef=0.4]{B}{C}[F]
+
+\pstMiroir{B}{C}{L}{E}{ptiE}{ptp}{ptrE1}	% Passage des rayons sur le miroir BC
+\pstMiroir{B}{C}{L}{F}{ptiF}{ptp}{ptrF1}
+
+\pstMiroir{A}{B}{E}{ptrE1}{pti3}{ptpEA}{ptrE2}	% Passage des rayons sur le miroir AB
+\pstMiroir{A}{B}{F}{ptrF1}{pti3}{ptpFA}{ptrF2}
+
+\pstInterLL{ptpEA}{ptrE2}{ptpFA}{ptrF2}{L3}
+
+}
+\begin{figure}
+\centering
+\begin{pspicture}(-2,-2)(2,4)
+ %\psframe[linecolor=blue](-2,-2)(2,4)
+	\psset{PointSymbol=none, PointName=none}
+	\PreFigMultiple
+
+	\psline(El)(Bl)
+	\pstMarquePoint{A}{0.3;90}{$M_{1}$}
+	\pstMarquePoint{C}{0.3;0}{$M_{2}$}
+	\pstMarquePoint{L}{0.3;45}{$A$}
+	\pstMarquePoint{pti1}{0.3;270}{$A_{1}$}
+	\pstMarquePoint{pti2}{0.3;180}{$A_{2}$}
+	\pstMarquePoint{L3}{0.3;180}{$A_{3}$}
+	
+
+	\psline(A)(B)\psline(B)(C)
+
+	\psline[linestyle=dotted,linecolor=green](L)(pti1)
+	\psline[linestyle=dotted,linecolor=green](L)(pti2)
+
+	\pstRayon[linecolor=red]{L}{E} \pstRayon[linecolor=red]{E}{ptpEA} \pstRayon[linecolor=red]{ptpEA}{ptrE2}
+	\pstRayon[linecolor=blue]{L}{F} \pstRayon[linecolor=blue]{F}{ptpFA} \pstRayon[linecolor=blue]{ptpFA}{ptrF2}
+
+
+	\psline[linecolor=red,linestyle=dashed](ptpEA)(L3)
+	\psline[linecolor=blue,linestyle=dashed](ptpFA)(L3)
+
+\end{pspicture}
+
+\caption{Comment se construit la troisième image dans le cas de deux miroirs perpendiculaires}  \label{FigDeuxMiroirsDroits}
+\end{figure}

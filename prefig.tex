@@ -1,0 +1,82 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+% Ce fichier contient les commandes qui définissent la géométrie d'un certain nombre de figures des exercices. 
+% Ce sont des commandes non immédiatement intégrées à l'environnement figure de l'exercice, de façon à pouvoir avoir la même géométrie dans le corrigé. Ainsi je peux modifier le dessin de l'exercice et du corrigé en même temps.
+
+% Je les rassemble dans un fichier qui est toujours chargé par \input pour des raisons de simplicité lors de la compilation par pytex de morceaux contenant des exercices différents.
+
+%Pour exo013
+\newcommand{\prefigzerotreize}{
+\pstGeonode(0,0){O}(3;25){A}(0.75;-11){B}(1.5;-100){C}
+}
+
+% Pour exo018
+\newcommand{\prefigzerounhuit}{%
+   \pstGeonode[PointName=default,PosAngle={180,0,40}](0,0){A}(4,0){C}(4,2){B}
+ \pstHomO[HomCoef=0.3]{A}{B}[Oa]
+\pstRotation{Ao}{B}[Obu]
+\pstHomO[HomCoef=0.15]{Oa}{Obu}[Ob]
+   \pstMiddleAB{Oa}{Ob}{Cc}
+   \rput(Cc){\pstGeonode(4,0){bF}}
+				}
+% Pour exo019
+\newcommand{\prefigzerounneuf}{%
+   \pstGeonode[PointName=default,PosAngle={180,0}](0,0){A}(4,0){C}(4,2){B}
+
+\pstHomO[HomCoef=0.7]{A}{B}[Oa]			% Place de la première roue
+\pstHomO[HomCoef=0.85]{A}{B}[Pa]			% Place de la seconde roue
+\pstRotation[RotAngle=90]{Oa}{B}[Obu]
+\pstHomO[HomCoef=0.2]{Oa}{Obu}[Ob] 		% Rayon des roues
+\pstMiddleAB{Oa}{Ob}{Oc}
+   \pstTranslation{Oa}{Pa}{Ob,Oc}[Pb,Pc]	
+
+\pstHomO[HomCoef=1.5]{Pc}{Oc}[Cg]
+\pstHomO[HomCoef=1.5]{Oc}{Pc}[Cd]		% Longueur du chariot
+\pstTranslation{Oa}{Ob}{Cd}[pCdh]
+\pstTranslation{Oa}{Ob}{Cg}[pCgh]
+\pstHomO[HomCoef=1.5]{Cd}{pCdh}[Cdh]		% Hauteur du chariot
+\pstHomO[HomCoef=1.5]{Cg}{pCgh}[Cgh]
+
+
+\pstMiddleAB{Cg}{Cdh}{Cc}
+\pstTranslation{Oa}{Ob}{Cc}[pbR]
+\pstHomO[HomCoef=4]{Cc}{pbR}[bR]		% Longueur de R
+\pstTransHom{Oc}{Pc}{Cc}{4}{bF}
+
+\pstTransHom{B}{C}{Cc}{0.8}{bG}
+}
+
+
+% Pour corr028, et est utilisé dans la partie «Équilibre sur un plan incliné»
+\newcommand{\prefigplincl}{%
+\pstGeonode[PointName=default,PosAngle={180,0}](0,0){A}(3.5,0){C}(3.5,2.5){B}
+
+\pstHomO[HomCoef=0.3]{A}{B}[Oa]			% Place de la première roue
+\pstHomO[HomCoef=0.4]{A}{B}[Pa]			% Place de la seconde roue
+\pstRotation[RotAngle=90]{Oa}{B}[Obu]
+\pstHomO[HomCoef=0.07]{Oa}{Obu}[Ob] 		% Rayon des roues
+\pstMiddleAB{Oa}{Ob}{Oc}
+
+\pstTranslation{Oa}{Pa}{Ob,Oc}[Pb,Pc]	
+
+\pstHomO[HomCoef=1.5]{Pc}{Oc}[Cg]
+\pstHomO[HomCoef=1.5]{Oc}{Pc}[Cd]		% Longueur du chariot
+\pstTranslation{Oa}{Ob}{Cd}[pCdh]
+\pstTranslation{Oa}{Ob}{Cg}[pCgh]
+\pstHomO[HomCoef=1.5]{Cd}{pCdh}[Cdh]		% Hauteur du chariot
+\pstHomO[HomCoef=1.5]{Cg}{pCgh}[Cgh]
+
+
+\pstMiddleAB{Cg}{Cdh}{Cc}
+\pstTranslation{Oa}{Ob}{Cc}[pbR]
+\pstHomO[HomCoef=4]{Cc}{pbR}[bR]		% Longueur de R
+
+
+\pstTransHom{Oc}{Pc}{Cc}{4}{bF}
+\pstTransHom{B}{C}{Cc}{0.7}{bG}
+}
+

@@ -1,0 +1,320 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\section*{Introduction : propagation de la lumière}
+%----------------------------------
+
+Tu remarqueras qu'une bonne lampe de poche envoie de la lumière dans une seule direction. On parle de \defe{faisceau de lumière}{}. Et pourtant tu sais bien que l'ampoule éclaire dans tous les sens. Ce qu'il se passe est qu'une ampoule envoie des rayons dans tous les sens, mais qu'une lampe de poche est munie d'un système pour dévier les rayons qui ne vont pas dans le bon sens, de telle manière à ce que, au final, la lampe de poche émette un faisceau lumineux.
+
+Nous allons considérer que la lumière se compose de \defe{rayon lumineux}{} : elle se propage en ligne droite. 
+
+Un faisceau est composé de plusieurs rayons (disons au moins des millions par centimètre carré) qui peuvent être parallèles, divergents ou convergents.
+
+\newcommand{\prefigoptfaisc}{%
+\pstGeonode(0,-0.3){dA}(3,-0.3){fA}
+\pstGeonode(0,0){dB}(3,0){fB}
+\pstGeonode(0,0.3){dC}(3,0.3){fC}
+}
+
+\begin{figure}[ht]
+\centering
+\subfigure[Rayons parallèles. Exemple : les rayons solaires]{%
+\begin{pspicture}(-0.5,-0.5)(4.5,0.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigoptfaisc
+	\pstRayon{dA}{fA}
+	\pstRayon{dB}{fB}
+	\pstRayon{dC}{fC}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+\subfigure[Rayons divergents. Exemple : n'importe quelle lumière électrique]{%
+
+\begin{pspicture}(-0.5,-0.5)(4.5,0.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigoptfaisc
+	\pstRayon{dB}{fA}
+	\pstRayon{dB}{fB}
+	\pstRayon{dB}{fC}
+\end{pspicture}
+}
+\subfigure[Rayons convergents. Pour en obtenir, on utilise une loupe, voir section \ref{SecLentMinces}.]{%
+\begin{pspicture}(-0.5,-0.5)(4.5,0.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigoptfaisc
+	\pstRayon{dA}{fB}
+	\pstRayon{dB}{fB}
+	\pstRayon{dC}{fB}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+
+\caption{Dispositions possibles des rayons lumineux dans un faisceau}
+\end{figure}
+%http://fr.wikipedia.org/wiki/Optique_géométrique
+%http://fr.wikipedia.org/wiki/Optique_quantique
+%http://fr.wikipedia.org/wiki/Optique_ondulatoire
+%http://fr.wikipedia.org/wiki/Optiquen
+La théorie de la lumière basée sur l'idée que la lumière suit des rayons rectiligne est baptisée l'\href{http://fr.wikipedia.org/wiki/Optique_géométrique}{\defe{optique géométrique}{}} parce que la majorité des raisonnements et des résultats s'obtiennent en calculant des angles et des intersections sur des figures géométriques. 
+
+L'optique géométrique n'est qu'une toute petite partie de \href{http://fr.wikipedia.org/wiki/Optique}{l'optique}. Tu verras peut-être plus tard une description plus précise des phénomènes lumineux en \href{http://fr.wikipedia.org/wiki/Optique_ondulatoire}{optique ondulatoire}. Si tu manges vraiment beaucoup de soupe, et que tu choisis de faire des études poussées en physique, tu verras l'arme absolue des théories de la lumière : \href{http://fr.wikipedia.org/wiki/Optique_quantique}{l'optique quantique}. Ceci pour dire que ce dont on va parler ici n'est pas du tout le dernier mot de l'histoire\ldots Ce cours concerne des choses qui sont essentiellement connues depuis les dix-sept et dix-huitième siècle ! 
+
+\section{Réflexion et réfraction de la lumière}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\subsection{Réflexion et réfraction}
+%-----------------------------------
+%http://fr.wikipedia.org/wiki/Réflexion_optique
+%http://fr.wikipedia.org/wiki/Réfraction
+
+Considère deux milieux transparents (air, plastique transparent, verre ou eau), et envoie un rayon lumineux oblique de l'un vers l'autre. Prend par exemple une latte en plastique et capte un rayon de Soleil avec. Tu sais qu'une partie de la lumière subit une \href{http://fr.wikipedia.org/wiki/Réflexion_optique}{\defe{réflexion}{}} : c'est pour ça que tu peux t'amuser à éblouir les gens en envoyant le rayon réfléchi sur leurs yeux.
+
+Mais tu sais aussi que cette réflexion ne rend pas le plastique opaque pour autant : une partie de la lumière rentre dans le plastique (et en ressort, mais c'est une autre histoire). La partie de la lumière qui rentre dans le plastique est dite \href{http://fr.wikipedia.org/wiki/Réfraction}{\defe{réfractée}{}} 
+
+Il se fait que le rayon réfracté (la partie qui rentre dans le plastique, dans l'eau ou le verre) est déviée au passage. Cela ne se voit pas très bien dans le cas de la lumière solaire captée par la latte en plastique, mais cela se voit par contre très bien quand tu plonge un bout de bois dans de l'eau : à l'endroit où il entre dans l'eau, il semble cassé. Le rayon provenant du bâton sort de l'eau avec une \og déviation\fg). Ceci est montré sur la figure \ref{fig_refr_pm}.
+
+\newcommand{\prefigoptdifr}{%
+
+	\psset{PointSymbol=none, PointName=none}
+\pstGeonode(0,0){O}(2,0){P}
+\pstRotation[RotAngle=90]{O}{P}[Qi]
+\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
+\pstRotation[RotAngle=180]{O}{P}[R]
+\pstHomO[HomCoef=-1]{O}{Q}[S]
+\pstRotation[RotAngle=-20]{O}{R}[Ri]		% Je place le rayon incident avec un certain angle avec le plan
+    \pstDioptre{O}{P}{Ri}{0.9}{2}{Rs}{Re}	% La passage par le dioptre
+}
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-2,-2)(2,1)
+	\prefigoptdifr
+ %\psframe[linecolor=blue](-2,-2)(2,1)
+
+   \pstRayon{Ri}{O}
+   \pstRayon{O}{Re}
+   \pstRayon{O}{Rs}
+
+   \psline(R)(P)
+   \psline[linecolor=lightgray](O)(Q)
+   \psline[linecolor=lightgray](O)(S)
+
+\end{pspicture}
+\caption{Réflexion et réfraction d'un rayon lumineux qui passe d'un milieu moins réfringent à plus réfringent}\label{fig_refr_pm}
+\end{figure}
+
+Avec certaines surfaces, presque tous les rayons lumineux sont réfléchis, et seule une petite partie est absorbée. Dans ce cas, il n'y a quasiment pas de rayon réfracté, et on a alors un miroir.
+
+\subsection{La réflexion}
+%------------------------
+
+Étudions plus spécifiquement le rayon réfléchi. Assez logiquement, le rayon incident va simplement \og faire ricochet\fg{} sur la surface, et donc repartir avec un angle égal à l'angle d'arrivée, d'où les deux lois suivantes :
+
+\begin{loiphyz}
+Les rayons incidents et réfléchis sont dans un même plan perpendiculaire à la surface. Ce plan est appelé le \emph{plan d'incidence}.
+\end{loiphyz}
+
+\begin{loiphyz}
+L'angle d'incidence est égal à l'angle de réflexion $\hat \imath=\hat r$.
+\end{loiphyz}
+
+Nous allons donner une preuve de ces deux lois dans la sous section \ref{SubsecSnellVitesse} en utilisant un petit peu d'optique ondulatoire. L'important est de retenir que ces deux lois ne sont pas \og évidentes\fg{} en soi, mais sont la partie émergée de l'iceberg qu'est le comportement ondulatoire de la lumière. Une description complète du phénomène demande de voir la lumière comme une onde électromagnétique. Cela devient vite très compliqué.
+
+
+\newcommand{\prefigreflexion}[1]{%
+
+\pstGeonode(0,0){O}(2,0){P}
+\pstRotation[RotAngle=90]{O}{P}[Qi]
+\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
+\pstRotation[RotAngle=180]{O}{P}[R]
+\pstHomO[HomCoef=-1]{O}{Q}[S]
+\pstRotation[RotAngle=-#1]{O}{R}[Ri]		% Je place le rayon incident avec un certain angle avec le plan
+    \pstDioptre{O}{P}{Ri}{0.9}{2}{Rs}{Re}	% La passage par le dioptre
+}
+
+\newcommand{\tracefigreflexion}{%
+
+   \pstMarkAngle{Q}{O}{Ri}{$\hat\imath$}
+   \pstMarkAngle{Rs}{O}{Q}{$\hat r$}
+
+   \psline(R)(P)
+   \psline[linecolor=lightgray](O)(Q)
+   \psline[linecolor=lightgray](O)(S)
+
+   \pstRayon{Ri}{O}
+   \pstRayon{O}{Rs}
+}
+
+\begin{figure}[ht]
+\centering
+
+\subfigure{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigreflexion{10}
+	\tracefigreflexion
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%
+\subfigure{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigreflexion{20}
+	\tracefigreflexion
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%
+\subfigure{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigreflexion{40}
+	\tracefigreflexion
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%
+\subfigure{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigreflexion{60}
+	\tracefigreflexion
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%
+\subfigure{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigreflexion{90}
+	\tracefigreflexion
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%
+\subfigure{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigreflexion{120}
+	\tracefigreflexion
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%
+\caption{Divers rayons réfléchis}\label{fig_reflexion}
+\end{figure}
+
+
+On parle de temps en temps d'une troisième loi qui a au moins le mérite d'avoir un nom marrant; je te laisse juger. 
+
+\begin{loiphyz}[Loi du retour inverse]
+Les lois de la réflexion sont indépendantes du sens de parcours de la lumière.
+\end{loiphyz}
+ 
+Cette loi n'en n'est cependant pas une parce qu'elle peut se déduire des deux premières, comme montré sur la figure \ref{fig_retourinverse}.
+
+\newcommand{\prefigretourinverse}{%
+			
+\pstGeonode(0,0){O}(2,0){P}
+\pstRotation[RotAngle=90]{O}{P}[Qi]
+\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
+\pstRotation[RotAngle=180]{O}{P}[R]
+\pstHomO[HomCoef=-1]{O}{Q}[S]
+\pstRotation[RotAngle=-40]{O}{R}[Ri]		% Je place le rayon incident avec un certain angle avec le plan
+    \pstDioptre{O}{P}{Ri}{0.9}{2}{Rs}{Re}	% La passage par le dioptre
+}
+
+\begin{figure}[ht]
+\centering
+\subfigure[La situation habituelle \ldots]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigretourinverse
+
+   \pstRayon{Ri}{O}
+   \pstRayon{O}{Rs}
+
+   \pstMarkAngle{Q}{O}{Ri}{$\hat\imath$}
+   \pstMarkAngle{Rs}{O}{Q}{$\hat r$}
+
+   \psline(R)(P)
+   \psline[linecolor=lightgray](O)(Q)
+   \psline[linecolor=lightgray](O)(S)
+
+\end{pspicture}
+}						% Fermeture de la sous-figure
+\subfigure[\ldots et quand on inverse les flèches]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+
+	\prefigretourinverse
+
+   \pstRayon{O}{Ri}
+   \pstRayon{Rs}{O}
+
+   \pstMarkAngle{Q}{O}{Ri}{$\hat r$}
+   \pstMarkAngle{Rs}{O}{Q}{$\hat \imath$}
+
+   \psline(R)(P)
+   \psline[linecolor=lightgray](O)(Q)
+   \psline[linecolor=lightgray](O)(S)
+
+\end{pspicture}
+
+}						% Fermeture de la sous-figure
+\caption{La loi du retour inverse : comme $\hat\imath=\hat r$, les deux dessins sont interchangeables et la loi du retour inverse est une évidence.}\label{fig_retourinverse}
+\end{figure}
+
+\subsection{La réfraction}
+%-------------------------
+
+Lorsque la lumière change de milieu, elle dévie. Pour t'en convaincre, prends un verre d'eau et enfonce ton crayon dedans (je ne rigole pas : fais-le !). Tu observes qu'au passage de l'air à l'eau, le crayon est comme \og cassé\fg. Je ne connais hélas pas de moyens simples pour prouver que les choses sont ainsi, mais c'est ainsi. Oublions un instant le rayon réfléchi, et regardons la figure \ref{fig_refraction}.
+
+
+\newcommand{\prefigrefraction}{%
+\pstGeonode(0,0){O}(2,0){P}
+\pstRotation[RotAngle=90]{O}{P}[Qi]
+\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
+\pstRotation[RotAngle=180]{O}{P}[R]
+\pstHomO[HomCoef=-1]{O}{Q}[S]
+\pstRotation[RotAngle=-20]{O}{R}[Ri]		% Je place le rayon incident avec un certain angle avec le plan
+    \pstDioptre{O}{P}{Ri}{0.9}{2}{Rs}{Re}	% La passage par le dioptre
+}
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-2,-2.0)(2,1)
+%\psframe[linecolor=green](-2,-2.0)(2,1)
+	\psset{PointSymbol=none, PointName=none}
+	\prefigrefraction
+
+   \psline(R)(P)
+   \psline[linecolor=lightgray](O)(Q)
+   \psline[linecolor=lightgray](O)(S)
+
+   \pstRayon{Ri}{O}
+   \pstRayon{O}{Re}
+
+   \pstMarkAngle{S}{O}{Re}{$\hat r$}
+   \pstMarkAngle{Q}{O}{Ri}{$\hat\imath$}
+\end{pspicture}
+\caption{Un rayon lumineux est réfracté en entrant dans un verre d'eau}\label{fig_refraction}
+\end{figure}
+
+La réfraction obéit à deux lois.
+%\setcounter{numloiphyz}{0}		% Note qu'il faudra souvent le remettre à zéro ce compteur. Genre à tous les coups.
+\begin{loiphyz}
+Les rayons incidents, réfléchis et réfractés sont dans un même plan, perpendiculaire à la surface. Ce plan est appelé le \emph{plan d'incidence}.
+\end{loiphyz}
+
+
+\begin{loiphyz}[Loi de  \href{http://fr.wikipedia.org/wiki/Snell}{Snell}- \href{http://fr.wikipedia.org/wiki/Descartes}{Descartes}]
+L'angle d'incidence et de réfraction sont liés par la relation
+\begin{equation}   \label{EqSinNDeuxUn}
+\frac{ \sin\hat\imath }{ \sin\hat r }=n_{2/1}
+\end{equation}
+où $n_{2/1}$ est l'\defe{indice de réfraction}{} du milieu 2 par rapport au milieu 1. On l'appelle aussi l'indice de \defe{réfraction relatif}{}.
+\end{loiphyz}
+Exemples d'indices de réfraction relatifs :
+\begin{itemize}
+\item $n_{\text{verre/air}}=3/2$,
+\item $n_{\text{diamant/air}}=2.42$,
+\item $n_{\text{eau/air}}=4/3$.
+\end{itemize}
+

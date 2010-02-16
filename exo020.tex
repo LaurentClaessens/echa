@@ -1,0 +1,97 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\newcommand{\prefigzerodeuxzero}{%
+   \pstGeonode(0,0){A}(4,0){C}(4,0){B}
+
+\pstHomO[HomCoef=0.3]{A}{B}[Oa]			% Place de la première roue
+\pstHomO[HomCoef=0.4]{A}{B}[Pa]			% Place de la seconde roue
+\pstRotation[RotAngle=90]{Oa}{B}[Obu]
+\pstHomO[HomCoef=0.07]{Oa}{Obu}[Ob] 		% Rayon des roues
+\pstMiddleAB{Oa}{Ob}{Oc}
+
+   \pstTranslation{Oa}{Pa}{Ob,Oc}[Pb,Pc]	
+
+\pstHomO[HomCoef=1.5]{Pc}{Oc}[Cg]
+\pstHomO[HomCoef=1.5]{Oc}{Pc}[Cd]		% Longueur du chariot
+\pstTranslation{Oa}{Ob}{Cd}[pCdh]
+\pstTranslation{Oa}{Ob}{Cg}[pCgh]
+\pstHomO[HomCoef=1.5]{Cd}{pCdh}[Cdh]		% Hauteur du chariot
+\pstHomO[HomCoef=1.5]{Cg}{pCgh}[Cgh]
+
+
+\pstMiddleAB{Cg}{Cdh}{Cc}
+
+\rput(Cc){\pstGeonode(0,-1.8){bG}}		% Position et plaçage de G
+
+\pstTranslation{Oa}{Ob}{Cc}[pbR]
+\pstHomO[HomCoef=6]{Cc}{pbR}[bR]		% Longueur de F_2
+
+\pstTransHom{Oc}{Pc}{Cc}{4}{bF}
+\pstSymO{Cc}{bF}[bFp]
+
+\pstHomO[HomCoef=1.5]{Oa}{B}[prAB]
+\pstRotation[RotAngle=20]{B}{prAB}[prABr]
+\pstHomO[HomCoef=0.3]{B}{prABr}[bT]		% Position de la tige
+\pstHomO[HomCoef=0.45]{B}{prABr}[cP]		% Centre de la poulie
+\pstInterCC{Cdh}{cP}{cP}{bT}{Iu}{Id}		% Tangentes à la poulie...
+
+\rput(cP){\pstGeonode(2,0){bdmtV}}		% Construire une horizontale au centre de la poulie
+\pstInterLC{cP}{bdmtV}{cP}{bT}{IIu}{tV}
+\pstTransHom{Cc}{bG}{tV}{0.6}{bC}		% Construire le bout de la corde par translation et homothetie de BC
+\rput(bC){\pstGeonode(0,-0.7){bGd}}
+
+}
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-0.5,-2)(4,2.5)
+  \psset{PointSymbol=none, PointName=none}
+\prefigzerodeuxzero				% La géométrie de la construction est contenue dans cette commande
+   \psline(A)(C)
+   \psline(C)(B)
+   \psline(A)(B)
+  
+   \pstCircleAB{Oa}{Ob}
+   \pstCircleAB{Pa}{Pb}
+
+   \rput(Cdh){\psdot}				% Marquer l'endroit où la corde va venir.
+
+   \psline(Cg)(Cgh)
+   \psline(Cgh)(Cdh)
+   \psline(Cd)(Cdh)
+   \psline(Cg)(Cd)
+
+
+   \psline[arrows=->](Cc)(bR)
+   \rput(bR){\rput(0.4;30){$\fF_2$}}		% Position de la marque de F_2
+   \pstMarqueForce{Cc}{bF}{0.6;60}{$\fF_4$}
+
+   \pstMarqueForce{Cc}{bG}{0.4;0}{$\fG_1$}
+
+   \pstMarqueForce{Cc}{bFp}{0.3;90}{$\fF_1$}
+
+   \psline(B)(bT)
+   \pstCircleOA{cP}{bT}				% Trace la poulie
+
+   \psline[linestyle=dashed](Cdh)(Iu)
+
+   \psline[linestyle=dashed](tV)(bC)		% Dessiner la corde
+
+   \psellipse[fillstyle=solid,fillcolor=lightgray](bC)(0.5,0.2)
+
+
+   \pstMarqueForce{bC}{bGd}{0.3,0}{$\fG_2$}
+
+\end{pspicture}
+\caption{Chariot tiré par une masse pour l'exercice \ref{exo:chariotplat}. La corde est dessinée en trait discontinu.}\label{fig:chariotplat}
+\end{figure}
+
+\begin{exercice}		\label{exo:chariotplat}\label{exo020}
+ 
+Tu te souviens du chariot de la figure \ref{fig_valeurerg} ? Prenons le cas un peu plus général de la figure \ref{fig:chariotplat}. Après avoir relu ce qu'on a fait dans le premier cas, calcule le travail de toutes les forces dessinées lors d'un déplacement d'une longueur $l$ vers la droite.
+
+Sans faire plus de calculs, donne les traveaux des mêmes forces si le chariot se déplace d'une distance $s$ vers la \emph{gauche}.
+\end{exercice}

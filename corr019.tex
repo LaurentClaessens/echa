@@ -1,0 +1,56 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+%Copyright (c) 2006 Claessens Laurent. Permission is granted to copy, distribute and/or modify this document under the terms of the  GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A  copy of the license is included in the section entitled "GNU Free Documentation License".
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-0.5,-0.5)(4,2.5)
+  \psset{PointSymbol=none, PointName=none}
+\prefigzerounneuf
+   \psline(A)(C)
+   \psline(C)(B)
+   \psline(A)(B)
+  
+   \pstMarqueForce{Cc}{bG}{0.4;45}{$\fG$}
+
+\pstInterLL{Cc}{bG}{A}{B}{perc}
+\pstInterLL{Cc}{bG}{A}{C}{percd}
+
+\pstTransHom{perc}{B}{Cc}{1}{cAB}
+\pstTransHom{perc}{B}{Cc}{-1}{cBA}
+
+   \pstMarqueForce{Cc}{cAB}{0.3;90}{$A\to B$}
+   \pstMarqueForce{Cc}{cBA}{0.5;90}{$B\to A$}
+
+\pstMarkAngle{C}{A}{B}{$\alpha$}
+\pstMarkAngle[linecolor=blue]{A}{perc}{percd}{$\beta$}
+\pstMarkAngle[linecolor=red]{percd}{perc}{B}{$\gamma$}
+
+\end{pspicture}
+\caption{Angles entre la gravitation et les déplacements}\label{fig_corrchar}
+\end{figure}
+
+
+\begin{corrige}{019}
+
+
+Tu dois aller voir la figure \ref{fig:Force_decomp} pour voir comment il faut traiter avec les problèmes de décomposition de forces sur un plan incliné.
+
+La force $\fR$ est perpendiculaire au déplacement (que ce soit pour $A$ vers $B$ ou $B$ vers $A$), donc son travail est toujours nul.
+
+La force $\fF$ est toujours parallèle au déplacement. Durant le déplacement de $A$ vers $B$, elle est dans le même sens et donc $W_F^{A\to B}=F| AB |$; durant le déplacement de $B$ vers $A$, elle est dans le sens inverse et donc $W_F^{B\to A}=-F| AB |$.
+
+Sur la figure \ref{fig_corrchar}, l'angle $\beta$ entre $\fG$ et le déplacement $B\to A$ vaut $90-\alpha$ tandis que l'angle $\gamma$ entre $\fG$ et le déplacement $A\to B$ vaut $180-(90-\alpha)=90+\alpha$.
+Durant le déplacement $A\to B$, le travail de $\fG$ vaut donc $G\cdot| AB |\cos\gamma=-G\cdot| AB |\sin(\alpha)=-G| BC |$ parce que $\cos(90+\alpha)=-\sin(\alpha)$.
+Durant le déplacement $B\to A$, le travail de $\fG$ vaut 
+\[
+G\cdot| AB |\cos(90-\alpha)=G\cdot| AB |\sin(\alpha)=G\cdot| BC |.
+\]
+
+Lorsque $\| \fF \|=\| \fG \|$, le chariot, l'objet monte. En effet, seule le composante parallèle de $\fG$ n'est utile pour faire descendre le chariot, mais chaque composante d'une force est toujours plus petite que la force elle-mêle, c'est à dire que $\| \fG_{\parallel} \|<\| \fG \|$.
+
+\end{corrige}

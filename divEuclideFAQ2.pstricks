@@ -1,0 +1,10 @@
+\begin{array}{cccc|l}
+x^3	&	+2x^2	&	+0	&	-1	&		x+7\\
+\cline{5-5}
+-(x^3	&	+7x^2)	&	\vdots	&	\vdots	&	x^2-5x\\
+\cline{1-2}
+	&	-5x^2	&	+0	&	-1	&	\\
+	&	-(-5x^2	&	-35x)	&	\vdots	&	\\
+\cline{2-3}
+	&		&	35x	&	-1	&	\\
+\end{array}

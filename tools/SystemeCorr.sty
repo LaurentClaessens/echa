@@ -1,0 +1,73 @@
+\NeedsTeXFormat{LaTeX2e}
+ 
+\ProvidesPackage{SystemeCorr}[31/01/2009, version 0.1]
+ 
+\newtheoremstyle{@typeExercice}%
+		{9pt}{9pt}%
+		{}%
+		{}%
+		{\bfseries}{.\par}%
+		{\newline}%
+		{}%
+
+\theoremstyle{@typeExercice}
+		\newtheorem{exercice}{Exercice}	
+
+\newenvironment{corrige}[1]{\par\bigskip\noindent {\bf Correction de l'exercice \ref{exo#1}}\label{corr#1}\par\nopagebreak}{}
+\newenvironment{alternative}{\par\bigskip\noindent {\bf Résolution alternative}\par\nopagebreak}{}
+
+\newcounter{@CorrPolitique}
+\newcommand{\corrPolitique}[1]{\setcounter{@CorrPolitique}{#1}}
+% 0 : No corrections 
+% 1 : Correction just under the questions
+% 2 : Corrections in a specific chapter, use \corrChapitre
+% 91 : pour les brouillons, ajoute un truc à cliquer, tout en mettant les corrigés juste en-dessous.
+
+% Pour mettre les corrigés au bout, il faut initialiser le fichier dans lequel on écrit.
+\newwrite\FichCorr
+\immediate\openout\FichCorr=corr	
+
+\newcommand{\corrChapitre}[1]{%
+\ifthenelse{\value{@CorrPolitique}=2}{%
+\chapter{#1}
+	\immediate\closeout\FichCorr
+	\input{corr}
+}{}		% Fin du ifthenelse
+}		% Fin de la macro \corrChapitre
+
+\newcommand{\corrref}[1]{%
+\ifthenelse{\value{@CorrPolitique}=2}{\par Corrigé à la page \pageref{corr#1}.}{}%
+}
+
+\newcommand{\Exo}[1]{%
+\input{exo#1}
+\ifthenelse{\value{@CorrPolitique}=1}{\IfFileExists{corr#1.tex}{\input{corr#1}}{}}{}
+\ifthenelse{\value{@CorrPolitique}=2}{\IfFileExists{corr#1.tex}{\immediate\write\FichCorr{\string\input{corr#1}}}{}}{}
+}
+% Ces histoires de \newwrite pour écrire dans un fichier sont par exemple expliquées sur le fctt [1]
+% Le \immediate vient de la discussion fctt [2]
+
+% The following uses xstring in order to replace specific characters by %xx codes.
+\newcommand{\MakeUTFPerCent}[1]{% 
+   \StrSubstitute{#1}({\%28}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}){\%29}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{é}{\%C3\%A9}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}_{\_}[\result]% 
+} 
+%------------------------
+% Citation of wikipedia.
+%------------------------
+% Typical use is
+% \wikipedia{fr}{Norme_(mathématiques)}{Norme}
+% It creates the link \href to the right page on wikipedia, replacing  (,) and é by their respective %xx codes.
+\newcommand{\wikipedia}[3]{% 
+   \saveexpandmode\noexpandarg 
+   \MakeUTFPerCent{#2}% 
+   \restoreexpandmode 
+   \href{http://#1.wikipedia.org/wiki/\result}{#3}% 
+} 
+
+% [1] http://groups.google.fr/group/fr.comp.text.tex/browse_thread/thread/76eb44e2e928ba8b/ab0f092c79a062cd?hl=fr&lnk=gst&q=newwrite#ab0f092c79a062cd 
+% [2] http://groups.google.fr/group/fr.comp.text.tex/browse_thread/thread/80909a66028ef5a3/ab89634948317f36?hl=fr#ab89634948317f36
+% [3] http://groups.google.fr/group/fr.comp.text.tex/browse_thread/thread/b2a0fa029bf9e0d9/fd3b47dfaac9cc96?hl=fr&lnk=gst&q=shorthand#fd3b47dfaac9cc96
+% [4] http://groups.google.fr/group/fr.comp.text.tex/browse_thread/thread/68bf87c02c4515bc?hl=fr#

@@ -1,0 +1,632 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\section{Démonstration par l'absurde}
+%+++++++++++++++++++++++++++++++++++++
+
+Dans la vie en math, il n'y a que trois choses importantes à retenir. Et pas de bol, ce sont justement les trois choses que apparemment les élèves ont le plus de mal à comprendre. Ce sont
+\begin{itemize}
+\item la règle de trois
+\item la preuve par récurrence
+\item la preuve par l'absurde.
+\end{itemize}
+Aujourd'hui, on se met à la preuve par l'absurde.
+
+Supposons que tu aies un ami au Canada qui t'écrive un courriel qui dit \og demain, si il fait beau, je serai en ballade toute la journée\fg. Or le lendemain, tu reçois un nouveau courriel de la même personne qui dit \og Je suis chez moi et je lis le journal\fg. Est-ce que tu peux dire si il a fait beau au Canada le second jour ?
+
+En fait, il a fait mauvais le second jour. En effet, si il avait fait beau, l'ami serait en ballade toute la journée. Or il n'est pas en ballade (il est chez lui), donc c'est qu'il faisait pas beau.
+
+Posé sous forme un peu plus mathématique, le raisonnement qui conduit à dire qu'il n'a pas fait beau se présente ainsi :
+\begin{enumerate}
+\item Supposons qu'il ait fait beau (le second jour)
+\item Comme il a fait beau, l'ami est en ballade
+\item Aïe ! Ça ne colle pas avec la réalité : en fait il est chez lui.
+\item L'hypothèse \og supposons qu'il ait fait beau\fg{}  est donc en contradiction avec des faits avérés.
+\item Conclusion, il n'est pas vrai qu'il a fait beau.
+\end{enumerate}
+
+Un exemple simple.
+\begin{proposition}
+Deux droites distinctes dans le plan ont au maximum un point d'intersection.
+\end{proposition}
+
+\begin{proof}
+Supposons que la proposition soit fausse, c'est à dire qu'il existe deux droites distinctes qui ont deux points d'intersection. Soient $A$ et $B$ ces deux droites et $x$ et $y$ les deux points d'intersection.
+
+Or tu sais qu'il existe une et une seule droite passant par deux points donnés. Soit $C$ l'unique droite qui passe par $x$ et $y$. Comme $A$ passe par $x$ et $y$, on a que $A=C$. Mais $B$ passe par $x$ et $y$, donc $B=C$.
+
+On se retrouve avec $A=C=B$, et donc $A=B$ : les deux droites $A$ et $B$ sont confondues. Donc dès qu'on a deux droites qui ont deux points en commun, elles sont confondues. Il n'existe donc pas deux droites distinctes possédant deux points d'intersection.
+
+\end{proof}
+
+Un autre exemple.
+
+\begin{proposition}
+Si $x^2$ est un nombre pair, alors $x$ est un nombre pair.
+\end{proposition}
+
+\begin{proof}
+Supposons que $x$ ne soit pas un nombre pair. De toutes façons, on peut le décomposer en facteurs premiers. Le fait que $x$ ne soit pas pair signifie qu'il n'y a pas de $2$ dans sa décomposition. Quid de la décomposition de $x^2$ en nombres premiers ?
+
+On sait que $x^2=x\cdot x$. Donc $x^2$ a les même facteurs premiers que $x$, sauf qu'il les a en double. Par exemple, $21=3\cdot 7$, et $21^2=3\cdot 3\cdot 7\cdot 7$. Si il n'y a pas de $2$ dans la décomposition de $x$, alors il n'y en a pas dans la décomposition de $x^2$, et donc $x^2$ n'est pas pair.
+
+Il y a donc une contradiction entre le fait que $x$ soit impair et le fait que $x^2$ soit pair. Donc si $x^2$ est pair, $x$ ne peut pas être impair.
+\end{proof}
+
+Si on remet les choses dans l'ordre, regardons ce qu'on a démontré. On a prouvé en fait que 
+\begin{quote}
+Si $x$ est impair, alors $x^2$ est impair.
+\end{quote}
+
+\section{Premier degré à une inconnue}
+%+++++++++++++++++++++++++++++++++++++
+
+\subsection{Vocabulaire}
+%------------------------
+
+Donnons une idée de ce que signifient certains mots qui arriveront dans la suite.
+\begin{description}
+\item[Équation] égalité liant des nombres inconnus (généralement notés $x$) à des paramètres connus à partir de laquelle on espère trouver la valeur de l'inconnue,
+\item[Racine d'une équation] valeur de l'inconnue qui fait en sorte que l'équation soit satisfaite. On dit aussi qu'une racine est une \defe{solution}{} de l'équation,
+\item[Ensemble des solution] ensemble des racines. On le note $S$,
+\item[Équation impossible] aucun réel n'est racine, autrement dit, $S=\emptyset$. On est dans ce cas quand on tombe par exemple sur une équation du type : $x\cdot 0=37$,
+\item[Équation indéterminée] tout réel est racine, c'est à dire $S=\eR$. Par exemple : $x\cdot 0=0$ ou encore $\cos^{2} x+\sin^{2}x=1$,
+\item[Résoudre une équation] trouver son ensemble de solution $S$.
+\end{description}
+
+Un exemple d'équation est celle-ci : $x+1=3$. Une racine est facile à trouver : c'est $x=2$ parce que quand on remplace $x$ par $2$, l'équation est satisfaite : $2+1=3$.
+
+\begin{remark}
+Tu verras dans ce cours et dans les cours de math suivant que l'on peut résoudre énormément d'équations. Mais détrompe toi : pour la vaste majorité des problèmes concrets, on ne connaît pas les solutions des équations qui arrivent. Lorsque $x$ est inconnu, tu verras qu'il est possible de trouver toutes les solutions (pour n'importe quelles valeurs de $a$, $b$, $c$, $d$, $e$ et $f$) des équations
+\begin{align*}
+ax+b&=0\\
+ax^{2}+bx+c&=0\\
+ax^{3}+bx^{2}+cx+d&=0\\
+ax^{4}+bx^{3}+cx^{2}+dx+e&=0.
+\end{align*}
+En fait tu ne verras que les deux premières, mais il se fait que les deux suivantes sont également possibles. Eh bien il se fait que personne ne connaît les solutions de
+\[ 
+  ax^{5}+bx^{4}+cx^{3}+dx^{2}+ex+f=0.
+\]
+Pire : on a pu prouver qu'il n'est pas possible d'en déterminer toutes les solutions pour n'importe quelle valeurs des paramètres.
+
+%http://fr.wikipedia.org/wiki/Dernier_théorème_de_Fermat
+Un autre exemple d'équation \href{http://fr.wikipedia.org/wiki/Dernier_théorème_de_Fermat}{très célèbre} et très compliquée est celle-ci :
+\[ 
+  x^{n}+y^{n}=z^{n}.
+\]
+Trouver, en fonction de $n$, les valeurs \emph{entières} que peuvent prendre $x$, $y$ et $z$. Lorsque $n=2$, on a par exemple $3^{2}+4^{2}=5^{2}$ comme solution. Il a fallu attendre $1995$ pour prouver que lorsque $n$ est plus grand que $2$, il n'y a aucune solutions !
+
+J'avais parlé de problèmes concrets pour lesquels on ne connaît pas de solutions. Tu reste sur ta faim ? Regarde la Lune. La Lune tourne autour de la Terre grâce à la gravité. Hélas, le Soleil agit aussi sur la Lune par sa gravité; certes pas très fort, mais assez quand même pour rendre les prévisions d'éclipses inexactes si on n'en tient pas compte. Eh bien le système Soleil-Terre-Lune en interaction gravitationnelle conduit à des équations que l'on est incapable de résoudre exactement (on peut malgré tout avoir de très bonnes approximations).
+\end{remark}
+
+\subsection{Les conditions d'existence}
+%--------------------------------------
+
+Prenons un certain nombre $a$, et disons que $a=b$. C'est à dire que nous désignons juste par $a$ et $b$ le même nombre. Nous pouvons faire le calcul suivant :
+\begin{subequations}
+\begin{align}
+a&=b&&\text{l'hypothèse}\\
+a^{2}&=ab&&\text{multiplier les deux membres par $a$}\\
+a^{2}-b^{2}&=ab-b^{2}&&\text{retrancher $b^{2}$ des deux côtés}\\
+(a+b)(a-b)&=b(a-b)&&\text{produit remarquable et mise en évidence}\\
+a+b&=b&&\text{simplification par $a-b$}  \label{SubEqamoinsb}\\
+2b&=b&&\text{parce que $a=b$}\\
+2&=1&&\text{simplification par $b$}.
+\end{align}
+\end{subequations}
+La dernière ligne indique comme qui dirait une faute quelque part, non ? Essayons de trouver la faute en remplaçant $a$ et $b$ par un chiffre. Disons $a=b=3$.
+\begin{subequations}
+\begin{align}
+a&=b&3&=3\\
+a^{2}&=ab&3^{2}&=3\cdot 3\\
+a^{2}-b^{2}&=ab-b^{2}&9-9&=9-9\\
+(a+b)(a-b)&=b(a-b)&(3+3)(3-3)&=3(3-3)\\
+a+b&=b&3+3&=3&&\text{Faux !}\\
+2b&=b&&\\
+2&=1&&
+\end{align}
+\end{subequations}
+La faute est clairement la simplification par $3-3$ (celle par $a-b$ en général). Pourquoi ? Parce que $3-3=0$, et on ne peut pas simplifier par zéro. La faute générale était de simplifier par $a-b$ à l'équation \eqref{SubEqamoinsb} : par hypothèse $a=b$ et donc $a-b=0$.
+
+Retiens ceci :
+
+\setcounter{numloiphyz}{0}		% Note qu'il faudra souvent le remettre à zéro ce compteur. Genre à tous les coups.
+\begin{loiphyz}  \label{PgLoiUnZero}
+On ne peut jamais simplifier par zéro, ni diviser quoi que ce soit par quelque chose qui pourrait valoir zéro. Les multiplications et divisions par zéro sont interdites dans les résolutions d'équations.
+\end{loiphyz}
+
+\begin{loiphyz}
+	Si tu es en latin-grec et que tu enfreins la loi numéro \ref{PgLoiUnZero}, on te pardonnera peut-être avec condescendance et mépris.
+\end{loiphyz}
+
+Voici ce qu'il se passerait au cas où tu enfreindrais cette loi : d'abord, $1=2$ ensuite voila ce qu'il se passe :
+\begin{subequations}
+\begin{align}
+1&=2&&\text{hypothèse}\\
+0&=1&&\text{retrancher $1$ de chaque côté}\\
+0&=10&&\text{multiplier les deux côtés par 10},
+\end{align}
+\end{subequations}
+ce qui ferait que même avec tout faux dans ton interrogation, tu pourrais avoir $10/10$ ! Hélas, dans la même circonstance, tu pourrais très bien avoir zéro. Tout est possible.
+
+À partir de maintenant, à chaque fois que tu verras une fraction $\frac{ A }{ B }$, tu t'exclameras immédiatement \og Il faut que $B\neq 0$ !\fg.
+
+Tu n'as pas compris ? Pas grave, disons la même chose autrement. Suppose que tu lises quelque part que
+\[ 
+  3=7.
+\]
+Nous sommes d'accord que cette égalité est fausse. Si nous multiplions par 5 des deux côtés, nous trouvons
+\[ 
+  15=35,
+\]
+qui est tout aussi faux. La multiplication par 5 ne change pas le caractère faux ou vrai d'une égalité. Si par contre nous multiplions par zéro les deux membres de $3=7$, nous trouvons
+\begin{align*}
+3\cdot 0&=7\cdot 0\\
+  0&=0,
+\end{align*}
+ce qui est vrai ! La multiplication par zéro a masqué l'erreur.
+
+Je parie que tu es en train de te dire que ça ne sert à rien et que c'est encore un de ces trucs inventés pour t'ennuyer. Il faut avouer que pour l'instant, c'est partiellement vrai; mais avec le temps tu tomberas sur des cas pour lesquels les conditions d'existences sont importantes. En attendant voici déjà un exemple.
+
+Mettons que quelqu'un qui se déplace à \unit{12}{\meter\per\second} se demande combien de temps il mets pour parcourir \unit{100}{\meter}. Il fait un petit calcul mental et il trouve $\unit{100/12=8.3}{\second}$. Une personne qui se déplace à \unit{57}{\meter\per\second} trouveras la réponse \unit{100/57=1.75}{\second}. Plus généralement si quelqu'un qui se déplace à la vitesse $v$ veut savoir en combien de temps il parcours une distance $x$, il se souvient de cette super équation du mouvement rectiligne uniforme :
+\begin{equation}    \label{EqxvtConEx}
+  x=vt,
+\end{equation}
+et il résout par rapport à $t$ (et non $x$ hein !). Il trouve 
+\[ 
+  t=x/v,
+\]
+avec la condition d'existence $v\neq 0$. Réfléchissons deux secondes à ce que signifie physiquement cette condition. Quand $v=0$, c'est qu'on ne se déplace pas. Ça n'a donc aucun sens de se demander en combien de temps on parcourra cent mètres. On ne les parcourra jamais. D'ailleurs avec $v=0$, l'équation \eqref{EqxvtConEx} devient $x=0$. Avec une telle équation, on ne risque pas de trouver $x=100$. Si tu vois quelqu'un simplement assis par terre et que tu lui demande en combien de temps il parcours cent mètres à cette vitesse, on va tout bonnement te prendre pour un fou; bref, oublier une condition d'existence dans la résolution d'une équation, c'est de la folie pure.
+
+ Tu vois dans cet exemple que la condition d'existence est contenue dans la physique de l'énoncé. 
+
+\subsection{Quand l'inconnue n'est pas au dénominateur}
+%------------------------------------------------------
+
+La méthode consiste à tout mettre au même dénominateur et puis à isoler l'inconnue. Une long exemple vaut mieux qu'on petit discours.
+\begin{subequations}
+\begin{align}
+  \frac{ 3x }{ 5 }-\frac{ 4+6x }{ 3 }	&=x-2\\			
+\frac{ 3(3x)-5(4+6x) }{ 15 }		&=\frac{ 15(x-2) }{ 15 }					&&\text{Réduction au même dénominateur}\\
+9x-30x-20					&=15x-30							&&\text{multiplier les deux membres par $15$}\\
+9x-30x&=-30+20											&&\text{mettre tous les$x$ du même côté}\\
+-36x&=-10												&&\text{Un tout petit peu de calcul}\\
+36x&=10									&&\text{multiplier par $-1$}\\
+x&=\frac{ 5 }{ 18 }							&&\text{diviser par $18$}.
+\end{align}
+\end{subequations}
+On conclu que $S=\{ 5/18 \}$.
+
+\subsection{Exercices}
+%---------------------
+
+\begin{exercice}
+Est-ce que tu peux inventer un exercice avec au moins trois fractions dont la réponse est $x=2$ ?
+\end{exercice}
+
+\begin{exercice}		\label{Exoeqsssollindegun}
+Résous l'équation
+\[ 
+	\frac{ x+1 }{ 2 }-\frac{ x+5 }{ 3 }=\frac{ 3x+15 }{ 18 }. 
+\]
+Quel enseignement en tires-tu ?
+\end{exercice}
+
+\begin{exercice}
+L'équation suivante est exactement la même que celle de l'exercice \ref{Exoeqsssollindegun}, sauf que l'on a remplacé le $5$ du deuxième terme par $m$ :
+\[ 
+	\frac{ x+1 }{ 2 }-\frac{ x+m }{ 3 }=\frac{ 3x+15 }{ 18 }. 
+\]
+Est-ce que tu peux trouver une valeur de $m$ pour laquelle cette équation a une solution ? Lorsque tu as trouvé ce $m$, remplace-le dans l'équation de départ, et puis résous.
+\end{exercice}
+
+\subsection{Lorsque l'inconnue est au dénominateur}
+%--------------------------------------------------
+
+Étant donné que l'on ne peut pas avoir de zéro au dénominateur, il faut poser des conditions d'existence. Lorsqu'on voit $A/B$, le réflexe est de dire $B\neq 0$. Un petit exemple \og simple\fg :
+\begin{equation} 
+  \frac{1}{ x-1 }+\frac{1}{ x+1 }=\frac{1}{ x^{2}-1 }.
+\end{equation}
+On a trois fractions. Avant de commencer quoi que ce soit, on dit :
+\begin{enumerate}
+\item $x-1\neq 0$ pour la première,
+\item $x+1\neq 0$ pour la deuxième,
+\item $x^{2}-1\neq 0$ pour la dernière.
+\end{enumerate}
+Coup de chance : étant donné que $x^{2}-1=(x+1)(x-1)$, la troisième condition ne dit rien de nouveau par rapport aux deux premières. Nous écrivons donc
+\begin{align} \label{EqCExun}
+    x&\neq 1& x&\neq-1.
+\end{align}
+Cela dit on peut commencer à travailler :
+\begin{subequations}
+\begin{align} 
+ \frac{ (x+1)+(x-1) }{ (x+1)(x-1) }&=\frac{1}{ (x-1)(x+1) }&&\text{Réduction au même dénominateur}\\
+(x+1)+(x-1)&=1&&\text{simplifier par $(x+1)(x-1)$ } \label{EqUtilECxun}\\
+2x&=1\\
+x&=1/2.
+\end{align}
+\end{subequations}
+La simplification à l'étape \eqref{EqUtilECxun} demande que les conditions d'existence \eqref{EqCExun} soient satisfaites. Étant donné que la solution $x=1/2$ n'est pas à rejeter par les conditions d'existence, on peut conclure que
+\begin{equation}
+  S=\{ \frac{ 1 }{ 2 } \}.
+\end{equation}
+
+\subsection{Équations avec coefficients paramétriques. Discussions}
+%------------------------------------------------------------------
+
+On dit qu'une équation possède un \defe{paramètre}{} quand certains coefficients ne sont pas des nombres, mais des lettres qui représentent un nombre \emph{a priori} quelconque.
+
+ Par exemple, si on te demande combien de temps tu dois prendre pour te déplacer de \unit{150}{\kilo\meter} si tu te déplaces à la vitesse $v$ tu dois résoudre $150=vt$ par rapport à $t$. La réponse est évidement $t=150/v$ . Dans ce problème, $v$ est le paramètre. Tu vois que la solution en dépend. Si on choisit de se déplacer à \unit{120}{\kilo\meter\per\hour}, on trouve $t=150/120=$ une heure et 15 minutes. Si on se déplace à $\unit{100}{\kilo\meter\per\hour}$, on trouve $t=150/100=$ une heure et 30 minutes\footnote{Petite note au passage : tu remarqueras que rouler à \unit{120}{\kilo\meter\per\hour} ne fait gagner que un quart d'heure (sur une heure et demi !) par rapport à \unit{100}{\kilo\meter\per\hour}, et pourtant cela pollue beaucoup plus. Limiter sa vitesse sur l'autoroute est donc un moyen très simple d'économiser énormément de $CO_{2}$ dans l'atmosphère.}.
+
+Exemple : on se donne l'équation suivante dans laquelle $m$ est un paramètre et $x$ est l'inconnue : 
+\[
+	mx-1=3m-2x
+\]
+ Les premières étapes de la résolution sont classiques :
+\begin{subequations}
+\begin{align}
+ mx+2x&=3m+1\\
+(m+2)x&=3m+1 \label{EqCuldeSac}
+\end{align}
+\end{subequations}
+%http://fr.wikipedia.org/wiki/Sherlock_Holmes
+%http://fr.wikipedia.org/wiki/Arsène_Lupin
+L'étape suivante consiste à diviser par $m+2$ pour isoler $x$. Hélas, si on ne sait pas la valeur de $m$, il se peut que $m+2$ soit nul, et on risque d'enfreindre la loi numéro 1 (page \pageref{PgLoiUnZero}). Faisons comme \href{http://fr.wikipedia.org/wiki/Arsène_Lupin}{Sherlock Holmes} et envisageons une par une toutes les possibilités.
+
+D'abord supposons que $m+2\neq 0$. Dans ce cas on peut diviser et on trouve comme solution :
+\[ 
+  S=\left\{ \frac{ 3m+1 }{ m+2 } \right\},
+\]
+affaire réglée.
+
+Ensuite supposons que $m+2=0$, c'est à dire que $m=-2$. Si nous prenons cette hypothèse, le plus simple est de recommencer toute l'enquête au début (parce que dans le cas $m=-2$, l'équation \eqref{EqCuldeSac} a l'air d'être un cul de sac). L'équation de départ avec $m=-2$ donne : 
+\[ 
+  -2x-1=-6-2x,
+\]
+ce qui donne 
+\[ 
+  -1=-6.
+\]
+Dans ce cas, il n'y a aucune solutions : $S=\emptyset$.
+
+Conseil : quand cela est possible, il est bon de \emph{factoriser} le coefficient de l'inconnue et le terme indépendant.
+
+\section[Système d'équations à deux inconnues]{Systèmes linéaire de deux équations à deux inconnues}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+La bonne nouvelle est qu'il existe des tonnes de manières de résoudre ces systèmes d'équations; tu auras donc le choix des armes. La mauvaise nouvelle, c'est qu'elles sont toute compliquées; il est donc normal que tu sois un peu perdu au départ.
+
+\subsection{Méthode de substitution}
+%-----------------------------------
+
+Prenons le système suivant :
+\begin{numcases}{}
+	2x-6y=1  \\
+	3x+4y=2.
+\end{numcases} 
+Si on résout la première équation par rapport à $x$, on trouve $x=\frac{ 6y+1 }{ 2 }$. Si on remplace maintenant tous les $x$ de la seconde équation par cette valeur, nous tombons sur une équation qui ne possède plus que du $y$ :
+\[ 
+  3\left( \frac{ 6y+1 }{ 2 }\right)-4y=2.
+\]
+Cette équation, on la résout comme on veut, pour trouver $y=1/26$. En voila déjà une de trouvée. Maintenant il faut déduire $x$. Pour cela on revient au système initial dans lequel on remplace les $y$ par $7/19$ :
+\begin{numcases}{}
+	2x-6\frac{ 1 }{ 26 }=1  \\
+	3x+4\frac{ 1 }{ 26 }=2.
+\end{numcases} 
+Ce sont deux équations en $x$ qui doivent avoir la même solution. En l'occurrence, $x=8/13$. Finalement la solution est un couple :
+\[ 
+  S=\Big\{ \big( \frac{ 8 }{ 13 },\frac{ 1 }{ 26 } \big) \Big\}.
+\]
+Attention : si après avoir remplacé tous les $y$ des deux équations de départ par la valeur trouvée tu ne trouves pas deux équations en $x$ qui ont la même solution, c'est que tu t'es trompé quelque part.
+
+\subsection{Méthode de combinaison}
+%----------------------------------
+
+Nous pouvons toujours multiplier une égalité par un nombre : si $a=b$, alors $3a=3b$; si $3a=6b+3$, alors $7(3a)=7(6b+3)$ c'est à dire $21a=42b+21$. Ça c'est une chose que tu sais déjà depuis longtemps.
+
+Une autre chose que tu sais peut-être déjà, c'est qu'on peut additionner des équations. Si $a=b$ et $c=d$, alors $a+c=b+d$. Exemple :  une enclume pèse autant que dix épées deux mains\footnote{$3d6+7$ de dommages.},
+\[ 
+  \text{enclume}=10\text{ épées deux mains},
+\]
+et une calculatrice pèse autant qu'une pochette de CD,
+\[ 
+  \text{calculatrice}=\text{pochette de CD}.
+\]
+Évidement une enclume et une calculatrice pèsent autant qu'une pochette de CD et que 10 épées deux mains :
+\[ 
+  \text{calculatrice}+\text{enclume}=10\text{ épées deux mains}+\text{pochette de CD}.
+\]
+Maintenant que nous somme d'accord avec ces deux principes, prenons le système suivant :
+\begin{numcases}{}
+	2x+4y=3  \\
+	x+8y=3.
+\end{numcases} 
+En multipliant par deux la seconde équation, on trouve $2x+16y=6$. En soustrayant cela de la première équations, nous trouvons
+\[ 
+  2x+4y-(2x+16y)=3-6,
+\]
+c'est à dire $-12y=-3$, et donc $y=1/4$. Maintenant que l'on connaît $y$, on trouve $x$ en remplaçant $y$ par sa valeur dans les équations de départ :
+\begin{subequations}
+\begin{numcases}{}
+2x=2\\
+x=1.
+\end{numcases}
+\end{subequations}
+Ces deux équations donnent $x=1$, la solution du système est donc :
+\[ 
+  S=\{ (1,\frac{ 1 }{ 4 }) \}.
+\]
+
+Où est le tour de passe-passe ? Nous avons multiplié la seconde équation par $2$, c'est à dire juste ce qu'il faut pour que le coefficient de $x$ devienne le même que celui dans la première équation. Ainsi, le $x$ disparaît lorsqu'on fait la différence.
+
+\begin{remark}
+	Dans le cas des systèmes de deux équations à deux inconnues tels qu'on les a vus, toutes les méthodes fonctionnent toujours. Saches quand même que la substitution continue a fonctionner dans beaucoup de cas où les autres méthodes échouent\footnote{Un peu comme \href{http://www.sainterita.be/F_home.html}{sainte Rita}.}.
+
+La substitution a donc l'avantage de fonctionner à tous les coups et de ne pas demander de réfléchir : on isole une inconnue dans la première équation, on remplace dans la seconde, on résout. Cette méthode a par contre l'avantage de souvent amener des calculs plus compliqués et donc des chances de fautes. 
+\end{remark}
+
+\begin{remark}
+Tu dois toujours veiller à mettre d'abord le système sous la forme
+\begin{subequations}
+\begin{numcases}{}
+ax+by&=p\\
+cx+dy&=q.
+\end{numcases}
+\end{subequations}
+Si une des équations est par exemple
+\[ 
+  \frac{ 3x+1 }{ 5 }-\frac{ 5y-1 }{ 3 }=5,
+\]
+tu dois écrire
+\[ 
+  \frac{ 3 }{ 5 }x+\frac{1}{ 5 }-\frac{ 5 }{ 3 }y-\frac{1}{ 3 }=5,
+\]
+et puis mettre à droite tous les termes qui ne contiennent ni de $x$ ni de $y$ : 
+
+\[ 
+  \frac{ 3 }{ 5 }x-\frac{ 5 }{ 3 }y=5-\frac{ 1 }{ 5 }+\frac{ 1 }{ 3 }.
+\]
+Je te laisse mettre le membre de droite au même dénominateur et faire la somme de fractions comme il se doit.
+\end{remark}
+
+\begin{exercice}
+Est-ce que tu peux trouver un système de deux équations à deux inconnues n'ayant aucune solutions ?
+\end{exercice}
+
+\begin{exercice}
+Construit un système linéaire de deux équations à deux inconnues dont la solution est $(5,3)$.
+\end{exercice}
+
+\subsection{Avec ou sans solutions ?}
+%------------------------------------
+
+Je suppose que tu sais que $ax+by=p$ est l'équation de la droite de coefficient angulaire $a/b$ et passant par $(0,p/b)$. Faisons des dessins pour le système
+\begin{subequations}
+\begin{numcases}{}
+x+2y=9   \label{SysExemplea}\\   
+x-y=-1.  \label{SysExempleb}
+\end{numcases}
+\end{subequations}
+La première équation décrit la droite $y=\frac{ 9 }{ 2 }-\frac{ x }{ 2 }$ qui passe par les points $(5,2)$ et $(9,0)$, tandis que la seconde est la droite $y=x+1$ qui contient les points $(0,1)$ et $(1,2)$. Regarde la figure \ref{FigDessinSysteme}. Prends deux ou trois points de chacune des deux droites et vérifie que ces droites représentent bien le système. Convaincs-toi que 
+\begin{itemize}
+\item tous les points de la droite rouge vérifient l'équation \eqref{SysExemplea},
+\item  tous les points de la droite bleue vérifient \eqref{SysExempleb}. 
+\end{itemize}
+Du coup, le point d'intersection vérifie les deux équations en même temps et représente donc la solution au système. Comme je suis gentil, je te donne la solution du système : $S=\{ (7/3,10/3) \}$. Prends ta latte et vérifie que c'est bien le point d'intersection. Ensuite fais $x=7/3$ et $y=10/3$ dans les deux équations du système et vérifies que le système est satisfait.
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-1,-1)(5,5)
+
+\FPeval{XYbgx}{0-0.9}		% Mettre ici les bords du cadre,
+\FPeval{XYbgy}{0-0.9}		% le système d'axe s'adaptera
+\FPeval{XYhdx}{5}
+\FPeval{XYhdy}{5}
+\FPround{\XYbgx}{\XYbgx}{3}
+\FPround{\XYbgy}{\XYbgy}{3}
+\FPround{\XYhdx}{\XYhdx}{3}
+\FPround{\XYhdy}{\XYhdy}{3}
+
+  \psset{PointSymbol=none, PointName=none}
+
+% La première droite passe par A et B, tandis que la seconde passe par C et D.
+%  Ne pas donner n'importe quels points de ces droites parce qu'elles ne seront tracées
+% qu'entre ces points.
+	\pstGeonode(-1,5){A}(5,2){B}(0,1){C}(3,4){D}(\XYbgx,\XYbgy){XYbg}(\XYhdx,\XYhdy){XYhd}
+	\pstGeonode(0,1){Y}(1,0){X}(0,0){O}
+
+   \psgrid[subgriddiv=0,gridcolor=lightgray, gridlabels=0,labels=none](XYbg)(XYhd)
+   \psaxes{->}(0,0)(\XYbgx,\XYbgy)(\XYhdx,\XYhdy)
+
+   \psline[linecolor=red](A)(B)
+   \psline[linecolor=blue](C)(D)
+
+	\pstInterLL{A}{B}{C}{D}{inter}
+
+   \pstProjectionOrth{X}{O}{inter}{interX}
+   \pstProjectionOrth{O}{Y}{inter}{interY}
+
+	\psline[linecolor=lightgray,linestyle=dashed](inter)(interX)
+	\psline[linecolor=lightgray,linestyle=dashed](inter)(interY)
+
+\end{pspicture}
+\caption{L'intersection de deux droites fourni la solution du système.}\label{FigDessinSysteme}
+\end{figure}
+
+Maintenant nous sommes convaincus d'une chose : les systèmes de deux équations ne sont rien d'autres que des recherches d'intersections de droites. Combien de points d'intersection peuvent avoir deux droites ?
+\begin{itemize}
+\item Le plus souvent, deux droites ont un et un seul point d'intersection (c'est le cas de la figure \ref{FigDessinSysteme}),
+\item quand les deux droites sont parallèles, il n'y a pas de points d'intersection,
+\item quand les deux droites sont confondues, il y a toute une droite d'intersection. Je me permets de te rappeler que deux droites confondues sont parallèles.
+\end{itemize}
+C'est le moment de se demander comment sont les équations de deux droites parallèles. Regardons le système général
+\begin{subequations}
+\begin{numcases}{}
+ax+by=p\\
+cx+dy=q.
+\end{numcases}
+\end{subequations}
+ Deux droites sont parallèles quand elles ont le même coefficient angulaire.  Le coefficient angulaire de la première droite est $-a/b$, tandis que celui de la seconde est $-c/d$, donc elles seront parallèles si et seulement si $-a/b=-c/d$, c'est à dire quand $ad=bc$, ou encore quand
+\[ 
+  ad-bc=0.
+\]
+
+\subsubsection{Le cas \texorpdfstring{$ad-bc=0$}{ad-bc}}
+%-------------------------------------------------------
+Lorsque cette condition est remplie, les deux droites sont parallèles. Dans ce cas, soit elles sont confondues, soit elles ne se coupent pas. Comment distinguer les deux cas ? Facile : prends un point au hasard d'une des deux droites, et regarde si il est sur l'autre. Si il y est, c'est qu'elles sont confondues, si il n'y est pas, c'est qu'elles ne se coupent pas. En effet, on sait que soit \emph{tous} les points sont communs, soit \emph{aucun} point n'est commun !
+
+\begin{exemple}
+Regarde le système
+\begin{subequations}
+\begin{numcases}{}
+x+4y=9\\
+2x+8y=7,
+\end{numcases}
+\end{subequations}
+c'est à dire $a=1$, $b=4$, $c=2$, $d=8$. Cela vérifie bien $ad-bc=0$. Est-ce que ce système n'a pas de solutions, ou bien est-ce que les deux droites sont confondues ? Prenons un point au hasard sur la première droite : $(0,9/4)$, et vérifions si cela rentre bien dans la seconde :
+\[ 
+  2\cdot 0+6\cdot \frac{ 9 }{ 4 }=\frac{ 27 }{ 2 }\neq 0.
+\]
+Le point choisit sur la première droite n'est pas sur la seconde. Les deux droites étant parallèles, c'est qu'elles ne se coupent pas. 
+\end{exemple}
+
+\begin{exemple}
+Si par contre je prends le système
+
+\begin{subequations}
+\begin{numcases}{}
+x+4y=9\\
+2x+6y=18,
+\end{numcases}
+\end{subequations}
+alors, le point $(0,9/4)$ rentre bien dans les deux équations et donc on est dans le cas des droites confondues. D'ailleurs si tu regardes bien, la seconde équation est juste la première multipliée par deux. Donc il n'y a pas deux équations, mais une seule. Or une équation, c'est une droite.
+\end{exemple}
+
+\subsubsection{Le cas \texorpdfstring{$ac-bd\neq 0$}{ac-bd}}
+%/////////////////////////////////////////////////////////
+
+Lorsque $ac-bd$ n'est pas égal à zéro, c'est que les deux droites représentées par le système ne sont pas parallèles. Dans ce cas, il y a un et un seul point d'intersection : l'ensemble des solutions du système est un seul point.
+
+\subsection{Petit truc de notation et de vocabulaire}
+%////////////////////////////////////////////////////
+
+Dans le système
+\begin{subequations}
+\begin{numcases}{}
+ax+by=p\\
+cx+dy=q,
+\end{numcases}
+\end{subequations}
+le nombre $ac-bd$ est appelé le \defe{déterminant}{Déterminant d'un système d'équation} du système. Il est noté comme ceci :
+\[ 
+  \begin{vmatrix}
+a&b\\
+c&d
+\end{vmatrix},
+\]
+et il se lit en faisant la première diagonale moins la seconde :
+\[ 
+  \begin{vmatrix}
+ a\rnode{nA}{}&\rnode{nB}{}b\\
+\rnode{nC}{}c&d\rnode{nD}{}
+\psset{PointName=none,PointSymbol=none}
+\pstHomO[HomCoef=1.8]{nD}{nA}[lA]
+\pstHomO[HomCoef=1.5]{nA}{nD}[lD]
+\pstHomO[HomCoef=1.8]{nC}{nB}[lB]
+\pstHomO[HomCoef=1.5]{nB}{nC}[lC]
+\psline[linecolor=red]{->}(lC)(lB)
+\psline[linecolor=blue]{->}(lA)(lD)
+{\blue	\pstMarquePoint{nD}{0.5;-45}{+ad}}
+{\red	\pstMarquePoint{nB}{0.7;45}{-cb}}
+\end{vmatrix}
+\]
+
+\subsection{Discussions de systèmes}
+%-----------------------------------
+
+Lorsqu'on a des paramètres dans le système, les solutions (et même l'existence des solutions) peuvent dépendre de la valeur des paramètres. Un petit exemple :
+\begin{subequations}
+\begin{numcases}{}
+mx+y=1\\
+(m-1)x+2y=3,
+\end{numcases}
+\end{subequations}
+$x$ et $y$ étant les inconnues et $m$, un paramètre réel. L'existence et le nombre de solutions dépendent du déterminant, en l'occurrence :
+\[ 
+  \begin{vmatrix}
+ m\rnode{nA}{}&\rnode{nB}{}1\\
+\rnode{nC}{}(m-1)&2\rnode{nD}{}
+\psset{PointName=none,PointSymbol=none}
+\pstHomO[HomCoef=1.8]{nD}{nA}[lA]
+\pstHomO[HomCoef=1.5]{nA}{nD}[lD]
+\pstHomO[HomCoef=1.3]{nC}{nB}[lB]
+\pstHomO[HomCoef=1.1]{nB}{nC}[lC]
+\psline[linecolor=red]{->}(lC)(lB)
+\psline[linecolor=blue]{->}(lA)(lD)
+{\blue	\pstMarquePoint{lD}{0.5;0}{+2m}}
+{\red	\pstMarquePoint{lB}{0.8;20}{-(m-1)}}.
+\end{vmatrix}
+\]
+Ce déterminant vaut $m+1$. Aïe aïe aïe ! Ça peut s'annuler d'après les valeurs de $m$ ! Pas de panique, procédons dans l'ordre.
+ 
+\paragraph{Supposons d'abord, que le déterminant est non nul}
+Pour que le déterminant soit non nul, il faut 
+\[ 
+	m\neq-1
+\]
+Substituons. Le plus simple est d'isoler $y$ dans la première équation : $y=1-mx$. Replaçons ça dans la seconde :
+\[ 
+  (m-1)x+2(1-mx)=3.
+\]
+En résolvant par rapport à $x$, on tombe sur
+\[ 
+  y\,m(3-m)=m(3-m),
+\]
+en on isole $y$ en divisant par $m(3-m)$ :
+\begin{equation}		\label{EqValxinterdet}
+  x=-\frac{ 1 }{ m+1 },
+\end{equation}
+avec condition d'existence $m\neq -1$. Heureusement, vient de se dire que le déterminant est non nul, c'est à dire précisément que $m\neq -1$. On trouve donc bien avec cette valeur de $x$. Ce n'est pas un miracle que la condition d'existence soit justement le déterminant : nous avons vu que le déterminant est ce qui assure l'existence des solutions. Donc quand on suppose que le déterminant est non nul, on a \emph{toujours} une solution.
+
+ En remettant la valeur \eqref{EqValxinterdet} dans les équations de départ, on trouve facilement que la réponse est $y=\frac{ 2m+1 }{ m+1 }$, et finalement que
+\[ 
+  S=\{ ( -\frac{ 1 }{ m+1 },\frac{ 2m+1 }{ m+1 }) \}.
+\]
+
+\paragraph{Supposons que le déterminant est nul}
+On suppose que $m+1=0$, c'est à dire que $m=-1$. Dans ce cas, le système de départ s'écrit
+\begin{subequations}
+\begin{numcases}{}
+-x+y=1\\
+-2x+2y=3.
+\end{numcases}
+\end{subequations}
+Nous sommes dans le cas de deux droites disjointes, et le système n'admet pas de solutions dans ce cas.
+
+\subsection{Le coup de l'isotope mystère}
+%-----------------------------------------
+
+%http://fr.wikipedia.org/wiki/Isotope
+%http://fr.wikipedia.org/wiki/Deutérium
+
+
+Tentons de savoir la masse du proton et du neutron en comparant les masses de deux \href{http://fr.wikipedia.org/wiki/Isotope}{isotope} d'éléments différents. Prenons par exemple le  \href{http://fr.wikipedia.org/wiki/Deutérium}{deutérium} $\isotope[2][1]{H}$ et l'hélium-4, noté $\isotope[4][2]{He}$. Le premier est composé de un proton et un neutron, tandis que le second est composé de de deux protons et deux neutrons. Donc on suppose que la masse d'un atome de deutérium fait la somme des masses du proton et du neutron, tandis que la masse d'un atome d'hélium-4 ferait la somme de deux fois la masse d'un proton et de deux fois la masse d'un neutron. 
+
+Notons $m_p$ et $m_n$ les masses du proton et du neutron. Il se fait que la masse d'un atome de deutérium est de $\unit{2.013553}{\atomicmass}$ et que celle d'un atome d'hélium-4 est de $\unit{4.0026}{\atomicmass}$. Nous posons donc le système
+\begin{subequations}
+\begin{numcases}{}
+m_{p}+m_n=2.013553\\
+2m_p+2m_n=4.0026.
+\end{numcases}
+\end{subequations}
+La première équation indique que la masse d'un atome contenant un proton et un neutron est la somme des masses du proton et du neutron, tandis que la seconde équation indique que la masse d'un atome composé de deux protons et de deux neutrons est la somme des masses de deux neutrons et de deux protons. Bref, ces deux équations disent que la masse d'un ensemble est la somme des masses des parties.
+
+Essayons de résoudre le système. Pour cela, on commence par calculer le déterminant : $1\cdot2-2\cdot 1=0$. Hum\ldots ce déterminant est nul. Or la seconde équation n'est pas un multiple de la première. Donc il n'y a pas de solutions.
+
+%http://fr.wikipedia.org/wiki/Liaison_nucléaire
+ \href{http://fr.wikipedia.org/wiki/Liaison_nucléaire}{Où est l'erreur ?}
+
+Je ne te cache pas qu'il te faudra attendre ton cours de physique de rétho pour avoir la solution.

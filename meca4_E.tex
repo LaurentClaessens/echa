@@ -1,0 +1,194 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\section{Énergie} 
+%++++++++++++++++
+
+\subsection{Avertissement}
+%------------------------
+
+La façon dont l'énergie est présentée ici est \emph{très} différente de la façon usuelle. J'ai essayé de mettre la conservation de l'énergie au centre de l'étude, et je prouve que d'une certaine manière, la formule
+\[ 
+  E=mgh+\frac{ mv^2 }{ 2 }
+\]
+est la seule combinaison possible de $h$ et $v$ qui soit indépendante du temps pour un objet qui tombe. La preuve n'est pas simple parce qu'elle est longue. 
+
+Par contre, cela demande une \emph{bonne} connaissance de la dynamique des forces. Il est inutile d'espérer comprendre du premier coup tout le raisonnement; il faut le lire une première fois, faire 1000 exercices, puis le relire et recommencer.
+
+\subsection{De la notion d'énergie}
+%-------------------------------------
+
+Si l'on isole complètement une casserole remplie d'eau du monde extérieur, on ne peut pas s'attendre à ce qu'elle se mette à bouillir\footnote{Il faut remarquer que l'eau ne va pas se refroidir non plus : quand de l'eau chaude se refroidit, c'est qu'elle transmet une partie de sa chaleur à l'air ambiant. Donc si la casserole est parfaitement bien isolée, elle ne changera pas de température du tout.}. Une pierre déposée au sol ne va pas commencer à monter vers le ciel sans aide extérieure. Si un météorite se ballade dans le vide, il continue en ligne droite à vitesse constante jusqu'au moment où il percute quelque chose. On peut multiplier les exemples : il y a des tas de choses qu'un objet ne va pas faire sans apport extérieur.
+
+Dans toutes ces situations, il y a quelque chose qui se conserve du fait que le système est isolé : la température de l'eau, la hauteur de la pierre, la vitesse de la météorite. Associée à ce quelque chose qui est conservé, on défini une grandeur qu'on appelle l'\defe{énergie}{Énergie} du système.
+
+\begin{definition}
+ L'\defe{énergie}{} d'un système isolé est ce qui est conservé du fait qu'il ne subit pas de forces.
+\end{definition}
+En voila une définition bien mystérieuse. Nous allons voir dans les pages à venir que cette définition est suffisante pour définir une grandeur physique très intéressante.
+
+Un principe fondamental en physique est la {\bf conservation de l'énergie} : les différents formes d'énergies peuvent se transformer les unes en les autres\footnote{Les frottements transforment de l'énergie cinétique en chaleur par exemple.}, mais aucune énergie ne se crée ni disparaît. C'est à dire que si une énergie a l'air de disparaître quelque part, c'est qu'elle s'est transformée. Il est \emph{obligatoire} de retrouver \emph{exactement} la même quantité d'énergie quelque part d'autre.
+
+\subsection{Valeur de l'énergie}
+%------------------------------
+
+\subsubsection{Position du problème}
+%//////////////////////////////////
+
+La figure \ref{fig_valeurerg} montre une masse $M$ qui tombe en tirant un chariot de masse $m$. Le système chariot+masse+Terre est un système isolé, et donc son énergie est conservée. Mais qu'est-ce que cette énergie ? Pour répondre à la question, nous allons écrire toutes les variables qui décrivent le système et essayer d'en trouver une combinaison qui ne dépend pas du temps.
+
+\newcommand{\prefigvaleurerg}{%
+
+\pstHomO[HomCoef=0.3]{A}{B}[Oa]			% Place de la première roue
+\pstHomO[HomCoef=0.4]{A}{B}[Pa]			% Place de la seconde roue
+\pstRotation[RotAngle=90]{Oa}{B}[Obu]
+\pstHomO[HomCoef=0.07]{Oa}{Obu}[Ob] 		% Rayon des roues
+\pstMiddleAB{Oa}{Ob}{Oc}
+
+   \pstTranslation{Oa}{Pa}{Ob,Oc}[Pb,Pc]	
+
+\pstHomO[HomCoef=1.5]{Pc}{Oc}[Cg]
+\pstHomO[HomCoef=1.5]{Oc}{Pc}[Cd]		% Longueur du chariot
+\pstTranslation{Oa}{Ob}{Cd}[pCdh]
+\pstTranslation{Oa}{Ob}{Cg}[pCgh]
+\pstHomO[HomCoef=1.5]{Cd}{pCdh}[Cdh]		% Hauteur du chariot
+\pstHomO[HomCoef=1.5]{Cg}{pCgh}[Cgh]
+
+ 
+\pstMiddleAB{Cg}{Cdh}{Cc}
+
+\rput(Cc){\pstGeonode(0,-1.8){bG}}		% Position et plaçage de G
+
+\pstTranslation{Oa}{Ob}{Cc}[pbR]
+\pstHomO[HomCoef=6]{Cc}{pbR}[bR]		% Longueur de F_2
+
+\pstTransHom{Oc}{Pc}{Cc}{4}{bF}
+\pstSymO{Cc}{bF}[bFp]
+
+\pstHomO[HomCoef=1.5]{Oa}{B}[prAB]
+\pstRotation[RotAngle=20]{B}{prAB}[prABr]
+\pstHomO[HomCoef=0.3]{B}{prABr}[bT]		% Position de la tige
+\pstHomO[HomCoef=0.45]{B}{prABr}[cP]		% Centre de la poulie
+\pstInterCC{Cdh}{cP}{cP}{bT}{Iu}{Id}		% Tangentes à la poulie...
+
+\rput(cP){\pstGeonode(2,0){bdmtV}}		% Construire une horizontale au centre de la poulie
+\pstInterLC{cP}{bdmtV}{cP}{bT}{IIu}{tV}
+\pstTransHom{Cc}{bG}{tV}{0.6}{bC}		% Construire le bout de la corde par translation et homothetie de BC
+\rput(bC){\pstGeonode(0,-0.7){bGd}}
+
+\pstTransRot{bC}{bGd}{Cdh}{90}{bFh}		% trouver l'endroit où va se finir la force de grav transportée vers l'objet
+\rput(B){\pstGeonode(1,0){bhzl} }
+\pstInterLL{B}{bhzl}{bC}{tV}{bhzi}		% Intersection entre la corde verticale et l'horizontale qui prolonge le plan
+\pstTransHom{B}{bhzi}{bhzi}{2}{bhz}
+\pstTranslation{bhzi}{bC}{bhz}[bhzf]		% Pour indiquer la hauteur courante de la pierre
+\pstMiddleAB{bhz}{bhzf}{bhzm}			% Le milieu de la hauteur; c'est ici que va être placée l'indication h(t).
+}
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-0.5,-2)(8,1.5)
+%\psframe(-0.5,-2)(8,1.5)
+  \psset{PointSymbol=none, PointName=none}
+   \pstGeonode(0,0){A}(4,0){C}(4,0){B}
+\prefigvaleurerg				% La géométrie de la construction est contenue dans cette commande
+   \psline(A)(C)
+   \psline(C)(B)
+   \psline(A)(B)
+  
+   \pstCircleAB{Oa}{Ob}
+   \pstCircleAB{Pa}{Pb}
+
+   \rput(Cdh){\psdot}				% Marquer l'endroit où la corde va venir.
+
+
+   \psline(Cg)(Cgh)
+   \psline(Cgh)(Cdh)
+   \psline(Cd)(Cdh)
+   \psline(Cg)(Cd)
+
+
+   \psline(B)(bT)
+   \pstCircleOA{cP}{bT}				% Trace la poulie
+
+   \psline[linestyle=dashed](Cdh)(Iu)
+
+   \psline[linestyle=dashed](tV)(bC)		% Dessiner la corde
+
+   \psellipse[fillstyle=solid,fillcolor=lightgray](bC)(0.5,0.2)
+
+
+   \pstMarqueForce{bC}{bGd}{0.3,0}{$\fF$}
+   \pstMarqueForce{Cdh}{bFh}{0.3;60}{$\fF$}
+
+   \rput(Cdh){\rput(0,0.3){$m$}}
+   \rput(bC){\rput(0.7,0.4){$M$}}
+
+
+    \psline[linestyle=dotted](B)(bhz)		% La ligne en pointillé qui marque la hauteur de référence.
+	\pstMarquePoint{bhz}{0.3;60}{$h_0$}
+	\psline[arrows=<->](bhz)(bhzf)	
+	\pstMarquePoint{bhzm}{0.7,0}{$gt^2/2$}	
+	
+\end{pspicture}
+\caption{Expérience de pensée d'une masse qui tire un chariot en tombant.}\label{fig_valeurerg}
+\end{figure}
+
+La vitesse et le déplacement du chariot et de la masse sont identiques, il n'y a donc que deux variable pour décrire le système (en plus de la constante $h_0$) : $v(t)$, la vitesse du chariot au temps $t$ et $h(t)$, la hauteur de la masse qui tombe. Ces quantités sont données par les formules du mouvement accéléré par la force de gravitation s'appliquant à la masse $M$ mais qui doit tirer $m$ aussi bien que $M$. L'accélération n'est donc pas $g$, mais $a=F/(M+m)$ où $F=Mg$. Étant donnée cette accélération, les deux variables du problème sont
+\begin{subequations}
+\begin{align}
+  h(t)&=h_0-\frac{ at^2 }{ 2 }\\
+	v(t)&=at.
+\end{align}
+\end{subequations}
+
+\subsubsection{Le petit calcul}
+%/////////////////////////////
+
+Voyons si on peut trouver une quantité conservée ne contenant pas de puissances de $h$ plus grande que un, c'est à dire pas de $h^2$ ni $h^3$ ni autres. On cherche des constantes $\alpha$ et $n$ telles que
+\[ 
+  h(t)+\alpha v(t)^n=cst.
+\]
+Dans $h(t)$, on a un terme en $t^2$ qui déprend de $t$ et qu'il faut faire disparaître. Il doit être compensé par le terme en $v(t)$ qu'on ajoute. Pour obtenir du $t^2$ avec $v(t)$, il faut prendre $v(t)^2$. Donc on cherche $\alpha$ tel que
+\[ 
+  -\frac{ at^2 }{ 2 }+\alpha a^2t^2=0.
+\]
+Cela donne $\alpha=-1/2a$, et donc la quantité conservée que l'on trouve est $h+\frac{1}{ 2a }v^2$. Si une quantité est conservée, évidement ses multiples sont aussi conservés. Pour des raisons pratiques, on va écrire l'énergie comme ceci, en remplaçant $a$ par sa valeur $a=\frac{ F }{ m+M }$  :
+\begin{equation}  \label{eq_deferg}
+    E=Fh+\frac{ (m+M)v^2 }{ 2 }.
+\end{equation}
+
+
+\begin{enplus}
+Petite précision. Nous sommes parti de $h$, et nous avons regardé quelle combinaison de $v$ il fallait ajouter pour trouver quelque chose de conservé. Et si on était parti de $h^2$, on aurait pu trouver une autre quantité conservée ? Eh oui : tu peux vérifier que
+\[ 
+  E_2=gh^2+hv^2-\frac{ v^4 }{ 4g }
+\]
+est une quantité qui ne dépend pas de $t$. Il se fait que cela n'est autre que $E^2/g$, et donc ce n'est pas vraiment une nouvelle quantité. Si tu as une grande s\oe ur ou un grand frère qui fait des études un peu poussées en math, tu peux lui demander de prouver qu'avec n'importe quel polynôme en $h$, on peut trouver une quantité conservée, mais qu'à tous les coups, ce n'est rien d'autre qu'un polynôme en $E$.
+
+Si tu veux une \emph{vraie} démonstration que l'énergie telle qu'on la donne dans l'équation \eqref{eq_deferg}  est la seule quantité conservée du problème, il te faudra patienter jusqu'en deuxième année d'université en physique ou en mathématique. À ce moment, les outils mathématique que tu auras en main --- entre autres les intégrales que tu verras en rétho --- seront tellement puissants que tu trouveras que la preuve sera simple.
+
+\end{enplus}
+ 
+\subsection{Énergie cinétique et potentielle}
+%--------------------------------------------
+
+Intéressons nous maintenant à l'énergie de la pierre qui tombe. Pour cela, disons que $m=0$, c'est à dire qu'elle ne tire plus le chariot. Son énergie est
+\begin{equation}  \label{eq_ergcinpotM}
+  E=Mgh+\frac{ Mv^2 }{ 2 }
+\end{equation}
+parce que $F=Mg$. Comme nous l'avions dit plus haut, ceci est une variable d'état, c'est à dire que tout objet de masse $M$ se trouvant à une hauteur $h$ avec une vitesse $v$ possède cette énergie, indépendamment de la manière dont l'objet s'est trouvé dans cette situation. En particulier, l'énergie d'un objet au sol se trouve en posant $h=0$, c'est à dire
+\begin{equation}
+  E_c=\frac{ Mv^2 }{ 2 }.
+\end{equation}
+Étant donné que cette énergie n'est que due à la vitesse, on l'appelle \defe{énergie cinétique}{}. Si un objet se trouve à une hauteur $h$ sans vitesse, alors son énergie se calcule en posant $v=0$ dans la formule \eqref{eq_ergcinpotM} :
+\begin{equation}
+  E_p=Mgh.
+\end{equation}
+Cette énergie est dite \defe{énergie potentielle}{} pour des raisons qui apparaîtront plus tard. 
+
+
+\Exo{007}
+

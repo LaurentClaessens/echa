@@ -1,0 +1,51 @@
+COMPILATION, VERSION BASIQUE
+----------------------------
+
+Le fichier principal est echa.tex
+La compilation se fait avec la chaîne
+
+latex echa.tex
+dvips -t a4 echa.dvi
+ps2pdf echa.ps
+
+Une compilation directe avec pdflatex ne fonctionnera pas à cause des figures en pstricks.
+
+
+LES EXERCICES DU SECOND DEGRÉ
+-----------------------------
+
+Les exercices et corrigés sur les trinômes du second degré sont générés automatiquement par le script
+./ran_exo.py
+Si les exercices tels quels vous plaisent, inutile de le lancer.
+
+CERTAINES FIGURES
+------------------
+
+Plusieurs figures sont créés en utilisant phystricks[1]. Pour les recompiler, vous devez lancer le script
+./figures_echa.py
+Il faut cependant savoir que un certain nombre ont été créés avec des vieilles versions du module, et ne pourront pas être compilées.
+Quoi qu'il en soit, avant de vous amuser avec ce script, lisez la doc[2].
+
+
+ AMÉLIORER LE COURS
+--------------------
+
+Pour créer un nouvel exercice, le plus propre est de créer un fichier exoXX.tex avec les autres et un fichier corXX.tex correspondant. Il suffit de taper \Exo{458} pour que le fichier exo458.tex soit inclut à cet endroit. Les références croisées cliquables de l'un à l'autre sont automatiques.
+(voir le paquetage SystemeCorr.sty)
+
+Pour créer les fichier exoXX.tex et corrXX.tex, il y a le script liste_exo.py.
+./liste_exo.py SerieUn 15 30
+créera les fichiers exoSerieUn0015 ... exoSerieUn0030 et les fichiers corrigés correspondants. Ils seront remplis avec un squelette. Il ajoutera automatiquement au haut du fichier le contenu du fichier fdl-notice.txt
+
+Pour le reste, c'est du LaTeX normal je crois.
+
+REMARQUES, SUGGESTIONS ET COMMENTAIRES :
+---------------------------------------
+
+moky.math (chez) gmail (point) com
+
+Les rustines[3] sont les bienvenues.
+
+[1] http://gitorious.org/phystricks
+[2] http://gitorious.org/phystricks-doc
+[3] patch en angliche.

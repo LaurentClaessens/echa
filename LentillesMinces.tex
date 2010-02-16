@@ -1,0 +1,753 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+   \section{Lentilles minces}			\label{SecLentMinces}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Généralités et un peu de vocabulaire}
+%------------------------------------------------
+
+%http://fr.wikipedia.org/wiki/Homogène
+En parlant de lentilles minces, nous n'allons parler que de \defe{lentilles sphériques}{}, c'est à dire des milieux transparents \href{http://fr.wikipedia.org/wiki/Homogène}{homogènes}\footnote{Dictionnaire.} limité par des surfaces sphériques. Commençons par un peu de vocabulaire :
+\begin{description}
+\item[Rayons de courbure] ce sont les rayons $R$ et $R'$ des surfaces sphériques qui délimitent la lentille,
+\item[Centres de courbure] les centres $C$ et $C'$ des surfaces sphériques,
+\item[Axe principal] la droite joignant les deux centres de courbure
+\item[Lentilles à bords minces] celles de la figure \ref{FigLentilleBordMince},
+\item[Lentilles à bords épais] celles de la figure \ref{FigLentilleBordEpais}.
+\item[Lentilles convergentes]  Si on fait passer de la lumière solaire à travers une lentille à bords minces, on constate que la lumière se concentre en un point. On dit que la lentille est convergente et ce point s'appelle \defe{foyer}{} de la lentille.
+\item[Lentilles divergentes] À travers une lentille à bords épais, il se forme un faisceau divergent. Une telle lentille est dite divergentes. Les rayons semblent issus d'un point appelé \defe{foyer}{} de la lentille.
+\item[Centre optique] Lorsque les deux lentilles ont le même rayon, le centre optique est le centre de la lentille. Ce centre optique n'est pas spécialement le centre d'aucune des deux lentilles.
+\end{description}
+
+À propos, est-ce que tu sais pourquoi on dit qu'une droite est un cercle de rayon infini ? Parce que plus le rayon d'un cercle est grand, moins le cercle est courbé, plus il ressemble à une droite. La Terre par exemple fait \unit{6500}{\kilo\meter} de rayon, et effectivement elle semble assez plate. 
+
+\begin{exercice}
+À quel type de miroir te fait penser un croissant de Lune ? Et quand la Lune est pleine ?
+\end{exercice}
+
+
+\begin{figure}
+\centering
+\subfigure[biconvexe]{%
+\begin{pspicture}(-2,-1.5)(3,1.5)
+ %  \psframe[linecolor=cyan](-2,-1.5)(3,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(-1,0){C}(0,1.5){S1}(0,-1.5){S2}(2,0){C'}
+	\pstHomO[HomCoef=1.3]{C'}{C}[Cl]
+	\pstHomO[HomCoef=1.3]{C}{C'}[Cpl]
+	\psline[linecolor=lightgray](Cl)(Cpl)
+	\pstArcOAB{C}{S2}{S1}
+	\pstArcOAB{C'}{S1}{S2}
+	\pstRotation[RotAngle=30]{C}{C'}[T1l]
+	\pstRotation[RotAngle=20]{C'}{C}[T2l]
+	\pstInterLC{C}{T1l}{C}{S1}{T1r}{T1}
+	\pstInterLC{C'}{T2l}{C'}{S1}{T2r}{T2}
+	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
+	\pstMarquePoint[PointSymbol=*]{C'}{0.3;270}{$C'$}
+  \psline{->}(C)(T1)
+   \pstMiddleAB{C}{T1}{inter}
+   \pstMarquePoint{inter}{0.3;-45}{$R_{1}$}
+  \psline{->}(C')(T2)
+   \pstMiddleAB{C'}{T2}{inter}
+   \pstMarquePoint{inter}{0.3;-45}{$R_{2}$}
+\end{pspicture}
+}
+\subfigure[plan-convexe]{%
+\begin{pspicture}(-2,-1.5)(3,1.5)
+ %  \psframe[linecolor=cyan](-2,-1.5)(3,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(-1,0){C}(0,1.5){S1}(0,-1.5){S2}(2,0){C'}
+	\pstHomO[HomCoef=1.3]{C'}{C}[Cl]
+	\pstHomO[HomCoef=1.3]{C}{C'}[Cpl]
+	\psline[linecolor=lightgray](Cl)(Cpl)
+	\pstArcOAB{C}{S2}{S1}
+	\psline(S1)(S2)
+	\pstRotation[RotAngle=30]{C}{C'}[T1l]
+	\pstRotation[RotAngle=20]{C'}{C}[T2l]
+	\pstInterLC{C}{T1l}{C}{S1}{T1r}{T1}
+	\pstInterLC{C'}{T2l}{C'}{S1}{T2r}{T2}
+	\psline{->}(C)(T1)
+	\pstInterLL{C'}{T2}{S1}{S2}{I1}
+	\pstTranslation{C}{I1}{C'}[I1l]
+	\psline{->}(I1l)(I1)
+	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
+
+   \pstMiddleAB{C}{T1}{inter}
+   \pstMarquePoint{inter}{0.3;120}{$R_{1}$}
+   \pstMiddleAB{I1l}{I1}{inter}
+   \pstMarquePoint{inter}{0.5;-45}{$R_{2}=\infty$}
+
+\end{pspicture}
+}
+\subfigure[concave-convexe]{%
+\begin{pspicture}(-3,-1.5)(1.5,1.5)
+%   \psframe[linecolor=cyan](-3,-1.5)(1.5,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(-0.6,0){C}(0,1.5){S1}(0,-1.5){S2}(-2,0){C'}
+	\pstHomO[HomCoef=2.5]{C'}{C}[Cl]
+	\pstHomO[HomCoef=1.3]{C}{C'}[Cpl]
+	\psline[linecolor=lightgray](Cl)(Cpl)
+	\pstArcOAB{C}{S2}{S1}
+	\pstArcOAB{C'}{S2}{S1}
+	\pstRotation[RotAngle=-30]{C}{C'}[T1l]
+	\pstRotation[RotAngle=20]{C'}{C}[T2l]
+	\pstInterLC{C}{T1l}{C}{S2}{T1}{T1r}
+	\pstInterLC{C'}{T2l}{C'}{S1}{T2r}{T2}
+	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
+	\pstMarquePoint[PointSymbol=*]{C'}{0.3;270}{$C'$}
+  \psline{->}(C)(T1)
+   \pstMiddleAB{C}{T1}{inter}
+   \pstMarquePoint{inter}{0.3;-130}{$R_{1}$}
+  \psline{->}(C')(T2)
+   \pstMiddleAB{C'}{T2}{inter}
+   \pstMarquePoint{inter}{0.3;90}{$R_{2}$}
+\end{pspicture}
+}
+
+
+\caption{Des lentilles à bords minces}  \label{FigLentilleBordMince}
+\end{figure}
+
+\begin{figure}
+\centering
+
+\subfigure[biconcave]{%
+\begin{pspicture}(-1.8,-1.5)(3.5,1.5)
+ %  \psframe[linecolor=cyan](-1.8,-1.5)(3.5,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(-1,0){C}(3,0){C'}(0,1.5){S1}
+	\pstTransHom{C}{C'}{S1}{0.7}{T1}
+	\pstOrtSym{C}{C'}{S1}[S2]
+	\pstOrtSym{C}{C'}{T1}[T2]
+	\psline(S1)(T1)\psline(S2)(T2)
+
+	\pstHomO[HomCoef=1.2]{C'}{C}[Cl]
+	\pstHomO[HomCoef=1.2]{C}{C'}[Cpl]
+	\psline[linecolor=lightgray](Cl)(Cpl)
+
+	\pstArcOAB{C}{S2}{S1}
+	\pstArcOAB{C'}{T1}{T2}
+	
+	\pstRotation[RotAngle=30]{C}{C'}[P1l]
+	\pstInterLC{C}{P1l}{C}{S1}{T1r}{P1}
+
+	\pstInterLC{C'}{S2}{C'}{T1}{PT'}{PT}
+
+	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
+	\pstMarquePoint[PointSymbol=*]{C'}{0.3;90}{$C'$}
+
+
+   \psline{->}(C)(P1)	
+   \pstMiddleAB{C}{P1}{inter}
+   \pstMarquePoint{inter}{0.3;130}{$R_{1}$}
+	
+   \psline{->}(C')(PT)	
+   \pstMiddleAB{C'}{PT}{inter}
+   \pstMarquePoint{inter}{0.3;-45}{$R_{2}$}
+
+\end{pspicture}
+}
+
+\subfigure[plan-concave]{%
+\begin{pspicture}(-1.8,-1.5)(3.5,1.5)
+ %  \psframe[linecolor=cyan](-1.8,-1.5)(3.5,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(-1,0){C}(2,0){C'}(0,1.5){S1}
+	\pstTransHom{C}{C'}{S1}{0.4}{T1}
+	\pstOrtSym{C}{C'}{S1}[S2]
+	\pstOrtSym{C}{C'}{T1}[T2]
+	\psline(S1)(T1)\psline(S2)(T2)
+
+	\pstHomO[HomCoef=1.2]{C'}{C}[Cl]
+	\pstHomO[HomCoef=1.2]{C}{C'}[Cpl]
+	\psline[linecolor=lightgray](Cl)(Cpl)
+
+	\pstArcOAB{C}{S2}{S1}
+	\psline(T1)(T2)
+	
+	\pstRotation[RotAngle=30]{C}{C'}[P1l]
+	\pstInterLC{C}{P1l}{C}{S1}{T1r}{P1}
+	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
+
+	\pstHomO[HomCoef=0.7]{T1}{T2}[T12]
+	\pstTransHom{S1}{T1}{T12}{1.5}{inf}
+	
+
+   \psline{->}(C)(P1)
+   \pstMiddleAB{C}{P1}{inter}
+   \pstMarquePoint{inter}{0.3;130}{$R_{1}$}
+	
+   \psline{->}(inf)(T12)
+   \pstMiddleAB{inf}{T12}{inter}
+   \pstMarquePoint{inter}{0.3;270}{$R_{2}=\infty$}
+
+\end{pspicture}
+}
+\subfigure[convexe-concave]{%
+\begin{pspicture}(-4,-1.5)(2,1.5)
+%   \psframe[linecolor=cyan](-4,-1.5)(2,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(-0.7,0){C}(-3,0){C'}(0,1.5){S1}
+	\pstTransHom{C}{C'}{S1}{-0.5}{T1}
+	\pstOrtSym{C}{C'}{S1}[S2]
+	\pstOrtSym{C}{C'}{T1}[T2]
+	\psline(S1)(T1)\psline(S2)(T2)
+
+	\pstHomO[HomCoef=2]{C'}{C}[Cl]
+	\pstHomO[HomCoef=1.2]{C}{C'}[Cpl]
+	\psline[linecolor=lightgray](Cl)(Cpl)
+
+	\pstArcOAB{C}{S2}{S1}
+	\pstArcOAB{C'}{T2}{T1}
+	
+	\pstRotation[RotAngle=30]{C}{C'}[P1l]
+	\pstInterLC{C}{P1l}{C}{S1}{P1}{T1r}
+
+	\pstRotation[RotAngle=-15]{C'}{C}[Q1l]
+	\pstInterLC{C'}{Q1l}{C'}{T1}{Qr}{Q}
+
+	\pstMarquePoint[PointSymbol=*]{C}{0.3;90}{$C$}
+	\pstMarquePoint[PointSymbol=*]{C'}{0.3;90}{$C'$}
+
+	%\pstMarquePoint[PointSymbol=*]{S1}{0.3;90}{$S1$}
+	%\pstMarquePoint[PointSymbol=*]{T1}{0.3;90}{$T1$}
+	%\pstMarquePoint[PointSymbol=*]{S2}{0.3;90}{$S2$}
+	%\pstMarquePoint[PointSymbol=*]{T2}{0.3;90}{$T2$}
+
+   \psline{->}(C)(P1)	
+   \pstMiddleAB{C}{P1}{inter}
+   \pstMarquePoint{inter}{0.3;130}{$R_{1}$}
+	
+   \psline{->}(C')(Q)
+   \pstMiddleAB{C'}{Q}{inter}
+   \pstMarquePoint{inter}{0.3;-90}{$R_{2}$}
+
+\end{pspicture}
+}
+\caption{Des lentilles à bords épais}  \label{FigLentilleBordEpais}
+\end{figure}
+
+\subsection{Propriétés des lentilles minces}
+%-------------------------------------------
+
+Un rayon lumineux qui traverse une lentille subit deux réfractions\footnote{Une en passant de l'air au verre au moment de rentrer et une du verre à l'air au moment de sortir.}, ce qui rend l'étude du trajet plus compliquée. Heureusement, si la lentille est suffisamment mince, nous pouvons quand même suivre les lois simples suivantes :
+
+\setcounter{numloiphyz}{0}		% Note qu'il faudra souvent le remettre à zéro ce compteur. Genre à tous les coups.
+\begin{loiphyz}
+Un rayon lumineux passant par le centre optique d'une lentille mince ne subit aucune déviation.
+\end{loiphyz}
+
+\begin{loiphyz}
+Un rayon lumineux parallèle à l'axe principal se réfracte en passant réellement ou virtuellement par le foyer.
+\end{loiphyz}
+
+\begin{loiphyz}
+Un rayon passant réellement ou virtuellement par le foyer se réfracte parallèlement à l'axe principal.
+\end{loiphyz}
+
+Ces lois ne sont que des approximations de la réalité, mais il se fait que ces approximations restent bonnes même pour des rayons fortement inclinés (pourvu que la lentille soit suffisamment mince).
+
+\label{PgRemarqueFoyer}Une lentille possède toujours deux foyers : un de chaque côté. Donc il faut un peu préciser les deux dernières lois pour savoir de quel foyer on parle.
+\begin{description}
+\item[Lentilles convergentes] Un rayon arrivant parallèlement à l'axe principal se reflète en passant par le foyer se trouvant \emph{de l'autre côté} de la lentille.
+\item[Lentille divergente] Un rayon arrivant parallèlement à l'axe principale se reflète en passant (virtuellement) par le foyer situé \emph{du même côté} de la lentille.
+\end{description}
+Des exemples de passages à travers une lentille convergente sont donnés à la figure \ref{FigTroisPassagesConvergent}, et des passages à travers une divergente sont donnés à la figure \ref{FigTroisPassagesDivergents}
+
+\begin{figure}
+\centering
+\subfigure[Un rayon arrive parallèlement à l'axe optique]{%
+\begin{pspicture}(-2.5,-1.4)(2,1.5)
+   %\psframe[linecolor=cyan](-2.5,-1.4)(2,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(1,0){F'}(-2,0.6){A}
+	\pstSymO{O}{F'}[F]
+	\pstTranslation{O}{F'}{A}[Al]
+	\pstRotation[RotAngle=90]{O}{F'}[P]
+
+	\pstSymO{O}{P}[P']
+	\pstInterLL{Al}{A}{P}{O}{Q}
+	\pstHomO[HomCoef=1.5]{Q}{F'}[Ql]
+
+	\pstRayon[linecolor=red]{A}{Q}\pstRayon[linecolor=red]{Q}{Ql}
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5,linecolor=lightgray]{F}{F'}
+	\psline{<->}(P)(P')
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O'}{0.3;135}{$O$}
+\end{pspicture} \label{FigTroisPassConva}
+}
+\subfigure[Un rayon arrive en passant par le foyer]{%
+\begin{pspicture}(-2.5,-1.4)(2.3,1.5)
+   %\psframe[linecolor=cyan](-2.5,-1.4)(2.3,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(1,0){F'}(-2.5,-0.8){A}
+	\pstSymO{O}{F'}[F]
+	\pstRotation[RotAngle=90]{O}{F'}[P]
+
+	\pstSymO{O}{P}[P']
+	\pstInterLL{F}{A}{P}{O}{Q}
+	\pstTranslation{F}{F'}{Q}[Ql]
+
+	\pstRayon[linecolor=red]{A}{Q}\pstRayon[linecolor=red]{Q}{Ql}
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5,linecolor=lightgray]{F}{F'}
+	\psline{<->}(P)(P')
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O'}{0.3;45}{$O$}
+\end{pspicture}\label{FigTroisPassConvb}
+}
+\subfigure[Un rayon arrive en passant par le centre optique]{%
+\begin{pspicture}(-2,-1.4)(2.3,1.5)
+   %\psframe[linecolor=cyan](-2,-1.4)(2.3,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(1,0){F'}(-1.5,-1){A}
+	\pstSymO{O}{F'}[F]
+	\pstRotation[RotAngle=90]{O}{F'}[P]
+
+	\pstSymO{O}{P}[P']
+	\pstHomO[HomCoef=2.3]{A}{O}[Al]
+
+	\pstRayon[linecolor=red]{A}{O}\pstRayon[linecolor=red]{O}{Al}
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5,linecolor=lightgray]{F}{F'}
+	\psline{<->}(P)(P')
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O'}{0.3;135}{$O$}
+\end{pspicture}\label{FigTroisPassConvc}
+}
+\caption{Trois passages possibles à travers une lentille convergente.}  \label{FigTroisPassagesConvergent}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\subfigure[Un rayon arrive parallèlement à l'axe optique]{%
+\begin{pspicture}(-2.5,-1.4)(2,1.5)
+   %\psframe[linecolor=cyan](-2.5,-1.4)(2,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(1,0){F'}(-2,0.6){A}
+	\pstSymO{O}{F'}[F]
+	\pstTranslation{O}{F'}{A}[Al]
+	\pstRotation[RotAngle=90]{O}{F'}[P]
+
+	\pstSymO{O}{P}[P']
+	\pstInterLL{Al}{A}{P}{O}{Q}
+	\pstHomO[HomCoef=2]{F}{Q}[Ql]
+
+	\pstRayon[linecolor=red]{A}{Q}
+	\pstRayon[linecolor=red]{Q}{Ql}
+	\pstRayon[linecolor=red,linestyle=dashed]{F}{Q}
+
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5,linecolor=lightgray]{F}{F'}
+	\psline{>-<}(P)(P')
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O'}{0.3;45}{$O$}
+\end{pspicture}
+}
+\subfigure[Un rayon arrive en passant par le foyer]{%
+\begin{pspicture}(-2.5,-1.4)(2.3,1.5)
+   %\psframe[linecolor=cyan](-2.5,-1.4)(2.3,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(1,0){F'}(-1,-1.3){A}
+	\pstSymO{O}{F'}[F]
+	\pstRotation[RotAngle=90]{O}{F'}[P]
+	\pstSymO{O}{P}[P']
+
+	\pstInterLL{F'}{A}{P}{O}{Q}
+	\pstTranslation{F}{F'}{Q}[Ql]
+
+	\pstRayon[linecolor=red]{A}{Q}
+	\pstRayon[linecolor=red]{Q}{Ql}
+	\pstRayon[linecolor=red,linestyle=dashed]{Q}{F'}
+
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5,linecolor=lightgray]{F}{F'}
+	\psline{>-<}(P)(P')
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O'}{0.3;45}{$O$}
+\end{pspicture}
+}
+\subfigure[Un rayon arrive en passant par le centre optique]{%
+\begin{pspicture}(-2,-1.4)(2.3,1.5)
+   %\psframe[linecolor=cyan](-2,-1.4)(2.3,1.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(1,0){F'}(-1.5,-1){A}
+	\pstSymO{O}{F'}[F]
+	\pstRotation[RotAngle=90]{O}{F'}[P]
+
+	\pstSymO{O}{P}[P']
+	\pstHomO[HomCoef=2.3]{A}{O}[Al]
+
+	\pstRayon[linecolor=red]{A}{O}\pstRayon[linecolor=red]{O}{Al}
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5,linecolor=lightgray]{F}{F'}
+	\psline{>-<}(P)(P')
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O'}{0.3;135}{$O$}
+\end{pspicture}
+}
+\caption{Trois passages possibles à travers une lentille divergente.}  \label{FigTroisPassagesDivergents}
+\end{figure}
+
+\subsection{Image d'un objet}
+%----------------------------
+
+Lorsque nous avons un objet dont il faut trouver l'image, c'est très simple : nous devons trouver le trajet de deux rayons qui s'en échappent et l'image sera à l'intersection (réelle ou virtuelle d'après les cas).
+
+\begin{figure}
+\centering
+\subfigure[Si l'objet se trouve à une grande distance de la lentille, l'image est réelle, renversée et plus petite que l'objet. Remarque que les rayon rouges suivent le trajet de la figure \ref{FigTroisPassConvb}, tandis que les bleus correspondent à \ref{FigTroisPassConva}. Je te laisse voir à quoi correspond le rayon vert.]{%
+\begin{pspicture}(-6,-2)(4,2)
+  % \psframe[linecolor=cyan](-4,-2)(4,2)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(-6,1.5){A}
+	\pstGeonode(-6,0){L1}(4,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+
+% Tracé
+	\psline{<->}(P)(P')
+	\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{O}\pstRayon[linecolor=green]{O}{iA}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,ArrowInsidePos=0.25]{Q'}{iA}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;90}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;-90}{$A'$}
+
+\end{pspicture}\label{FigImageConva}
+}
+\subfigure[Si l'objet se trouve à une distance égale au double de la distance focale, l'image est réelle, renversée et de même grandeur que l'objet.]{%
+\begin{pspicture}(-4,-2)(4,2)
+   %\psframe[linecolor=cyan](-4,-2)(4,2)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(-4,1.5){A}
+	\pstGeonode(-4,0){L1}(4,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+
+% Tracé
+	\psline{<->}(P)(P')
+	%\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	%\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{O}\pstRayon[linecolor=green]{O}{iA}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,ArrowInsidePos=0.75]{Q'}{iA}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;90}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;-90}{$A'$}
+
+\end{pspicture} \label{FigImageConvb}
+}
+\subfigure[Si l'objet se trouve à une distance comprise entre $f$ et $2f$ ($f=$ distance focale), l'image est réelle, renversée et plus grande que l'objet.]{%
+\begin{pspicture}(-4,-3.5)(6,2)
+   %\psframe[linecolor=cyan](-4,-3.5)(6,2)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(-3,1.5){A}
+	\pstGeonode(-4,0){L1}(6,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+
+% Tracé
+	\psline{<->}(P)(P')
+	%\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	%\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{O}\pstRayon[linecolor=green]{O}{iA}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,ArrowInsidePos=0.75]{Q'}{iA}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;90}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;-90}{$A'$}
+
+\end{pspicture} \label{FigImageConvc}
+}
+\subfigure[Si l'objet se trouve entre le foyer et le centre optique, l'image est virtuelle, droite et plus grande que l'objet.]{%
+\begin{pspicture}(-4,-2)(3.5,3.5)
+   %\psframe[linecolor=cyan](-4,-2)(3.5,3.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(-1.1,1.5){A}
+	\pstGeonode(-4,0){L1}(3.5,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+	\pstHomO[HomCoef=1.5]{Q'}{F'}[QF]
+	\pstHomO[HomCoef=1.5]{A}{O}[AO]
+
+% Tracé
+	\psline{<->}(P)(P')
+	%\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	%\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{AO}\pstRayon[linecolor=green,linestyle=dashed]{A}{iA}
+	\pstRayon[linecolor=blue]{Q'}{QF}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,linestyle=dashed]{Q'}{iA}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05,linestyle=dashed]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;180}{$A'$}
+
+\end{pspicture} \label{FigImageConvd}
+}
+\caption{Construction d'images d'objets par une lentille convergentes.}  \label{FigImageConv}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{pspicture}(-4,-2)(4,2)
+   %\psframe[linecolor=cyan](-4,-2)(4,2)
+   \psset{PointSymbol=none,PointName=none}
+	 %\psframe[linecolor=cyan](-4,-2)(3.5,3.5)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(-3,1.7){A}
+	\pstGeonode(-4,0){L1}(3.5,0){L2}
+% Calculs	
+	\pstSymO{O}{F}[F']
+	\pstLentille{O}{F'}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+	\pstHomO[HomCoef=1.5]{Q'}{F'}[QF']
+	\pstHomO[HomCoef=1.5]{Q'}{F}[QF]
+	\pstHomO[HomCoef=1.5]{A}{O}[AO]
+% Tracé
+	\psline{<->}(P)(P')
+	%\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	%\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{AO}\pstRayon[linecolor=green,linestyle=dashed]{A}{iA}
+	\pstRayon[linecolor=blue]{Q'}{QF'}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,linestyle=dashed]{Q'}{QF}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05,linestyle=dashed]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;-90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;45}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;90}{$A'$}
+
+\end{pspicture}
+
+\caption{Un exemple de lentille divergente. Les lentille divergente ne fournissent que des images virtuelles, droites et plus petites que l'objet.}  \label{FigImageDivergent}
+\end{figure}
+
+\begin{exercice}
+Complète les figures \ref{FigImageConvb}-\ref{FigImageConvd} en dessinant les rayons qui partent de $A$ en passant par le foyer, comme le rouge de la figure \ref{FigImageConva}.
+\end{exercice}
+
+\begin{exercice}
+Il est dit dans la légende de la figure \ref{FigImageConvb} que l'image était de la même taille que l'objet. Peux-tu le prouver en utilisant ce que tu sais de la géométrie dans le plan ?
+\end{exercice}
+
+\begin{exercice}
+Prouve, en t'inspirant des figures \ref{FigImageConv} que lorsque l'objet est placé \emph{sur} le foyer, les rayons réfléchis par la lentille sont parallèles. Dans ce cas, on dit que l'image est rejetée à l'infini.
+\end{exercice}
+
+\begin{remark}
+Dans le cas où l'objet est placé sur le foyer, on dit que l'image est rejetée à l'infini en vertu de l'adage selon lequel \og deux droites parallèles se rejoignent à l'infini\fg{}. Sache que la géométrie euclidienne ne possède pas d'infini. En géométrie euclidienne, deux droites parallèles ne se rencontrent jamais. Ce n'est qu'au cours du XIX\ieme{} siècle que l'on inventa des points à l'infini dans le cadre de la \emph{géométrie projective}. Cette géométrie fut entre autres inventée pour les besoins des peintres et des architectes qui voulaient dessiner du relief. La géométrie projective et la façon dont deux droites parallèles se rejoignent à l'infini fait partie des choses que tu ne sauras que si tu décides de faire de la mathématique plus avancée.
+
+Jusqu'à la figure \ref{FigImageConvd} (non comprise), l'image s'est toujours éloignée. Elle est arrivée à l'infini quand l'objet était sur le foyer. Et à la figure \ref{FigImageConvd}, elle revient \emph{de l'autre côté}. Un peu comme si l'infini à droite est accroché à l'infini à gauche. Cela est une des grande nouvelles en géométries projective : il n'y a qu'un seul infini pour chaque direction, et non un dans chaque sens.
+\end{remark}
+
+\paragraph{Image floue ?} Prends n'importe quelle figure \ref{FigImageConv} sauf la \ref{FigImageConvd} et demande-toi ce que tu vois si tu places ton \oe uil au point $F$ et que tu regardes dans la direction du rayon bleu. Ce que tu vois, c'est le point $A$. En effet, la lumière que ton \oe uil reçoit provient de $A$. Mais si tu regardes de la même manière le rayon vert au point $O$, tu verras aussi le point $A$. C'est à dire que l'image du point $A$ s'étale au moins sur tout le segment $OF$. Pas étonnant que ce soit flou !
+
+Au point $A'$, tous les rayons issus de $A$ se coupent. Donc autour de $A'$, les rayons issus de $A$ sont fort \og regroupés\fg, ils ne s'étalent pas beaucoup. C'est pour cette raison que l'image de $A$ est nette au point $A'$. 
+
+\begin{exercice}
+Qu'est-ce que tu verrais si tu mettais ton \oe uil au point $A'$ de la figure \ref{FigImageConvd} ?
+\end{exercice}
+
+\subsection{Formules pour les lentilles minces}
+%---------------------------------------------
+
+Il est possible d'établir les deux formules suivantes :
+\begin{equation}
+  \frac{1}{ d }+\frac{1}{ d' }=\frac{1}{ f }\quad\text{et}\quad -\frac{ h' }{ h }=\frac{ d' }{ d }
+\end{equation}
+où $d$ est la distance entre le centre optique et l'objet, $d'$ est celle entre le centre optique et l'image, $f$ est la distance focale, $h$ est la taille de l'objet et $h'$ est celle de l'image. Fais un dessin et indique dessus ces différentes grandeurs. Les conventions suivantes ont cours :
+\begin{align*}
+   f&=\text{ distance focale}\\
+	&\quad >0\text{ pour une lentille convergentes}\\
+	&\quad <0\text{ pour une lentille divergente}\\
+  d'&=\text{ distance de l'image centre optique}\\
+	&\quad >0\text{ pour une image réelle}\\
+	&\quad <0\text{ pour une image virtuelle}\\
+  h'&=\text{ hauteur de l'image}\\
+	&\quad >0\text{ pour une image droite}\\
+	&\quad <0\text{ pour une image renversée}\\
+\end{align*}
+Ces conventions sont en accord avec ce que nous disions à la page \ref{PgRemarqueFoyer} à propos du fait que pour une lentille convergente, il fallait utiliser le foyer de l'autre côté pour les lentilles convergentes et le foyer du même côté pour les divergentes. À ce propos, regarde la figure \ref{FigLentilleObjDroite}.
+
+%http://fr.wikipedia.org/wiki/Dioptrie
+%http://fr.wikipedia.org/wiki/Vergence
+Nous définissons aussi la \defe{\href{http://fr.wikipedia.org/wiki/Vergence}{vergence}}{} d'une lentille par
+\[ 
+  C=\frac{1}{ f }
+\]
+dont les unités sont $\reciprocal\meter$. Dans le cas des lentilles, l'unité \reciprocal\meter{} est appelée \href{http://fr.wikipedia.org/wiki/Dioptrie}{dioptrie}; on parle d'une lentille de $4$ dioptrie pour dire que sa vergence vaut \unit{4}{\reciprocal\meter}. Les conventions que nous avons prises font que $C>0$ pour les lentilles convergentes et $C<0$ pour les lentilles divergentes.
+
+\begin{figure}
+\centering
+\subfigure[Un cas classique avec la formation de l'image d'un objet à travers une lentille convergente.]{%
+\begin{pspicture}(-4,-3)(4,2)
+  % \psframe[linecolor=cyan](-6,-2)(4,2)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(-6,1.5){A}
+	\pstGeonode(-6,0){L1}(4,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+
+% Tracé
+	\psline{<->}(P)(P')
+	\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{O}\pstRayon[linecolor=green]{O}{iA}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,ArrowInsidePos=0.25]{Q'}{iA}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;90}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;-90}{$A'$}
+
+\end{pspicture}
+}
+\subfigure[Ce qu'il ne faut pas faire quand l'objet est de l'autre côté, c'est d'utiliser le même foyer pour trouver l'image. Ce dessin est complètement faux !]{%
+\begin{pspicture}(-2.5,-3)(3.5,2)
+  % \psframe[linecolor=cyan](-2.5,-2)(3.5,2)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(-2,0){F}(3,1.5){A}
+	\pstGeonode(-2.5,0){L1}(3.5,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+	\pstSymO{Q}{iA}[iAl]
+	\pstHomO[HomCoef=1.3]{Q}{F}[QF]
+	\pstHomO[HomCoef=1.5]{A}{O}[AO]
+	\pstHomO[HomCoef=1.5]{Q'}{F'}[QF']
+	\pstHomO[HomCoef=1.5]{iA}{Q'}[iAQ']
+
+% Tracé
+	\psline{<->}(P)(P')
+	\pstRayon[linecolor=red]{A}{Q}
+	\pstRayon[linecolor=red]{Q}{iAl}
+	\pstRayon[linecolor=red,linestyle=dashed]{Q}{QF}
+ 	\pstRayon[linecolor=red,linestyle=dashed]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{AO}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue]{Q'}{iAQ'}
+	\pstRayon[linecolor=blue,ArrowInsidePos=0.25,linestyle=dashed]{Q'}{QF'}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;-90}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;135}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;-45}{$A'$}
+
+\end{pspicture}
+}
+\subfigure[Ce qu'il faut faire, c'est d'utiliser l'autre foyer. D'ailleurs, tu dois avouer que ce dessin-ci est nettement plus crédible que le précédent, vu qu'il est simplement le symétrique du premier.]{%
+\begin{pspicture}(-4,-2)(6,2)
+ %  \psframe[linecolor=cyan](-4,-2)(6,2)
+   \psset{PointSymbol=none,PointName=none}
+	\pstGeonode(0,0){O}(2,0){F}(6,1.5){A}
+	\pstGeonode(6,0){L1}(-4,0){L2}
+% Calculs	
+	\pstLentille{O}{F}{A}{Q}{iA}{B}{iB}
+	\pstRotation[RotAngle=90]{O}{F}[P]
+	\pstSymO{O}{P}[P']
+	\pstSymO{O}{F}[F']
+	\pstProjectionOrth{O}{P}{A}{Q'}
+
+% Tracé
+	\psline{<->}(P)(P')
+	\pstRayon[linecolor=red,ArrowInsidePos=0.25]{A}{Q}
+ 	\pstRayon[linecolor=red]{Q}{iA} 
+	\pstRayon[linecolor=green]{A}{O}\pstRayon[linecolor=green]{O}{iA}
+	\pstRayon[linecolor=blue]{A}{Q'}
+	\pstRayon[linecolor=blue,ArrowInsidePos=0.25]{Q'}{iA}
+	\psline[linecolor=lightgray](L1)(L2)
+
+\psline[linewidth=0.05]{->}(iB)(iA)
+\psline[linewidth=0.05]{->}(B)(A)
+
+	\pstMarquePoint[PointSymbol=*]{A}{0.3;90}{$A$}
+	\pstMarquePoint[PointSymbol=*]{F}{0.3;90}{$F'$}
+	\pstMarquePoint[PointSymbol=*]{F'}{0.3;90}{$F$}
+	\pstMarquePoint[PointSymbol=*]{O}{0.3;45}{$O$}
+	\pstMarquePoint[PointSymbol=*]{iA}{0.3;-90}{$A'$}
+
+\end{pspicture}
+}
+\caption{Ce qu'il faut faire quand l'objet est à droite au lieu d'être à gauche.}  \label{FigLentilleObjDroite}
+\end{figure}

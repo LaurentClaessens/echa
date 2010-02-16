@@ -1,0 +1,797 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section[Prolégomènes]{Prolégomènes : la propriété fondamentale de la gravitation}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Ce qui distingue la \href{http://fr.wikipedia.org/wiki/Gravitation}{gravitation} des autres forces, c'est que dans un champ de gravitation donné, tous les objets, quelles que soient leurs masses, suivent le même mouvement. Ainsi, sur Terre tous les objets tombent à la même vitesse, et dans l'espace, tous les satellites orbitant à la même hauteur tournent à la même vitesse\footnote{Voir sous-section \ref{SubSecMiseEnOrbite}.}.
+
+Expérience : lâchez une noix et une enclume (un ballon de basket peut faire l'affaire) depuis la fenêtre de la classe et vous verrez qu'ils arrivent en même temps par terre.
+
+Pourquoi est-ce ainsi ? Personne ne le sait. Il n'existe à l'heure actuelle aucune explication physique satisfaisante de cette incroyable propriété du champ de gravitation. Quoi qu'il en soit, nous acceptons cette propriété\footnote{On n'a pas le choix : la physique est une science expérimentale, donc elle se plie aux résultats expérimentaux. Cela est \emph{la} différence avec l'astrologie.}.
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{La gravitation à la surface de la Terre}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Comme indiqué dans les \href{http://fr.wiktionary.org/wiki/prolégomènes}{prolégomènes}, nous faisons l'hypothèse suivante.
+\setcounter{numloiphyz}{0}		% Note qu'il faudra souvent le remettre à zéro ce compteur. Genre à tous les coups.
+\begin{loiphyz}
+	Tous les corps (quelles que soient leurs masses) tombent avec la même accélération que nous notons $g$.
+\end{loiphyz}
+D'après cette loi, tous les problèmes contenant des objets qui tombent se réduiront à des problèmes de MRUA, avec $g$ comme accélération. Cette accélération vaut numériquement
+\begin{equation}
+	g=\unit{9.81}{\meter\per\second\squared}.
+\end{equation}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Chute libre}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Un objet est en \defe{chute libre}{Chute libre} si il est laissé à lui-même dans le champ de gravitation de la Terre, c'est à dire dans un champ de gravitation constant. C'est un mouvement très simple parce que c'est un MRUA dirigé vers le bas dont l'accélération vaut $g$ et est dirigée vers le bas.
+
+À titre d'exemple, considérons une personne qui tombe d'un gratte ciel ($\unit{150}{\meter}$). De combien de temps dispose Spiderman pour la sauver ? En d'autres termes, combien de temps on met pour tomber de $\unit{150}{\meter}$ ?
+
+Nous utilisons la formule du MRUA, avec $g$ en guise d'accélération :
+\begin{equation}
+	\Delta x=\frac{ gt^2 }{ 2 }.
+\end{equation}
+L'équation à résoudre est $150=gt^2/2$, d'où nous trouvons
+\begin{equation}
+	t=\sqrt{300/g}\simeq \unit{5.52}{\second}.
+\end{equation}
+À partir du moment où la personne commence à tomber, Spiderman n'a que cinq secondes et demi pour agir.
+
+Supposons que la personne soit rattrapée juste au niveau du sol. À quelle vitesse allait-elle s'écraser ? Encore une fois, c'est du MRUA. La vitesse acquise après un trajet d'une durée $\Delta t$ avec une accélération $g$ vaut $v=g\Delta t$. Ici,
+\begin{equation}
+	v=5.52\cdot 9.81=\unit{54.24}{\meter\per\second}.
+\end{equation}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Aurait dû censurer \ldots}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\ldots la scène d'ouverture du second film du Seigneur des anneaux est une hérésie qu'il convient de dénoncer comme une insulte envers l'intelligence humaine.
+
+\begin{exercice}
+	Le monstre tombe dans un précipice, suivit d'une épée, et Gandalf les suit, dix mètres plus haut. Tous trois sont en chute libre. Gandalf s'arrange pour rattraper l'épée puis le monstre.
+
+	Quelle partie de son cours de physique le scénariste de cette scène a-t-il négligé ?
+\end{exercice}
+
+Pour la comparaison, la scène d'ouverture de \href{http://fr.wikipedia.org/wiki/Moonraker_(film)}{Mooraker} pose également quelque problèmes. On remarquera cependant que les personnages jouent sur le frottements pour se diriger.
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{La force}
+%---------------------------------------------------------------------------------------------------------------------------
+
+La prochaine étape est de donner une expression mathématique de la force de gravitation sur Terre. Souvenons nous de la loi de Newton $F=ma$, et prenons un objet de masse $m$. Par hypothèse, cette masse acquière une accélération $g$. La force qu'il faut pour qu'un objet de masse $m$ subisse une accélération $g$ est
+\begin{equation}
+	G=mg.
+\end{equation}
+Nous notons $G$ la force de gravitation. Cette force est appelée le \defe{poids}{Poids} de l'objet.
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{De la difficulté de soulever un objet}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Je ne saurais trop te conseiller de \emph{réellement} jeter par la fenêtre (ou debout sur une table) deux objets de poids différents pour remarquer qu'ils tombent à la même vitesse. En général, personne n'y croit avant de l'avoir vu au moins cinq fois\footnote{Un peu comme le fait que quand un glaçon fond dans un verre d'eau, le niveau de l'eau ne bouge pas; personne n'y croit non plus.}. 
+
+La chose qui perturbe est la suivante : d'accord, tous les objets tombent à la même vitesse. Mais alors, pourquoi il est plus difficile de soulever un objet lourd qu'un objet léger ? Si réellement la gravitation ne faisait pas la différence entre les objets de poids différents, il devrait être aussi facile de soulever \unit{10}{\kilo\gram} que \unit{1}{\kilo\gram}.
+
+Disons le haut et fort. La formule $G=mg$ est on ne peut plus claire : la gravitation fait bel et bien la différence entre les objets en fonction de leur masse. Plus la masse est grande, plus la force est grande. C'est pour ça qu'il est difficile de soulever un objet lourd : il faut une force plus grande que celle de la gravitation.
+
+Le point à remarquer est que {\bf tomber n'est pas l'état \og naturel\fg{} d'un objet}. Lâchez une enclume. Si ça ne dépendait que d'elle, elle resterait suspendue dans les airs sans bouger. Pire : même si une force veut la faire bouger, l'enclume va résister à la tentation de bouger par son inertie. Plus la masse de l'enclume est grande, plus, pour une force donnée, elle bougera lentement. C'est là qu'est toute l'astuce.
+
+L'enclume a une masse $m$ qui lui sert à avancer moins vite si une force veut la faire bouger. Mais la gravitation est une force qui est d'autant plus grande que $m$ est grande. Plus la masse est grande, moins elle a envie de bouger, mais plus la gravitation est forte. Ces deux effets se compensent, et au final, tous les objets tombent à la même vitesse.
+
+En formules mathématiques, cela se voit très bien : l'accélération due à une forme $F$ vaut $a=F/m$ dans le cas de la gravitation, nous avons que la force est $G=mg$, donc
+\begin{equation}
+	a=\frac{ G }{ m }=\frac{ mg }{ m }=g.
+\end{equation}
+Il y a une simplification par $m$ qui arrive. Cette simplification aura toujours lieu lorsqu'on regarde des objets dans le champ de gravitation terrestre.
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Énergie potentielle (la vérité)}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Nous voudrions savoir l'énergie potentielle d'un objet de masse $m$ se trouvant à la hauteur $h$ sur Terre.
+
+\begin{idee}
+Comme souvent pour déterminer la formule de l'énergie potentielle, nous allons utiliser la conservations  de l'énergie et considérer une situation dans laquelle l'énergie potentielle se transforme en énergie cinétique. 
+\end{idee}
+
+
+Prenons donc un objet de masse $m$, et lâchons le depuis une hauteur $h$. À mesure que l'objet tombe, il transforme son énergie potentielle en énergie cinétique. Au moment où il commence à tomber, il n'a pas d'énergie cinétique : toute sont énergie est potentielle. À ce moment, $E=E_p$, et on voudrait bien déterminer $E_p$. Quand il touchera le sol, il n'aura plus d'énergie potentielle : $E=E_c$. Il y a moyen de calculer ce $E_c=mv^2/2$ en trouvant $v$.
+
+Pour trouver $v$, on utilise la même démarche que celle expliquée à la page \pageref{PgPourquoiAccDeDistance}, (relis les exercices \ref{ExoTrainAccDistance} et \ref{ExoVeloAccDistance}).
+
+Ce qu'il se passe, c'est que l'objet tombe d'une hauteur $h$ avec une accélération $g$. Combien de temps faut-il ? Dans le cadre d'un mouvement uniformément accéléré, le temps et la distance sont liés par la formule
+\[
+  h=\frac{gt^2}{2},
+\]
+et donc $t=\sqrt{2h/g}$. Avec une accélération $g$ pendant cette durée, la vitesse atteinte est 
+\begin{equation}		\label{Eqvgtblabla}
+	v=gt=g\sqrt{\frac{2h}{g}}.
+\end{equation}
+Ainsi l'énergie cinétique au moment de toucher le sol est
+\[
+E_c=\frac{ m }{ 2 }v^2=\frac{m}{2}\underbrace{ g^2\frac{2h}{g}}_{\text{$v^2$ donné par \eqref{Eqvgtblabla}}}=mgh.
+\]
+L'énergie potentielle gravitationnelle d'un objet de masse $m$ à une hauteur $h$ est $mgh$ :
+\begin{equation}
+	E_p(h)=mgh.
+\end{equation}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Énergie potentielle (petit mensonge)}
+%---------------------------------------------------------------------------------------------------------------------------
+
+La force de gravitation qui s'applique à un objet de masse $m$ est un vecteur $\fG$ de norme $mg$ dirigé vers le bas. D'autre part,  l'énergie potentielle de gravitation d'un tel objet situé à une hauteur $h$ est $E_g=mgh$. Un calcul trop rapide montre que 
+\begin{equation}		\label{EqWfGfhmgh}
+	W=\fG\cdot\fh=-mgh
+\end{equation}
+parce que $\fG$ et $\fh$ ont des directions opposées, ce qui donne que le cosinus de l'angle entre les deux est $-1$. Un problème se pose : si l'objet retombe sur le sol, il va arriver à terre avec une certaine vitesse $v$, et donc une énergie cinétique $mv^2/2$. Mais cette énergie cinétique est \emph{positive} !
+
+\begin{probleme}
+	L'équation \eqref{EqWfGfhmgh} est manifestement fausse. Quelle est la faute ?
+\end{probleme}
+
+Disons que tu me donnes une boule de bowling de masse $m$ et que je la soulève verticalement d'une hauteur $h$. Durant son trajet, la boule subit deux forces : celle de mon bras (dirigée vers le haut) et celle de la gravitation (dirigée vers le bas). Si je veux que la boule monte, j'ai intérêt à ce que la résultante soit dirigée vers le haut; mais comme je veux que la boule arrive à la hauteur $h$ avec une vitesse nulle, ma force ne peut pas être constante. Le problème la détermination de l'énergie potentielle comme le travail de la force qui fait monter l'objet contre la gravité s'annonce être difficile.
+
+\subsubsection{Travail et effort}
+%////////////////////////////////
+
+Dans le cas de la gravitation, le travail d'une force mesure l'effort que déploie la personne qui produit la force. On peut même dire qu'un grand travail est un travail qui fatigue. En effet, ce qui fait la difficulté de soulever un objet, c'est son poids ($mg$) et la hauteur à laquelle il faut le soulever ($h$). Le travail à fournir pour lever une masse $m$ à une hauteur $h$ est justement $mgh$.
+
+%----------------------------------------------------------------------------------------------------------------------------
+\subsection{Tir vertical (second)}
+\label{SubsecTirVecrtical}
+
+Nous lançons une pierre vers le haut avec une vitesse initiale $v$. À quelle hauteur va-elle monter avant de retomber ? Comme d'habitude, il s'agit d'une histoire de conservation de l'énergie. Au moment où la pierre est lancée, toute son énergie est cinétique, c'est à dire
+\[ 
+  E=\frac{ mv^2 }{ 2 },
+\]
+si $m$ est la masse de la pierre. Au moment où la pierre est au plus haut, toute son énergie est potentielle. C'est à dire que l'énergie cinétique de départ s'est transformée en énergie potentielle :
+\[ 
+  E=mgh
+\]
+ où h est la hauteur que l'on cherche. Il est important de comprendre qu'il s'agit du même $E$. On égalise les deux expressions : $mv^2/2=mgh$, et l'on remarque que les $m$ se simplifient. La réponse ne dépend pas de la masse ! Ce qu'on trouve en isolant $h$ est :
+\begin{equation}
+h=\frac{ v^2 }{ 2g }.
+\end{equation}  
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Course poursuite sur les toits}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{pourquoidonc}
+	Trinity pouvait-elle atteindre l'immeuble d'en face ? 
+	
+	Nous discuterons de l'impossibilité de marcher verticalement sur un mur plus tard.
+\end{pourquoidonc}
+
+Au début de \href{http://fr.wikipedia.org/wiki/Matrix}{Matrix}, Trinity saute depuis le toit d'un immeuble pour arriver dans la fenêtre de l'immeuble d'en face, un étage plus bas. Sa trajectoire est dessinée sur la figure \ref{LabelFigMatrix}.
+\newcommand{\CaptionFigMatrix}{La trajectoire suivie par Trinity.}
+\input{Fig_Matrix.pstricks}
+Nous supposons que Trinity arrive un étage plus bas, c'est à dire environ trois mètres. Cela signifie que sur la figure, nous avons $\Delta h=\unit{3}{\meter}$. De plus, nous évaluons à quatre mètres la largeur de la rue : $d=\unit{4}{\meter}$.
+
+La question que nous nous posons est : à quelle vitesse devait-elle courir pour parcourir les trois quatre mètres horizontaux en ne tombant verticalement que de trois mètres ?
+
+Première question : combien de temps il faut pour tomber de trois mètres ? Ça, c'est un problème de chute libre facile, c'est à dire un problème de MRUA. Il faut résoudre
+\begin{equation}
+	\frac{ gt^2 }{ 2 }=3.
+\end{equation}
+La réponse est que $t=\sqrt{6/g}$. Nous savons donc que Trinity doit faire son vol en exactement ce laps de temps : si elle mets plus de temps, elle arrivera trop bas, et si elle mets moins de temps, elle arrivera trop haut.
+
+Maintenant, il faut chercher à quelle vitesse (horizontale) il faut sauter pour parcourir les $\unit{4}{\meter}$ de largeur de la rue en exactement ce laps de temps :
+\begin{equation}
+	v_0t=d=4,
+\end{equation}
+donc $v_0=4/t=\sqrt{8g/3}\simeq \unit{5.11}{\meter\per\second}=\unit{18.4}{\kilo\meter\per\hour}$.
+
+Cela est quand même courir \emph{très} rapidement.
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Tir horizontal}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Il est maintenant bon de formaliser un petit peu ce que nous venons de voir. Nous considérons un objet lancé à la vitesse (horizontale) $v_0$ à une hauteur $h$, comme par exemple un jet d'eau horizontal d'une fontaine.
+
+Le mouvement d'un tel objet se passe en deux dimensions (c'est la nouveauté de ce chapitre : maintenant on fait des problèmes en $2D$), il faut donc déterminer $x(t)$ et $y(t)$.
+
+En ce qui concerne $x(t)$, c'est à dire le mouvement horizontal, nous avons dit que la vitesse initiale était $v_0$. Aucune force horizontale n'est supposée dans le problème\footnote{Je te rappelle que la gravitation est dirigée vers le bas, c'est à dire tout à fait \emph{verticalement}.}, et donc il n'y a aucune raison que cette vitesse change. Nous pouvons donc voir $x(t)$ comme un mouvement à vitesse constante~:
+\begin{equation}		\label{Eqxtvt}
+	x(t)=v_0t.
+\end{equation}
+
+Regardons maintenant le mouvement vertical. Nous avons supposé que la vitesse initiale était horizontale, c'est à dire que pour $y(t)$, nous sommes dans un cas sans vitesse initiale. Par contre, nous avons une force (la gravitation) et donc une accélération ($g$). La position initiale est $y(0)=h_0$, donc
+\begin{equation}		\label{EqverticlaTirHor}
+	y(t)=h-\frac{ gt^2 }{ 2 }.
+\end{equation}
+Il n'y a donc rien de particulièrement nouveau sous le Soleil. Le seul truc est que nous avons un mouvement en deux dimensions, donc il nous faut travailler avec deux équations.
+
+Juste par curiosité, tu voudrais savoir l'équation de la courbe rouge suivie par Trinity sur la figure \ref{LabelFigMatrix} ? Il s'agit de trouver $y(x)$ à partir des équation \eqref{Eqxtvt} et \eqref{EqverticlaTirHor}.
+
+Ce qu'il faut faire, c'est éliminer la variable $t$ qui est \og en trop\fg. Pour cela, nous utilisons la bonne vieille technique de la substitution. L'équation \eqref{Eqxtvt} nous dit que
+\begin{equation}
+	t=\frac{ x(t) }{ v_0 },
+\end{equation}
+et donc l'équation \eqref{EqverticlaTirHor} devient
+\begin{equation}
+	y(t)=h-\frac{ g }{2}\left( \frac{ x(t) }{ v_0 } \right)^2
+\end{equation}
+Notre équation $y(x)$ est donc
+\begin{equation}			\label{EqfDexpourtirhorizontal}
+	y(x)=h-\frac{ gx^2 }{ v_0^2 }.
+\end{equation}
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Problème informatique}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{pourquoidonc}
+	Dévoilons les coulisses : comment a été créé la figure \ref{LabelFigMatrix} ?
+\end{pourquoidonc}
+
+Évidement, créer les droites et les flèches, c'est facile. Tu peux par contre te demander comment créer la courbe pour que ce soit à l'échelle~: tu peux mesurer que la courbe descend de $\unit{1.5}{\centi\meter}$ sur une distance de $\unit{2}{\centi\meter}$, ce qui est l'échelle $1/200$ par rapport à l'énoncé.
+
+Si tu as deux sous de curiosité informatique, tu téléchargeras les sources de ce document \href{http://student.ulb.ac.be/~lclaesse/physique-math.tar.gz}{ici}, et tu regarderas dans le fichier \texttt{figures\_echa.py} la fonction \texttt{figure\_Matrix}\footnote{Sans dec, si tu aimes l'informatique, je te conseille de regarder ce fichier : ça te fera découvrir une manière de faire des dessins que tu ne soupçonnais pas dans tes rêves les plus fous !}.
+
+Les lignes qui nous intéressent sont les suivantes~:
+\begin{quote}
+	\texttt{ 
+	g = 9.81					\\
+	h = 10						\\
+	d = 4						\\
+	DeltaH = 3					\\
+	vZero = math.sqrt(g*d\textasciicircum 2/(2*DeltaH))		\\
+	f = Fonction(h-(g*x\textasciicircum 2)/(2*vZero\textasciicircum 2))		
+	}
+\end{quote}
+Les lignes qui définissent $g$, $h$ et $d$ ne sont pas mystérieuses : il s'agit juste de poser les variables qui définissent la situation. Pour la suite, les trois ligne suivantes veulent dire
+\begin{subequations}
+	\begin{align}
+		\Delta h&=3\\
+		v_0&=\sqrt{ \frac{ gd^2 }{ 2\Delta h } }	\label{SubEqVZeroMatrix}\\
+		f(x)&=h-\frac{ gx^2 }{ 2v_0^2 }.
+	\end{align}
+\end{subequations}
+D'abord, on pose $\Delta h=3$, ce qui correspond à l'énoncé du problème. La dernière ligne n'est rien d'autre que l'équation \eqref{EqfDexpourtirhorizontal}. La subtilité est que la valeur de $v_0$ est posée \emph{avant} de donner $f$ parce que $f$ a besoin de $v_0$. Mais il n'empèche que la valeur \eqref{SubEqVZeroMatrix} est choisie pour être la solution de l'équation $f(d)=h-\Delta h$.
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Le tir oblique}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{pourquoidonc}
+	Comment gagner au lancé du poids ?
+\end{pourquoidonc}
+
+Pour répondre à cette question, nous devons étudier le mouvement d'un objet que l'on lance en diagonal. La figure \ref{LabelFiglancerDiagonal} montre quelque trajectoires.
+\newcommand{\CaptionFiglancerDiagonal}{La trajectoire de quelque mobiles lancés en diagonal.}
+\input{Fig_lancerDiagonal.pstricks}
+Nous verrons dans un instant le pourquoi, mais tu remarqueras (avec les trajectoires vertes) que, pour les petits angles, si on lance plus vers le haut, ça va plus loin, tandis que pour les grands angles (trajectoires rouges), lancer plus vers le haut fait aller moins loin. Nous en déduisons qu'il doit y avoir un angle optimal quelque part entre les deux. C'est cet angle optimal qu'il faudra déterminer si nous voulons gagner des médailles au lancer du poids.
+
+Nous avons, essentiellement, la même situation qu'avant : nous devons déterminer les fonctions $x(t)$ et $y(t)$ en sachant que $x(t)$ est un MRU et $y(t)$ est un MRUA. La difficulté est de savoir quelles sont les vitesses initiales de ces deux mouvement. Dans le cas du tir horizontal, c'était facile parce que la vitesse était complètement horizontale. Ici, la vitesse est en oblique.
+
+\newcommand{\CaptionFigDecompVitesse}{Tir oblique à différents angles. Un tout petit peu de trigonométrie nous donne les composantes de la vitesse initiale selon les deux axes.}
+\input{Fig_DecompVitesse.pstricks}
+
+\begin{idee}
+	Nous allons décomposer le vecteur vitesse en ses composantes pour déterminer $v_{0x}$ et $v_{0y}$ comme sur la figure \ref{LabelFigDecompVitesse}.
+\end{idee}
+
+Si nous lançons un objet avec une vitesse $v_0$ et un angle $\alpha$, le mouvent sera donné par les fonctions $x(t)$ et $y(t)$ où $x(t)$ est un simple MRU de vitesse initiale $v_0\cos(\alpha)$ et $y(t)$ est le MRUA de la gravitation avec une vitesse initiale (verticale) $v_0\sin(\alpha)$.
+
+Les deux fonctions qui définissent le mouvement sont donc
+\begin{subequations}		\label{EqsTirDiagonal}
+	\begin{align}
+		x(t)&=v_0\cos(\alpha) t\\
+		y(t)&=v_0\sin(\alpha) t -\frac{ gt^2 }{ 2 }.
+	\end{align}
+\end{subequations}
+
+Voila. Du point de vue de la physique profonde c'est déjà fini. Maintenant il n'y a plus qu'à un peu réfléchir sur ce que signifient les équations \eqref{EqsTirDiagonal}, et nous saurons quel est le bon angle pour gagner au lancer du poids. 
+
+L'équation pour $y(t)$ dit à quelle hauteur se trouve le poids en fonction du temps. Notre question est de savoir à quelle distance le poids tombe. Il faut donc résoudre l'équation
+\begin{equation}
+	y(t)=v_0\sin(\alpha) t -\frac{ gt^2 }{ 2 }=0
+\end{equation}
+par rapport à $t$. Cela n'est jamais qu'une équation du second degré qu'on sait résoudre depuis la petite enfance\footnote{depuis le point \ref{SubSecRacinesSecondDegre}.}. Ici, c'est même plus facile parce qu'il n'y a pas de termes indépendants, et qu'on peut mettre $t$ en évidence :
+\begin{equation}
+	y(t)=t\left( v_0\sin(\alpha)-\frac{ gt }{ 2 } \right),
+\end{equation}
+et donc les solutions sont
+\begin{equation}
+	\begin{aligned}[]
+		t_1&=0,\\
+		t_2&=\frac{ 2 }{ g }v_0\sin(\alpha).
+	\end{aligned}
+\end{equation}
+La solution $t=0$ n'est pas étonnante : nous avons supposé que l'on lançait le poids depuis la hauteur du sol. L'autre solution est celle qui nous intéresse : elle dit combien de temps l'objet lancé restera en l'air avant de toucher le sol.
+
+Maintenant, pour savoir la distance parcourue par le poids, il suffit de reporter ce temps dans $x(t)$ :
+\begin{equation}			\label{EqDistancePoinds}
+	x(t_2)=\frac{ 2v_0^2 }{ g }\sin(\alpha)\cos(\alpha).
+\end{equation}
+Étant donné que le but de ce cours de physique est de gagner des médailles au lancer du poids, nous voulons trouver l'angle $\alpha$ pour lequel cette fonction est la plus grande possible.
+
+Le graphe de la fonction $f(x)=\sin(x)\cos(x)$ est tracé sur la figure \ref{LabelFigDistanceAngle}.
+\newcommand{\CaptionFigDistanceAngle}{En bleu, la fonction qui nous intéresse : $\sin(x)\cos(x)$. Pour information, en rouge se trouve la fonction $\sin(x)$}
+\input{Fig_DistanceAngle.pstricks}
+
+En regardant le graphe, on devine que le maximum est à la position $x=\pi/4$. Ne voulant rien laisser au hasard, nous allons calculer ce maximum. Pour cela, rien de tel qu'une petite formule de trigonométrie :
+\begin{equation}
+	\sin(\alpha)\cos(\alpha)=\frac{ \sin(2\alpha) }{2}.
+\end{equation}
+Donc notre score au lancer du poids sera maximum si on lance avec un angle $\alpha$ tel que $\sin(2\alpha)$ est le plus grand possible. Tu sais que $\sin(x)$ est le plus grand possible (et vaut $1$) lorsque $x=\pi/2$. Donc nous devons choisir $2\alpha=\pi/2$, ou encore
+\begin{equation}
+	\alpha=\frac{ \pi }{ 4 }.
+\end{equation}
+Il faut donc lancer à $\unit{45}{\degree}$ pour lancer le plus loin possible.
+
+À quelle distance est-ce que nous espérons que le poids retombe si nous suivons cette consigne de lancer à \unit{45}{\degree} ? Pour la trouver, il suffit de remettre $\alpha=\frac{ \pi }{ 4 }$ dans l'expression \eqref{EqDistancePoinds} qui donne la distance parcourue par le poids. En sachant que
+\begin{equation}
+	\cos\frac{ \pi }{ 4 }\sin\frac{ \pi }{ 4 }=\frac{ \sqrt{2} }{2},
+\end{equation}
+nous trouvons
+\begin{equation}
+	x_{\text{gagnant}}=\frac{ 2v_0^2 }{ g }\frac{ \sqrt{2} }{2}\frac{ \sqrt{2} }{2}=\frac{ v_0^2 }{ g }.
+\end{equation}
+Noter qu'il y a quand même une morale : cette distance dépends encore fort de la vitesse à laquelle on lance. Pour gagner, il faudra donc non seulement lancer avec un  angle de $\unit{45}{\degree}$, mais en plus lancer le plus fort possible.
+
+À propos de \og fort\fg\ldots
+
+\begin{probleme}
+	Nous avons un vieux principe comme quoi toutes les masses se déplacent de la même façon dans le champ de gravitation. Cela se vérifie encore dans le fait que les équations que nous avons écrites ne dépendent pas de la masse des poids lancés.  Or, dans la réalité, au lancer du \emph{poids}, plus le poids est lourd, moins on lance loin. 
+\end{probleme}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Le plan incliné}
+%---------------------------------------------------------------------------------------------------------------------------
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Équilibre sur un plan incliné}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\label{sss_eq_plan}
+
+\begin{figure}[ht]
+\centering
+\subfigure[Les forces qui s'appliquent à un chariot]{%
+\label{fig:forcechariota}
+\begin{pspicture}(-0.7,-1)(4.7,2.5)
+  \psset{PointSymbol=none, PointName=none}
+\prefigplincl						% La position des points est contenue dans cette macro.
+							%  qui se trouve en principe juste au-dessus.
+   \psline(A)(C)
+   \psline(C)(B)
+   \psline(A)(B)
+
+  
+   \pstCircleAB{Oa}{Ob}
+   \pstCircleAB{Pa}{Pb}
+
+   \psline(Cg)(Cgh)
+   \psline(Cgh)(Cdh)
+   \psline(Cd)(Cdh)
+   \psline(Cg)(Cd)
+
+
+   \psline[arrows=->](Cc)(bR)
+   \rput(bR){\rput(0.4;30){$\fR$}}		% Position de la marque de R
+
+
+   \pstMarqueForce{Cc}{bF}{0.3;90}{$\fF$}
+
+   \pstMarqueForce{Cc}{bG}{0.3;0}{$\fG$}
+\end{pspicture}
+}						% Fermeture de la sous-fugure
+\subfigure[Décomposition de la force de pesanteur.]{%
+\label{chariordecdeux}
+\begin{pspicture}(0,-0.7)(3.5,2.5)
+ \psset{PointSymbol=none, PointName=none}
+   \pstGeonode(0,0){A}(3.5,0){C}(3.5,2.5){B}
+   \psline(A)(B)
+\pstHomO[HomCoef=0.5]{A}{B}[Oa]			% Place de la première roue
+\pstHomO[HomCoef=0.6]{A}{B}[Pa]			% Place de la seconde roue
+\pstRotation[RotAngle=90]{Oa}{B}[Obu]
+\pstHomO[HomCoef=0.07]{Oa}{Obu}[Ob] 		% Rayon des roues
+\pstMiddleAB{Oa}{Ob}{Oc}
+
+   \pstTranslation{Oa}{Pa}{Ob,Oc}[Pb,Pc]	
+  
+
+\pstHomO[HomCoef=1.5]{Pc}{Oc}[Cg]
+\pstHomO[HomCoef=1.5]{Oc}{Pc}[Cd]		% Longueur du chariot
+\pstTranslation{Oa}{Ob}{Cd}[pCdh]
+\pstTranslation{Oa}{Ob}{Cg}[pCgh]
+\pstHomO[HomCoef=1.5]{Cd}{pCdh}[Cdh]		% Hauteur du chariot
+\pstHomO[HomCoef=1.5]{Cg}{pCgh}[Cgh]
+
+
+\pstMiddleAB[PointSymbol=*]{Cg}{Cdh}{Cc}
+\pstTranslation{Oa}{Ob}{Cc}[pbR]
+\pstHomO[HomCoef=4]{Cc}{pbR}[bR]		% Longueur de R
+
+%   \psline[arrows=->](Cc)(bR)
+%   \rput(bR){\rput(0.4;30){$\fR$}}		% Position de la marque de R
+
+\pstTransHom{Oc}{Pc}{Cc}{4}{bF}
+
+ %  \pstMarqueForce{Cc}{bF}{0.3;90}{$\fF$}
+\pstTransHom{B}{C}{Cc}{0.7}{bG}			% Placement de la pesenteur
+   \pstMarqueForce{Cc}{bG}{0.3;0}{$\fG$}
+
+
+\pstTranslation{A}{B}{bG}[pi]
+\pstRotation[RotAngle=90]{bG}{pi}[pv]
+\pstTranslation{pv}{bG}{Cc}[Ni]
+\pstTranslation{pi}{bG}{Cc}[Pi]
+
+\pstInterLL{pi}{bG}{Cc}{Ni}{bN}
+\pstInterLL{bG}{pv}{Cc}{Pi}{bP}			% Le bout de la force perpendiculaire
+
+\psset{linecolor=green}
+	\pstMarqueForce{Cc}{bN}{0.3;0}{$\fG_{\perp}$}
+	\pstMarqueForce{Cc}{bP}{0.3;180}{$\fG_{\parallel}$}
+\psset{linecolor=red,linestyle=dotted,linewidth=0.05}
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5]{bG}{bN}
+	\pstLineAB[nodesepA=-0.5,nodesepB=-0.5]{bG}{bP}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+
+\caption{Chariot sur un plan incliné}\label{fig:chariotdecomp}
+\end{figure}
+
+La figure \ref{fig:forcechariota} montre les forces qui s'exercent sur un chariot que l'on tire sur un plan incliné avec une force $\fF$ qui lui est appliquée parallèlement au plan incliné.  La force $\fR$ n'est autre que la réaction du support contre le chariot. C'est la force que la surface dure oppose au chariot pour éviter qu'il ne s'enfonce. La figure \ref{chariordecdeux} montre comment la force de pesanteur (qui est verticale) de décompose en une partie $\fG_{\parallel}$ parallèle au plan et une partie $\fG_{\perp}$ perpendiculaire au plan.  C'est la partie parallèle qui est responsable du fait que le chariot a tendance à retomber. La partie perpendiculaire est compensée par la force de réaction $\fR$.
+
+Pour que le chariot soit en équilibre, il faut que la résultante de toutes les forces qui s'y appliquent soit nulle. Le plan incliné se charge toujours tout seul de compenser avec $\fR$ la force $\fG_{\perp}$; on ne doit donc jamais se poser de questions à propos de cette dernière. La force qui nous intéresse (et qui intéresse surtout le gars qui est en train de fournir la force $\fF$) est la partie $\fG_{\parallel}$. La condition d'équilibre est donc
+\begin{equation}
+	\fF=\fG_{\parallel}.
+\end{equation}
+
+\begin{exercice}
+Redessine la figure \ref{chariordecdeux} avec un plan presque pas incliné. Remarque qu'alors, la force $\fG_{\parallel}$ n'existe presque plus, ce qui correspond à l'intuition comme quoi moins le plan est incliné, moins le chariot a tendance à glisser vers le bas, et moins la force $\fF$ nécessaire à le maintenir en place est grande. 
+\end{exercice}
+
+La figure \ref{fig:Force_decomp} montre plus en détail comment traiter la décomposition de la force de pesanteur qui s'applique à un objet placé sur un plan incliné.
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-0.5,-2)(6.7,4.2)
+%\psframe[linecolor=blue](-0.5,-2)(6.7,4.2)
+	\psset{PointSymbol=none, PointName=none}
+	\pstGeonode(0,0){O}(3,0){OX}(0,1){OY}(0,0){A}		% Le (0,0) du A place le triangle
+	\pstTransHom{O}{OX}{A}{2}{C}				% La longueur du triangle rectangle 
+	\pstTransHom{O}{OY}{C}{4}{B}				% Sa hauteur	
+
+\pstMarquePoint{A}{0.3;180}{$A$}
+\pstMarquePoint{B}{0.3;0}{$B$}
+\pstMarquePoint{C}{0.3;0}{$C$}
+
+	\pstHomO[HomCoef=0.5]{A}{B}[mAB]
+	\pstTransHom{O}{OY}{mAB}{1}{oG}				% Placer le début de G un peu au-dessus du centre
+								%   du plan incliné
+\pstMarquePoint{oG}{0.3;90}{$M$}
+	\pstTransHom{O}{OY}{oG}{-3.5}{bG}				% Place le bout de la gravitation
+	\pstRotation[RotAngle=90]{A}{B}[ipAB]			% Détermine une direction perpendiculaire au plan
+								%   incliné
+	\pstDecompForce{oG}{bG}{A}{B}{A}{ipAB}{bGp}{bGn}
+\psline(A)(B)\psline(B)(C)\psline(C)(A)
+\pstMarqueForce{oG}{bG}{0.3;180}{$\fG$}
+{\psset{linecolor=green,linestyle=dashed}			% Mettre la couleur verte pour les composantes
+\pstMarqueForce{oG}{bGp}{0.3;200}{$\fG_{\parallel}$}
+\pstMarqueForce{oG}{bGn}{0.3;0}{$\fG_{\perp}$}
+}
+{\psset{linecolor=red,linestyle=dotted}
+\pstLineAB[nodesepA=-1.5,nodesepB=-1.5]{bG}{bGn}
+\pstLineAB[nodesepA=-1.5,nodesepB=-1.5]{bG}{bGp}
+}
+\pstMarkAngle{C}{A}{B}{$\alpha$}
+\pstMarkAngle[Mark=MarkHash]{A}{B}{C}{$\beta$}
+\pstMarkAngle[Mark=MarkHash]{bGp}{oG}{bG}{$\beta$}
+\pstMarkAngle{oG}{bG}{bGp}{$\alpha$}
+\end{pspicture}
+\caption{Décomposition d'une force de gravité sur un plan incliné}\label{fig:Force_decomp}
+\end{figure}
+
+Affin d'obtenir la décomposition $\fG=\fG_{\perp}+\fG_{\parallel}$, il faut dessiner quatre lignes : les perpendiculaires et parallèles au plan incliné passant par le début et la fin du vecteur $\fG$. Aux intersections se trouvent les bouts de $\fG_{\perp}$ et $\fG_{\parallel}$. Je laisse à la sagacité de la lectrice ou du lecteur de deviner laquelle est $\fG_{\parallel}$ et $\fG_{\perp}$.
+
+La difficulté est généralement de trouver les normes de $\fG_{\perp}$ et $\fG_{\parallel}$. Pour cela, il faut faire un peu de trigonométrie dans les triangles rectangles formés par $\fG$, $\fG_{\perp}$ et $\fG_{\parallel}$. 
+
+On suppose que la norme de $\fG$ est connue. Comme c'est la force de pesanteur appliquée à un objet, $\| \fG \|=mg$ où $m$ est la masse de l'objet. On suppose aussi que l'on connaît les angles du triangle rectangle $ABC$. Comme il est rectangle, $\beta=90-\alpha$ parce qu'il faut que la somme des angles internes du triangle soit $180$.
+
+Étant donné que $\fG_{\parallel}$ est parallèle à $AB$ et que $\fG$ est parallèle à $BC$ (car la gravitation est toujours verticale), on déduit que l'angle entre $\fG$ et $\fG_{\parallel}$ est égal à~$\beta$.
+
+\begin{exercice}
+Comprendre pourquoi l'angle $\alpha$ noté dans le triangle $M\fG_{\parallel}\fG$ est bien le même angle $\alpha$ que celui à la base du plan incliné. Conseil : dans le même triangle, comprendre l'angle $\beta$.
+\end{exercice}
+
+À partir de là, on déduit que 
+\begin{equation}				\label{eq_Stevinpapa}
+	\| \fG_{\parallel} \|=\| \fG \|\sin\alpha.
+\end{equation}
+Maintenant nous pouvons récrire la condition d'équilibre $\fF=\fG_{\parallel}$ en sachant que $\| G \|=mg$ si $m$ est la masse de l'objet qui se trouve sur le plan incliné,
+\begin{equation}			\label{EqConditionEquilibrePlanIncl}
+	F=G\sin(\alpha)=mg\sin(\alpha).
+\end{equation}
+Cette formule signifie que si nous voulons tenir un chariot en équilibre sur un plan incliné d'un angle $\alpha$, nous devons le tenir avec une force $mg\sin(\alpha)$.
+
+Si nous appliquons une force moins grande, le chariot aura tendance à descendre, et si nous appliquons une force plus importante, nous faisons monter le chariot.
+
+\begin{exercice}
+En considérant des compléments d'angles droits et un peu de trigonométrie, déduire que
+\[ 
+	\| \fG_{\perp} \|=\| \fG \|\cos(\alpha).
+\]
+\end{exercice}
+
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Mouvement uniforme sur un plan incliné}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\label{sss_inclineF}
+
+Une question classique est de savoir la force avec laquelle il faut tirer une masse sur un plan incliné pour que celle-ci avance à vitesse constante. La réponse est simple : la vitesse constante est obtenue avec la même force que l'équilibre. Il s'agit donc de compenser la composante parallèle de la force de gravitation : en utilisant la formule \eqref{eq_Stevinpapa} se rapportant à la figure \ref{fig:Force_decomp}, on trouve
+\begin{equation} \label{eq_expunF}
+	F=mg\sin\alpha=mg\frac{ BC }{ AB }.
+\end{equation}
+Cette équation est la même que notre condition d'équilibre \eqref{EqConditionEquilibrePlanIncl}. Cela est tout à fait normal parce que c'est la force qu'il faut pour contrer la pesanteur. Si l'objet est au repos, il y reste, et si il a une vitesse initiale, il la garde.
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Accélération sur un plan incliné}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Si nous laissons un chariot sur un plan incliné sans y toucher, il subit la composante parallèle de la force de pesanteur, c'est à dire $mg\sin(\alpha)$. Nous sommes donc dans le cas d'un mouvement accéléré dont l'accélération est
+\begin{equation}
+	a=g\sin(\alpha).
+\end{equation}
+Encore une fois, la masse n'apparaît pas.
+
+\section{Gravitation entre corps quelconques}
+%+++++++++++++++++++++++++++++++++++++++
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{La \href{http://fr.wikipedia.org/wiki/Loi_universelle_de_la_gravitation}{formule} que Newton a trouvée}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Il se fait que lorsque deux masses sont en présences, une force les attire (la force de \defe{gravitation}{gravitation}). La principale caractéristique de cette force est que tous les corps, quelles que soient leurs masses se déplacent de la même manière dans un champ de gravitation donné.
+
+Nous allons maintenant déduire une formule pour cette force.
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Dépendance en les masses}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
+En parlant du plan incliné, nous avons déjà vu des choses sur la façon dont la gravitation influence le mouvement des objets sur Terre. Nous allons maintenant étudier cette force plus en détail et voir comment la gravitation décrit les mouvement des planètes.
+
+Encore une fois, c'est la propriété fondamentale du champ de gravitation qui va nous guider.
+
+\begin{idee}
+	Comme mentionné au début du chapitre que tous les objets se déplacent de la même façon dans un champ de gravitation donné. Cette propriété va nous permettre de deviner à quoi doit ressembler l'expression mathématique de la force exercée par un corps de masse $m_1$ sur un corps de masse $m_2$.
+\end{idee}
+
+Considérons un objet de masse $m_1$ et un objet de masse $m_2$. Nous aimerions savoir quelle est la force de gravitation que $m_1$ impose à $m_2$. Si cette force vaut $F$, alors l'accélération de $m_2$ sera $a_2=F/m_2$. Mais la propriété fondamentale de la gravitation nous dit que l'accélération de la masse $m_2$ dans le champ de gravitation de $m_1$ ne dépend pas de $m_2$. Affin que $F/m_2$ ne dépende pas de $m_2$, il faut que $F$ soit proportionnelle à $m_2$. Nous écrivons donc
+\begin{equation}
+	F_{\text{1 sur 2}}=k m_2
+\end{equation}
+où $k$ est encore à fixer. Par symétrie, la force que $m_2$ impose à $m_1$ doit être la même (loi d'action réaction). Mais l'accélération de $m_1$ ne peut pas dépendre de $m_1$, donc
+\begin{equation}
+	F_{\text{2 sur 1}}=k' m_1.
+\end{equation}
+Affin que ces deux expression soient égales, il faut que
+\begin{equation}
+	F_{\text{2 sur 1}}=F_{\text{1 sur 2}}=\alpha m_1 m_2
+\end{equation}
+où $\alpha$ est encore à déterminer. Ce que nous venons de prouver, c'est que la force qu'une masse $m_1$ impose à une masse $m_2$ est proportionnelle au produit $m_1m_2$. Cela est une conséquence nécessaire du fait que le mouvement d'un objet dans un champs de gravitation donné ne dépend pas de la masse de l'objet.
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Dépendance en la distance}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
+Il reste à voir comment la distance entre les deux masses joue. La réponse est que la force diminue comme le carré de la distance~:
+\begin{equation}
+	F=G\frac{ m_1m_2 }{ r^2 }.
+\end{equation}
+La raison en est subtile, mais assez profonde\footnote{Pour l'électromagnétisme, ce sera la même chose.}. 
+
+% C'est pas plus mal de mettre le mot ``profond'' comme un lien vers le théorème de Gauss, ou de Stokes.
+
+\begin{pourquoidonc}
+	Deux masses s'attirent. Mais comment fait le Soleil pour faire savoir aux planètes qu'il existe ? Comment les planètes savent qu'elles sont dans le champ de gravitation du Soleil ?
+
+	Comment une masse fait savoir aux autres qu'elle existe ?
+\end{pourquoidonc}
+Cela est une vaste question à laquelle nous n'allons pas répondre complètement. Nous allons juste amener un minuscule élément de réponse. 
+
+Supposons qu'une masse lance des petites particules\footnote{si tu veux frimer, tu peux les appeler \defe{graviton}{Graviton}.} dans l'espace pour faire savoir qu'elle est là. Une masse un peu plus loin \og verra\fg{} d'autant plus de masse (et donc subira d'autant plus de force de gravitation) qu'elle recevra de ces petites particules.
+
+Cela est à voir comme une lampe émet de la lumière : plus on reçoit de cette lumière, plus on est éclairé. Ici, même combat : plus on reçoit de ces particules de gravitation, plus on subit une grande force.
+
+Supposons qu'une masse émette $1000$ de ces particules. Regarde la figure \ref{LabelFiggraviton} pour te donner une idée de ce qu'il se passe quand on s'éloigne de la source.
+\newcommand{\CaptionFiggraviton}{Les petites particules de gravitation. Plus on s'éloigne, plus elles s'espacent les unes des autres}
+\input{Fig_graviton.pstricks}
+
+Quand on est proche du centre, les particules sont encore très proches les unes des autres. Une autre masse qui serait là en verra donc beaucoup. Si on est plus loin, la densité de ces particules diminue, et une masse située plus loin en verra moins. 
+
+Au fait, est-ce que tu te souviens que la surface d'une sphère de rayon $r$ est donnée par la formule
+\begin{equation}
+	S(r)=4\pi r^2,
+\end{equation}
+ou bien tu avais déjà oublié ? Bon, ben maintenant tu le sais. Supposons donc que notre masse ait envoyé $1000$ particules. Quelle est la densité de ces particules lorsqu'on est à une distance de $\unit{1}{\meter}$ ? Il y en a $1000$ sur une surface de $4\pi$, donc la densité est de
+\begin{equation}
+	\rho(1)=\frac{ 1000 }{ 4\pi }.
+\end{equation}
+Plus généralement, si on est à une distance $r$, la densité des particules de gravitation sera de 
+\begin{equation}
+	\rho(r)=\frac{ 1000 }{ 4\pi r^2 }=\frac{ 1000 }{ 4\pi }\frac{1}{ r^2 }.
+\end{equation}
+Le seul point à retenir est que cette densité est d'autant plus petite que $r$ est grand, et que la densité décroit comme $\frac{1}{ r^2 }$.
+
+Nous en déduisons que la gravitation est d'autant plus petite que le \emph{carré} de la distance est petit. D'où la formule
+\begin{equation}			\label{EqFormGravScal}
+	F=G\frac{ m_1m_2 }{ r^2 }.
+\end{equation}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Petite vérification}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Qui dit force dit accélération. Mettons qu'une planète de masse $m$ soit dans le champ de gravitation d'une étoile de masse $M$. Quelle est l'accélération qui va se produire ?
+
+La force qui attire la planète vers l'étoile est 
+\begin{equation}
+	F=G\frac{ Mm }{ r^2 }.
+\end{equation}
+L'accélération de la planète est cette force divisée par la masse de la planète, c'est à dire
+\begin{equation}
+	a=\frac{ F }{ m }=G\frac{1}{ m }\frac{ Mm }{ r^2 }=G\frac{ M }{ r^2 }.
+\end{equation}
+Il est à note que cette accélération \emph{dépend} de la masse de l'étoile, mais \emph{ne dépend pas} de la masse de la planète parce que les $m$ se sont simplifiés ! Ceci est conforme à notre hypothèse comme quoi le mouvement dans un champ de gravitation donné ne dépends pas de la masse de l'objet qui subit la gravitation de l'autre. Cela est un des faits les plus profonds de toute l'histoire de la physique\footnote{et donc de l'histoire des sciences et donc de l'histoire de l'humanité.}.
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-1,-1)(5,4)
+	%\psframe[linecolor=blue](-1,-1)(5,4)
+\psset{PointSymbol=none, PointName=none}
+   \pstGeonode(0,0){A}(4,3){B}
+	\pscircle[fillstyle=solid,fillcolor=lightgray](A){0.5}
+	\pscircle[fillstyle=solid,fillcolor=lightgray](B){0.8}
+
+	\pstMarquePoint{A}{0.7;-90}{$m_1$}
+	\pstMarquePoint{B}{1;-90}{$m_2$}
+
+   \pstHomO[HomCoef=0.3]{A}{B}[F1]
+   \pstHomO[HomCoef=0.3]{B}{A}[F2]
+
+	\pstMarqueForce{A}{F1}{0.3;90}{$\overrightarrow{F}_{21}$}
+	\pstMarqueForce{B}{F2}{0.3;-90}{$\overrightarrow{F}_{12}$}
+
+\end{pspicture}
+\caption{Les forces qui attirent les deux masses l'une vers l'autre. Tu noteras que les deux forces ont la même intensité, et ont une direction opposée. Ceci, en accord avec le principe d'action-réaction.}
+\end{figure}
+
+
+À ce point, nous devons faire quelque remarques.
+\begin{itemize}
+
+\item
+La loi donnée n'est valable que pour des masses ponctuelles. On peut prouver que cette loi est également valable pour des masses sphériques quand on suppose que toute la masse se trouve au centre. Ce dernier cas est le cas des planètes.
+
+\item
+Implicitement, cette loi suppose une action à distance et instantanée. Cela pose la question de savoir comment la force est transportée ? Comment une masse \og sait\fg{} qu'une autre masse existe plus loin ? Ces questions ne sont pas encore réglées aujourd'hui, bien que la théorie de la relativité générale ait bien fait avancer la question.
+
+\item
+La gravitation est la première force a avoir été étudiée en détail. Son étude a commencé avec Newton qui en a donné une très bonne formulation, bien avant que l'on ait découvert l'électricité ou le magnétisme. Paradoxalement, elle est encore aujourd'hui la force la plus mystérieuse. En 1915, Einstein a proposé la relativité générale comme théorie de la gravitation. Cette nouvelle théorie est bien plus précise que celle de Newton, mais certaines questions demeurent. Pourquoi le mouvement dans un champ de gravitation est-il indépendant de la masse, pourquoi la gravitation est-elle tellement plus faible que l'électricité ? Pire, de nouveaux problèmes surviennent, par exemple la théorie prévoit des trous noirs, qui sont une faille dans la cohérence mathématique de la théorie.
+
+Bref, en 2009, nous pouvons dire que nous ne comprenons encore pas grand chose à la gravitation.
+
+\end{itemize}
+
+\subsection{Le poids}		\label{SubSecPoidsGr}
+%--------------------
+
+On a déjà parlé du poids au point \ref{SubSubSecPoids}. À ce moment nous avons dit que le poids d'un objet était la force de gravitation qui s'applique à un objet. Nous avons en particulier parlé du poids sur Terre. Nous allons maintenant voir comment la loi de Newton décrit le poids d'un objet sur Terre.
+
+Nous notons $r_t$ le rayon de la Terre et par $M_t$ la masse de la Terre. Comme la Terre est une sphère, nous pouvons supposer que toute sa masse est en son centre, c'est à dire à une distance de $r_T$ en-dessous de nos pieds (à peu près \unit{6500}{\kilo\meter}). Une personne qui a une masse $m$ qui marche sur Terre subit la force de gravitation d'une masse $M_t$ située à une distance $r_t$, c'est à dire
+\[ 
+  P=G\frac{ M_tm }{ r_t^2 }.
+\]
+Tant que l'on suppose que la Terre est bien sphérique, on voit sur cette formule que la force de gravitation ne dépend pas de l'endroit où l'on est sur Terre. Tout le monde subit la même force. L'accélération subie, que l'on note $g$ dans le cadre de la gravitation, vaut $g=P/m$. Nous trouvons donc que
+\[ 
+  g=\frac{1}{ m }\left( G\frac{ M_tm }{ r_t^2 }\right)=G\frac{ M_t }{ r_t^2 }.
+\]
+Il est \emph{très} important de remarquer que $m$ s'est simplifié ! La réponse ne dépend pas de la masse. En fait, la réponse dépend de $G$ qui est une constante universelle (qui est la même partout dans l'univers), et de la masse et le rayon de la Terre, qui sont des caractéristiques de la Terre. En résumé :
+\begin{quote}
+Tous les objets tombent sur Terre avec la même accélération. Cela est dû au fait que la masse a une double signification.
+\begin{description}
+\item[Masse inertielle] La masse d'un objet rentre dans la formule $F=ma$. Dans cette formule, la masse a comme fonction de résister à une force : plus la masse est grande, moins l'accélération sera grande.
+\item[Masse pesante] La masse du même objet rentre dans la formule de la force de gravitation : $F=GMm/r^2$. Dans cette formule, la masse a comme fonction d'attirer les autres masses : plus un objet est massif, plus il attirera les autres objets. 
+\end{description}
+\end{quote}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Diminution du poids avec la distance}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Que se passe-t-il si la personne se promène au sommet de l'Éverest ? Cette montagne fait neuf kilomètres de haut. Au lieu d'être à $6500$ kilomètres du centre de la Terre, cette personne est donc à $6509$ kilomètres. Le rapport de son poids au sommet et de son poids niveau de la mer vaut :
+\[ 
+  \frac{ GM_tm/(6509)^2 }{ GM_tm/(6500)^2 }=0.997.
+\]
+C'est à dire qu'en montant au sommet de l'Éverest, certes notre poids diminue, mais on conserve quand même $99.7\%$ de notre poids.
+
+%http://fr.wikipedia.org/wiki/Station_spatiale_internationale
+Un adage dit que dans l'espace, on est en apesanteur, c'est à dire qu'on est tellement loin de la Terre que l'on ne sent plus la gravitation. Du coup, on flotte. Vérifions ça. Que vaut le poids d'un ou d'une astronaute de masse $m$ dans la \href{http://fr.wikipedia.org/wiki/Station_spatiale_internationale}{station spatiale internationale} ? Cette dernière orbite à une altitude de $\unit{390}{\kilo\meter}$. Le rapport de poids d'un astronaute au sol ou dans la station vaut :
+\[ 
+  \frac{ (6500)^2 }{ (6500+390)^2 }=0.889.
+\]
+
+\begin{probleme}
+	Pourquoi est-ce que les astronautes semblent ne pas subir la pesanteur, alors qu'ils subissent encore en réalité presque $90\%$ de la gravitation qu'ils subissent sur Terre ?
+
+	Pourquoi la station spatiale ne tombe pas ? Pourquoi la Terre ne tombe pas sur le Soleil ?
+\end{probleme}
+
+
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Mise en orbite}
+%---------------------------------------------------------------------------------------------------------------------------
+\label{SubSecMiseEnOrbite}
+Pourquoi la Terre ne tombe-t-elle pas sur le Soleil ? 
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Première explication : force centrifuge}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Notons $m$ la masse de la Terre, $M$ celle du Soleil et $R$, la distance entre la Terre et le Soleil. Ce qui est vrai, c'est que la Terre subit une force 
+\begin{equation}
+	F_g=G\frac{ Mm }{ R^2 }
+\end{equation}
+qui l'attire vers le Soleil.
+
+Mais tu sais aussi que la Terre tourne autour du Soleil, et subit donc une force centrifuge qui l'éloigne du Soleil. Le truc vraiment miraculeux est que la Terre tourne exactement à la bonne vitesse pour que cette force centrifuge compense la force de gravitation, de telle manière à ce que l'orbite de la Terre soit stable.
+
+Peut-on savoir à quelle vitesse elle tourne ? Ce n'est pas très difficile : il suffit d'égaler la force centrifuge avec la force de gravitation :
+\begin{equation}
+	\frac{ mv^2 }{ R }=\frac{ GmM }{ R^2 }.
+\end{equation}
+Nous pouvons isoler $v$ en fonction des autres paramètres :
+\begin{equation}			\label{EqVitesseRMG}
+	v=\sqrt{\frac{ GM }{ R }}.
+\end{equation}
+Tu noteras encore une fois que $m$ s'est simplifié. Nous verrons dans quelque minutes pourquoi ce fait sauve la vie des astronautes.
+
+La formule \eqref{EqVitesseRMG} permet aussi de savoir $M$ en fonction des autres paramètres :
+\begin{equation}
+	M=\frac{ Rv^2 }{ G }.
+\end{equation}
+Cette formule est assez intéressante parce que si on connais la constante $G$, on peut savoir la masse du Soleil rien qu'en mesurant le rayon de l'orbite terrestre et la vitesse de rotation de la Terre autour du Soleil. En particulier, on peut savoir la masse du Soleil sans devoir d'abord mesurer la masse de la Terre.
+
+Sur la figure \ref{LabelFigOrbiteCentrifuge}, la force centrifuge est donnée en vert, tandis que la force de gravitation est donnée en cyan. Il faut choisir la vitesse de mise en orbite de telle manière à ce que ces deux forces s'annulent.
+\newcommand{\CaptionFigOrbiteCentrifuge}{L'art de la mise en orbite est de donner la vitesse exacte qu'il faut pour que la force de gravitation soit exactement compensée par la force centrifuge.}
+\input{Fig_OrbiteCentrifuge.pstricks}
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{La simplification sauve la vie des astronautes}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+La formule \eqref{EqVitesseRMG} ne contient pas $m$. Cela est une chance parce que les astronautes n'ont pas la même masse que la station dans laquelle ils vivent. Si la vitesse de mise en orbite dépendait de la masse, il faudrait faire tourner les astronautes à une vitesse différente de la station ! 
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Seconde explication : la Terre \og rate\fg{} le Soleil}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+

@@ -1,0 +1,65 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-0.7,-1)(4.7,2.5)
+  \psset{PointSymbol=none, PointName=none}
+\prefigplincl						% La position des points est contenue dans cette macro
+							%  qui se trouve en principe juste au-dessus.
+   \psline(A)(C)
+   \psline(C)(B)
+   \psline(A)(B)
+  
+   \pstCircleAB{Oa}{Ob}
+   \pstCircleAB{Pa}{Pb}
+
+%   \psline(Cg)(Cgh)
+%   \psline(Cgh)(Cdh)
+%   \psline(Cd)(Cdh)
+%   \psline(Cg)(Cd)
+
+
+\pstDecompForce{Cc}{bG}{Cc}{bR}{A}{B}{Gpe}{Gpa}
+\pstSymO{Cc}{Gpa}[Fr]
+
+   \pstMarqueForce{Cc}{bG}{0.3;0}{$\fG$}
+
+{\psset{linecolor=red}
+   \pstMarqueForce{Cc}{Gpa}{0.5;110}{$\fG_{\parallel}$}
+}
+
+{\psset{linecolor=green}
+   \pstMarqueForce{Cc}{Fr}{0.3;90}{$\fF$}
+}
+\end{pspicture}
+\caption{Certaines forces qui s'appliquent au cycliste.} \label{fig_cylccorr}
+\end{figure}
+
+\begin{corrige}{028}
+Le cycliste et le vélo sont dans la même situation qu'une voiture\footnote{Sauf que le cycliste n'aura pas de comptes à rendre aux générations futures pour ses émissions de $CO_2$.} dont le moteur fournit la force $F$ cherchée pour gravir à vitesse constante le plan incliné $AB$, voir figure \ref{fig_cylccorr}. 
+
+Comme le cycliste avec son vélo font $\unit{80+3=83}{\kilo\gram}$, on a que
+\[
+ \| \fG \|=\unit{9.81\cdot 83=814}{\newton}.
+\]
+ D'autre part, $\sin(\widehat{BAC})=7/100$. Maintenant, il faut se souvenir de ce qu'on avait dit à propos de la décomposition de la force de pesenteur $\fG$ sur un plan incliné :
+\[ 
+  \| \fG_{\parallel}\|=\| \fG \|\cdot\sin(\widehat{BAC}) =\unit{57}{\newton}. 
+\]
+C'est cette force-là qui doit être compensée par les muscles du courageux cycliste. Il devra donc fournir une force de \unit{57}{\newton}.
+
+
+Il existe une {\bf autre méthode} pour résoudre cet exercice. Le principe est que le cycliste produit une force qui travaille. Ce travai sert à d'une part à l'accélérer (gain d'énergie cinétique) et d'autre part à le monter le long du plan incliné (gain d'énergie potentielle). Ici, on a supposé que la vitesse était constante, c'est à dire que tout le travail passe à faire gagner de l'énergie potentielle.
+
+Étudions ce qui se passe lorsque le cycliste parcours le chemin $AB$. Si $AB=\unit{100}{\meter}$, alors $BC=\unit{7}{\meter}$ et il monte de $7\meter$, c'est à dire qu'il gagne $E_p=mgh=\unit{83\cdot 9.81\cdot 7=5700}{\joule}$. 
+
+Ce faisant, le sportif à deux roues aura fait un traval $W=F\cdot d=100F$. Quand on égalise ce travail au gain d'énergie potentielle, on trouve $100F=5700$, ce qui permet de conclure $F=\unit{57}{\newton}$.
+
+En ce qui concerne la puissance, il suffit d'utilier la formule sympa \eqref{eq_puissFv}. Nous avons une force de \unit{57}{\newton} qui se déplace à la vitesse constante de \unit{3}{\meter\per\second}. La puissance est donc de $P=\unit{57\cdot 3=171}{\watt}$.
+
+
+\end{corrige}

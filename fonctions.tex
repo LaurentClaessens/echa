@@ -1,0 +1,537 @@
+\section{Quelque exemples de fonctions}
+%+++++++++++++++++++++++++++++++++++++++++
+
+Dans ce chapitre, nous ne parleront que de fonctions définies sur l'ensemble des réels $\eR$ et qui prennent des valeurs réelles. Une \defe{fonction}{Fonction} est donc un truc qui prends un nombre et qui en retour donne un nombre.
+
+\begin{exemple}
+ Considérons une dictée au cours de Français cotée sur $10$ avec un point par faute. Si j'ai deux fautes, j'aurai $8/10$, s j'ai $7$ fautes, j'ai $3/10$ etc. La fonction \og les points que j'ai\fg{} est une fonction de la variable \og le nombre de fautes commises\fg{} qui est définie par
+\[ 
+  \mathrm{Points}(n)=10-n
+\]
+où $n$ est le nombre de fautes. Cette fonction prends un nombre entier (les fautes) et rends un nombre entier (les points). Nous notons ça
+\[ 
+  \mathrm{Points}\colon \eN\to \{ 0,1,2,3,4,5,6,7,8,9,10 \}.
+\]
+Cette fonction est représentée à la figure \ref{Fig_Points_dictee}.
+
+\begin{figure}[ht]
+\begin{center}
+\begin{pspicture}(-0.7,-1)(11,11)
+	\psset{PointSymbol=none, PointName=none}
+  \psaxes[dotsep=1pt]{->}(0,0)(0,0)(10.6,10.6)
+  %\psframe[linecolor=blue](-0.7,-1)(11,11)
+	\psset{PointSymbol=*}
+
+	\multido{\r=0+1}{11}{%
+		\FPeval{blabla}{10-\r}
+		\pstGeonode(\r,\blabla){A\r}	
+				}	% Fin du multido
+
+\end{pspicture}
+\end{center}
+\caption{Le graphe des points que tu as en fonction du nombre de fautes}\label{Fig_Points_dictee}
+\end{figure}
+
+Cette fonction comporte encore quelque surprises dont on parlera plus tard.
+\label{ExPointsDom}
+\end{exemple}
+
+\begin{exemple}
+Tu te souviens de ton cours sur le mouvement rectiligne uniforme ? Si un cycliste se trouvant à \unit{3}{\kilo\meter} de chez lui rentre à la vitesse de \unit{5}{\meter\per\second}, la distance (en mètres) entre le vélo et la maison du cycliste sera donnée par
+\[ 
+  d(t)=3000-5t.
+\]
+Cette fonction $d$ prend un nombre réel $t$ et donne un autre nombre réel $d(t)$. Contrairement à la fonction des points d'une dictée, cette fonction-ci accepte de manger n'importe quel réel, et pas seulement des entiers.
+\end{exemple}
+
+\begin{exemple}
+Allons-y pour de la physique un peu plus brutale. Un mobile de masse $m$ qui part du repos est tiré par une force $F$. Quelle distance parcourt le mobile durant un temps $t$ ?
+
+Par les formules classique de physique, l'accélération du mobile vaut $a=F/m$ et la distance parcourue en un temps $t$ sous une accélération $a$ vaut $at^2/2$. Ici,
+\[ 
+  d(t)=\frac{ Ft^2 }{ 2m }.
+\]
+En voila une belle fonction a deux paramètres. Discutons un peu. D'après la situation physique, on sait que l'on ne considère que des temps positifs; la fonction $d$ est donc une fonction définie sur $\eR^+$. La masse $m$ est toujours positive, par contre la force $F$ peut être positive ou négative.
+\begin{description}
+\item[Le cas où la force est positive] Si la force est positive, alors $d(t)$ sera toujours positif, et $d$ est donc une fonction $d\colon \eR^+\to \eR^+$.
+\item[Le cas où la force est négative] Si la force est négative, alors $d(t)$ sera toujours négatif, et $d$ est une fonction $d\colon \eR^+\to \eR^-$.
+\end{description}
+\label{ExemMob}
+\end{exemple}
+
+\begin{figure}[ht]
+\begin{center}
+	\psset{xunit=2cm,yunit=0.5cm}
+\begin{pspicture}(-0.7,-11)(5.5,11)
+	\psset{PointSymbol=none, PointName=none}
+	%\psframe(-0.7,-1)(5.5,11)
+  \psaxes[dotsep=1pt,Dy=2]{->}(0,0)(0,-10)(5,10)
+
+	\def\Fn{x 2 exp 2 div}	
+	\def\Gn{x 2 exp 2 div -1 mul}	
+	\psplot[linecolor=red]{0}{4}{\Fn}
+	\psplot[linecolor=green]{0}{4}{\Gn}
+
+\end{pspicture}
+\end{center}
+\caption{En rouge : l'avancée en fonction du temps d'un mobile tiré avec une force positive, et en vert le cas de la force négative. La première prends des valeurs positives ou nulles tandis que la seconde prends des valeurs négatives ou nulles. Toute deux sont définies sur les réels positifs ou nuls.}
+\end{figure}
+
+\begin{exemple}
+Reprenons le mobile de l'exemple précédent, en supposant maintenant que $F>0$ et posons la question inverse : combien de temps il lui faut pour parcourir la distance $d$ ? La réponse est manifestement
+\[ 
+  t(d)=\sqrt{ \frac{ 2md }{ F } }.
+\]
+Comme la force est positive, la condition d'existence de cette racine carré est $d>0$. Et encore heureux ! avec une force positive, on ne fait qu'avancer, et seules les distances positives ont un sens physique. Cette fonction $t$ de la distance n'est donc définie que pour $d>0$, et on note $t\colon \eR^+\to \eR^+$.
+\end{exemple}
+\begin{figure}[ht]
+\begin{center}
+	%\psset{xunit=2cm,yunit=0.5cm}
+\begin{pspicture}(-0.7,-1)(10.5,6)
+	\psset{PointSymbol=none, PointName=none}
+	%\psframe(-0.7,-1)(10.5,6)
+  \psaxes[dotsep=1pt]{->}(0,0)(0,-0.3)(10,5.3)
+
+	\def\Fn{2 x mul sqrt}	
+	\psplot[linecolor=red]{0}{9}{\Fn}
+
+\end{pspicture}
+\end{center}
+\caption{Le temps qu'il faut pour parcourir une distance quand le mobile est tiré avec une force constante.}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+   \section{Addition et multiplication de fonctions}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Nous allons maintenant définir quelque raccourcis de notations. D'abord, quand on parle de la fonction $x\to f(x)$, on peut simplement parler de la fonction $f$. Ensuite, quand on a une fonction $f$, on peut la multiplier par un nombre :
+\begin{equation}		\label{Eqdefalphaf}
+ (\alpha f)(x)=\alpha f(x).
+\end{equation}
+Nous pouvons donc maintenant parler de la fonction $(\alpha f)$. Le membre de gauche de la définition \eqref{Eqdefalphaf} représente la fonction $(\alpha f)$ évaluée au point $x$, tandis que le membre de droite représente le nombre $f(x)$ multiplié par $\alpha$. Autrement dit, nous définissons $(\alpha f)$ comme étant la fonction qui au nombre $x$ associe le nombre $\alpha f(x)$.
+
+Dans le même ordre d'idée, quand $f$ et $g$ sont deux fonctions, nous définissons $(f+g)$ comme étant la fonction qui à $x$ fait correspondre le nombre $f(x)+g(x)$ :
+\begin{equation}
+(f+g)(x):=f(x)+g(x).
+\end{equation}
+Et en ce qui concerne la multiplication de deux fonctions, nous faisons de même :
+\begin{equation}
+(fg)(x):=f(x)g(x).
+\end{equation}
+Tout ceci semble très raisonnable.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+   \section{Domaine d'une fonction}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Par définition, lorsqu'on a une fonction $f\colon x\mapsto f(x)$ à variable réelle $x$, on appelle \defe{domaine de définition}{Domaine de définition} l'ensemble des réels sur lesquels $f$ est définie. On le note $\dom f$.
+
+
+Dans l'exemple \ref{ExPointsDom}, la fonction $\mathrm{Points}$ n'est définie que pour les entiers positifs : le nombre de fautes dans une dictée est toujours positif et entier. Donc on note
+\[ 
+  \dom\mathrm{Points}=\eN.
+\]
+
+Prenons maintenant quelque exemples plus mathématiques. Quels sont les cas où une fonction peut ne pas être définie ? Il y en a essentiellement deux pour l'instant (mais d'autres cas viendront) :
+\begin{itemize}
+\item dénominateur nul,
+\item nombre strictement négatif sous la racine.
+\end{itemize}
+Donc dès que tu vois une fraction, tu exclu du domaine ce qui annule le dénominateur, et dès que tu vois une racine, tu exclu ce qui rends négative l'expression sous la racine.
+
+\begin{exemple}
+Prenons la fonction $f(x)=\sqrt{2-x}$. On a une racine carré, donc on demande d'exclure du domaine les $x$ tels que $2-x<0$.
+\[ 
+  \dom f=\{ x\in\eR\tq 2-x\geq 0 \}=\{ x\in\eR\tq x\leq 2 \}=]\infty,2].
+\]
+\end{exemple}
+
+\begin{exemple}
+Soit la fonction $f(x)=2x^3-1x^2+4x+8$. Pas de racines, pas de dénominateurs. Tout est bon.
+\[ 
+  \dom f=\eR.
+\]
+\end{exemple}
+
+Quand on a des fonctions qui contiennent plusieurs fractions ou racines, il faut bien poser toutes les conditions. Quelque exemples :
+\begin{align}
+\frac{ x-3 }{ x+1 }			&&\text{demande}	&&x+1&\neq 0,\\
+\frac{ \sqrt{x-3} }{ x+1 }		&&\text{demande}	&&x+1&\neq 0	&\text{et}	&&x-3&\geq 0,\\
+\sqrt{\frac{ x-3 }{ x+1 }}		&&\text{demande}	&&x+1&\neq 0	&\text{et}	&&\frac{ x-3 }{ x+1 }&\geq 0,\\
+\sqrt{x-3}+\sqrt{x+1}			&&\text{demande}	&&x-3&\geq 0	&\text{et}	&&x+1&\geq 0.
+\end{align}
+Donc à partir de maintenant, à chaque fois que tu vois $A/B$, tu sursaute et tu t'exclames \og $B\neq 0$ !\fg. Et à chaque fois que tu vois $\sqrt{A}$, tu sursaute et t'exclames \og $A\geq 0$ !\fg. Et cela même si $A$ ou $B$ sont des fonctions très compliquées.
+
+Attention : les racines \emph{carré} posent un problème de conditions d'existence et donc de domaine. Pas les racines cubiques. La figure \ref{FigCarrEtCubes} explique pourquoi.
+
+\newcommand{\CaptionFigCarrEtCubes}{En rouge, la fonction $x\mapsto x^2$. Comme tu le vois, seuls les réels positifs sont atteints, donc il n'est pas possible de chercher un réel dont le carré vaut $-2$ par exemple; par conséquent $\sqrt{-2}$ n'existe pas. En cyan, la fonction $x\mapsto x^3$. Cette fois, tous les réels sont atteints. Tu vois qu'il existe un réel dont le cube vaut $-2$ (c'est environ $-1.26$), et donc $\sqrt[3]{-2}$ existe.}
+\input{fig_CarrEtCubes.pstricks}
+
+Nous avons donc que si $h(x)=\sqrt[3]{f(x)}$, alors $\dom h=\dom f$. En particulier :
+\begin{align}
+\sqrt[3]{\frac{ x-3 }{ x+1 }}		&&\text{demande}	&&x+1&\neq 0\\
+\frac{ \sqrt[3]{x-3} }{ \sqrt[3]{x+1} }	&&\text{demande}	&&x+1&\neq 0\\
+\end{align}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+					\section{Fonctions croissantes et décroissantes}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Une fonction est \defe{strictement croissante}{Fonction!strictement croissante} sur l'intervalle $[a,b]$ si pour tout $x$, $y\in [a,b]$, 
+\begin{equation}
+	f(y)>f(x)
+\end{equation}
+dès que $y>x$.
+
+\section{L'application réciproque}
+%+++++++++++++++++++++++++++++++++
+
+Lorsque tu considères une fonction $f\colon \eR\to \eR$, une des question que tu peux te poser, c'est de savoir pour quelles valeurs de $x$, le nombre $f(x)$ est égal à $5$ par exemple. Tu cherches donc à déterminer l'ensemble
+\[ 
+  \{ x\in\dom f\tq f(x)=5 \}.
+\]
+Cet ensemble est ce que nous notons $f^{-1}(5)$. Si $f(x)=x^2$, nous avons 
+\[ 
+f^{-1}(5)=\{ -\sqrt{5},\sqrt{5} \}.
+\]
+ Tu remarques immédiatement que \emph{la réciproque d'une fonction n'est pas une fonction} parce que le résultat de la réciproque n'est pas un seul nombre, mais tout un ensemble de nombres.
+
+Parfois, il arrive que $f^{-1}(x)$ soit un seul nombre. Par exemple si $c(x)=x^3$, alors $c^{-1}(27)=\{ 3 \}$. Cette fonction $x^3$ est tout à fait particulière parce que l'application réciproque donne \emph{toujours} un seul nombre :
+\[ 
+  c^{-1}(y)=\{ \sqrt[3]{y} \}.
+\]
+Dans ce cas, et dans ce cas seulement, nous dirons que l'on a une \emph{fonction inverse}. La racine cubique est l'inverse du cube. Il est pour l'instant hors de question de dire que la racine carré est l'inverse du carré.
+
+\begin{definition}
+L'\defe{application réciproque}{Application réciproque} de la fonction $f\colon \eR\to \eR$ est l'application définie par
+\[ 
+  f^{-1}(y)=\{ x\in\dom f\tq f(x)=y \}.
+\]
+Lorsque pour tout $y\in\eR$ l'ensemble $f^{-1}(y)$ est un singleton, alors on dit que $f^{-1}$ est la \defe{fonction inverse}{Fonction inverse} de $f$.
+\end{definition}
+
+\subsection{Remarques sur les domaines}
+%--------------------------------------
+
+Quel est le domaine de $f^{-1}$ ? Son domaine est $\eR$ tout entier, et non juste l'image de $f$ comme on pourrait le penser. En effet si $f$ est la fonction $x\mapsto x^2$, on pourrait se dire que ça n'a pas de sens de chercher $f^{-1}(-4)$ vu que $f$ ne prend jamais la valeur $-4$. Mais en fait oui, ça a un sens :
+\[ 
+  f^{-1}(-4)=\emptyset.
+\]
+C'est l'ensemble vide et puis c'est tout.
+
+La première subtilité à remarquer, c'est que l'image de l'application réciproque sera toujours des parties du domaine de la fonction.
+
+La seconde subtilité, c'est que c'est quand même frustrant de ne pas pouvoir dire que la racine carré est l'inverse du carré. Admire la mauvaise foi des mathématiciens quand ils veulent que quelque chose \href{http://fr.wikipedia.org/wiki/Existentialisme}{existe} alors que ça n'existe pas : nous allons juste fermer l'\oe ui gauche et pan, la racine carré va devenir l'inverse du carré. Voyons ça.
+
+D'habitude la fonction carré se définit par
+\begin{equation}
+\begin{aligned}
+ f\colon \eR&\to \eR \\ 
+   x&\mapsto x^2. 
+\end{aligned}
+\end{equation}
+Mais ce que nous allons faire, c'est fermer l'\oe uil gauche, c'est à dire oublier $\eR^-$ et définir
+\begin{equation}
+\begin{aligned}
+ f\colon \eR^+&\to \eR \\ 
+   x&\mapsto x^2. 
+\end{aligned}
+\end{equation}
+Maintenant le domaine de $f$ est les réels positifs, et nous avons que 
+\[ 
+  f^{-1}(4)=\{ x\in\dom f\tq f(x)=6 \}=\{ \sqrt{6} \}.
+\]
+Crak ! On n'a plus que des singletons \ldots ah non pas tout à fait. Il reste encore des ensembles vides : $f^{-1}(-7)=\emptyset$. Qu'à cela ne tienne : on refait le coup de la mauvaise foi et on restreint le domaine de $f^{-1}$ aux réels positifs.
+ 
+Finalement la racine carré est l'inverse du carré au sens que
+\begin{equation}
+\begin{aligned}
+ \sqrt{\phantom{x}}\colon \eR^+&\to \eR \\ 
+   x&\mapsto \sqrt{x} 
+\end{aligned}
+\end{equation}
+est la restriction aux positifs de l'application réciproque de la restriction du carré à $\eR^+$. Tu peux méditer cette phrase.
+
+Et maintenant nous allons nous permettre de parler d'\emph{applications réciproques} à tors et à travers. À chaque fois que nous allons dire \og application réciproque\fg{} ou \og image inverse\fg, nous allons sous-entendre que nous prenons toutes les restrictions de tout ce qu'il faut. C'est une tare commune chez les mathématiciens que de donner des définitions très précises et très subtiles pour immédiatement les oublier et sous-entendre 1000 trucs derrière chaque mot quand ils parlent. Cependant, remarque importante, affin de ne pas faire de fautes, quand nous énonçons un théorème et quand nous le démontrons, nous ne nous permettrons aucun abus de langage; les mots seront utilisés dans le sens exact de leur définitions. Cela est tout l'art de la mathématique : il faut pouvoir penser et parler de façon souple, et puis énoncer et démontrer de façon rigide.
+
+\begin{remark}
+Dans certains livres de math, l'application réciproque de $f$ est directement définie comme étant restreinte à l'image de $f$. Cela fait que l'ensemble vide n'est jamais obtenu. Nous n'avons pas tenu à procéder de cette manière parce qu'il est souvent plus poétique de dire 
+\[ 
+  f^{-1}(a)=\emptyset
+\]
+que de dire \og l'équation $f(x)=a$ n'a pas de solutions\fg. En définissant la réciproque comme nous le faisons, résoudre une équation revient toujours à trouver la réciproque d'une fonction, même quand l'équation n'a pas de solution.
+\end{remark}
+
+
+\section{Maximum, supremum et majoration de fonctions}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\section{Le second degré}
+%+++++++++++++++++++++++++
+
+%http://fr.wikiversity.org/wiki/Cours_de_mathématiques_de_première_STI/Fonctions_polynômes_du_second_degré_(ou_trinômes)
+Nous allons maintenant nous intéresser à la fonction donnée par le \href{http://fr.wikiversity.org/wiki/Cours_de_mathématiques_de_première_STI/Fonctions_polynômes_du_second_degré_(ou_trinômes)}{trinôme} $f(x)=ax^2+bx+c$. La figure \ref{figExposi} montre quelque exemples de graphes dont la concavité est tournée vers le haut. Les graphes se distinguent les uns des autres par leur largeur, et la positon de leur sommet.
+
+\begin{figure}[ht]
+\centering
+\subfigure[La fonction $f(x)=3x^2$ en vert est moins large que la fonction $x\mapsto x^2$ en bleu.]{%
+\begin{pspicture}(-3,-2)(3.2,4.2)
+  \psaxes[dotsep=1pt]{->}(0,0)(-3,-2)(3.2,4.2)
+	%\psframe[linecolor=yellow](-3.2,-2)(3.4,4.2)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{x 2 exp}
+	\def\Gn{x 2 exp 3 mul}
+	\psplot[linecolor=blue]{-2}{2}{\Fn}
+	\psplot[linecolor=green]{-1}{1}{\Gn}
+\end{pspicture}\label{FigExposia}
+}
+%
+\subfigure[La fonction $x\mapsto x^2-x+1$ en vert est simplement décalée vers le haut par rapport à la fonction $x^2-x$ en bleu]{%
+\begin{pspicture}(-3,-2)(3.2,4.2)
+  \psaxes[dotsep=1pt]{->}(0,0)(-3,-2)(3.2,4.2)
+	%\psframe[linecolor=yellow](-3.2,-2)(3.4,4.2)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{x 2 exp x sub 1 sub 1 add}
+	\def\Gn{x 2 exp x sub 1 sub}
+	\psplot[linecolor=green]{-1.5}{2.5}{\Fn}
+	\psplot[linecolor=blue]{-1.5}{2.5}{\Gn}
+\end{pspicture}\label{FigExposib}
+}
+%
+\caption{Quelque exemples de graphe de fonctions du type $f(x)=ax^2+bx+c$. Sur cette figure, tu remarqueras que les concavités sont tournées vers le haut, et que comme par hasard, le terme en $x^2$ apparaît positivement.}\label{figExposi}
+\end{figure}
+
+La figure \ref{figExmNegSegde} montre des exemples de fonctions dont la concavité est tournée vers le bas. Encore une fois, les graphes se distinguent les uns des autres par leur largeur, et la position de leur sommet.
+
+
+%\begin{comment}
+\begin{figure}[ht]
+\centering
+\subfigure[La fonction $x\mapsto -x^2$]{%
+\begin{pspicture}(-2,-4)(2,1.2)
+  \psaxes[dotsep=1pt]{->}(0,0)(-2,-4)(2,1.2)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{x 2 exp -1 mul}
+	\psplot[linecolor=green]{-2}{2}{\Fn}
+\end{pspicture}
+}
+%
+\subfigure[La fonction $x\mapsto -\frac{ x^2 }{ 18 }+\frac{ 1 }{ 2 }$]{%
+\begin{pspicture}(-4,-2.5)(4,1.2)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{1 18 div -1 mul x 2 exp mul 1 2 div add}
+	\psplot[linecolor=cyan]{-4}{4}{\Fn}
+  \psaxes[dotsep=1pt]{->}(0,0)(-4,-1)(4.2,1.2)
+\end{pspicture}
+}
+%
+\caption{D'autres exemples de graphe de fonctions du type $f(x)=ax^2+bx+c$. Sur cette figure, tu remarqueras que les concavités sont tournées vers le bas et que cette fois, le terme en $x^2$ apparaît négativement.}\label{figExmNegSegde}
+\end{figure}
+%\end{comment}
+
+Les graphes des fonctions de la forme $x\mapsto ax^2+bx+c$ sont appelés des \defe{paraboles}{Parabole}. Nous allons à partir de maintenant complètement confondre la parabole et la fonction qui la définit.
+
+\subsection{Trouver les racines de la parabole}
+%----------------------------------------------
+\label{SubSecRacinesSecondDegre}
+
+% La fonction en maxima qui fournit une équation dont les racines sont x1, x2 et qui passe par la hauteur h en x=0 :
+% exo(x1,x2,h):=(h/(x1*x2))*x^2-((h*x1+h*x2)/(x1*x2))*x+h;
+%
+% Cela ne fonctionne hélas pas pour avoir des racines nulles.
+%
+% La fonction maxima suivante :
+% Exo(x1,x2,a):=a*x^2-a*(x2+x1)*x+a*x1*x2;
+%
+% donne un trinome dont les racines sont x1 et x2, et le coefficient de x^2 est a.
+% Celle-ci supporte des racines nulles.
+
+%http://fr.wikipedia.org/wiki/Équation_du_second_degré
+
+Les \defe{racines}{Racine d'un trinôme} du trinôme $f(x)=ax^2+bx+c$ sont les solutions de l'équation $f(x)=0$. Graphiquement, cela correspond aux points d'intersection entre la parabole et l'axe horizontal. La figure \ref{FigExposia} montre deux paraboles n'ayant qu'une seule intersection avec l'axe horizontal, tandis que la figure \ref{FigExposib} montre deux paraboles qui ont deux intersections avec l'axe horizontal.
+
+
+Dans la vie, il y a certains mathématiciens qui sont très fort. L'un d'eux est celui qui a trouvé les solutions à \href{http://fr.wikipedia.org/wiki/Équation_du_second_degré}{l'équation} $ax^2+bx+c=0$. D'abord, remarque que quand $a=0$, c'est très facile parce qu'il ne reste même plus de second degré. Donc on peut supposer que $a\neq 0$ et maintenant admire le travail :
+\begin{subequations}
+\begin{align}
+f(x)	&=ax^2+bx+c\\
+	&=a\Big( x^2+\frac{ b }{ a }x+\frac{ c }{ a } \Big)\\
+	&=a\left[  \Big( x+\frac{ b }{ 2a } \Big)^2- \Big( \frac{ b }{ 2a } \Big)^2+\frac{ c }{ a }  \right]\\
+	&=a\left[ \Big( x+\frac{ b }{ 2a } \Big)^2-\frac{ b^2-4ac }{ 4a^2 } \right]	\label{EqDernmispa}
+\end{align}
+\end{subequations}
+Le sens de la man\oe vre est ainsi :
+\begin{itemize}
+\item d'abord, on enlève le coefficient devant $x$ en le mettant en évidence devant tout le monde,
+\item ensuite, on essaye de faire en sorte que $x$ n'arrive plus que une seule fois; pour cela on fait du semblant que $x^2+\frac{ b }{ a }x$ est une partie du carré parfait $(x+\frac{ b }{ 2a }x)^2$, mais alors pour recoller les pots cassés, il faut retrancher le terme $\left( \frac{ b }{ 2a } \right)^2$,
+\item enfin, on remet tout en place pour qu'il ne reste plus que deux termes.
+\end{itemize}
+
+Évidement $4a^2$ est toujours positif, donc le signe de $\frac{ b^2-4ac }{ 4a^2 }$ dépend du signe de $b^2-4ac$. Cette quantité est très importante. On l'appelle le \defe{discriminant}{Discriminant} :
+\[ 
+\rho=b^2-4ac.
+\]
+
+Nous divisons maintenant notre étude en trois cas selon que le discriminant est négatif, positif ou nul.
+
+\subsubsection{Quand le discriminant est positif}
+%////////////////////////////////////////////////
+
+Si $b^2-4ac>0$, alors la quantité $\frac{ b^2-4ac }{ 4a^2 }$ est positive, ce qui fait que c'est le carré d'un nombre. Ce qui se trouve dans le crochet de \eqref{EqDernmispa} est donc une différence de carré. Donc on peut utiliser la formule archi-connue $a^2-b^2=(a+b)(a-b)$, et nous trouvons
+\begin{align*}
+f(x)	&=a\left( x+\frac{ b }{ 2a }+\sqrt{\frac{\rho}{ 4a^2 }} \right)\left( x+\frac{ b }{ 2a }-\sqrt{\frac{\rho}{ 4a^2 }} \right)\\
+	&=a\left( x+\frac{ b+\sqrt{\rho} }{ 2a } \right)\left( x+\frac{ b-\sqrt{\rho} }{ 2a } \right).
+\end{align*}
+Nous trouvons ainsi les solutions à l'équation $ax^2+bx+c=0$ sous la forme
+\begin{align}		\label{EqSolEqSecDeg}
+x_1&=\frac{ -b+\sqrt{b^2-4ac} }{ 2a }&x_2&=\frac{ -b-\sqrt{b^2-4ac} }{ 2a }.
+\end{align}
+Tu n'en as pas fini avec ces deux formules; donc débrouilles toi pour les connaître. Rien que dans ton cours de physique, tu vas devoir les utiliser environ un million de fois.
+
+\subsubsection{Quand le discriminant est nul}
+%////////////////////////////////////////////
+
+Supposons que $\rho=0$. Dans ce cas, l'expression \eqref{EqDernmispa} se simplifie notablement :
+\begin{align*}
+f(x)&=a\left( x+\frac{ b }{ 2a } \right)^2,
+\end{align*}
+qui ne s'annule que quand 
+\[ 
+  x_0=-\frac{ b }{ 2a }.
+\]
+Note que les solutions $x_1$ et $x_2$ données par \eqref{EqSolEqSecDeg} se réduisent toutes les deux à $-b/2a$ quand $\rho=0$. La solution $x_0$ pour $\rho=0$ n'est donc pas nouvelle.
+
+\subsubsection{Quand le discriminant est négatif}
+%////////////////////////////////////////////////
+
+Lorsque $b^2-4ac<0$, la fraction $\frac{ b^2-4ac }{ 4a^2 }$ est strictement négative. Or évidement $\left( x+\frac{ b }{ 2a } \right)$ est toujours positive ou nulle (parce que c'est un carré). Ce qu'il y a dans le crochet de \eqref{EqDernmispa} est donc toujours strictement positif et ne peut donc pas s'annuler. 
+
+Conclusion : lorsque le discriminant est négatif, $f(x)=0$ n'a pas de solutions.
+
+\subsection{Exercices}
+%---------------------
+
+\Exo{200}
+\Exo{201}
+\Exo{202}
+
+\subsection{Trouver le sommet d'une parabole}
+%--------------------------------------------
+
+Lorsque la concavité est tournée vers le haut, le sommet est le point le plus haut de la parabole, tandis que lorsque la concavité est tournée vers le bas, le sommet est le point le plus bas. Nous allons maintenant montrer comment on peut calculer les coordonnées de ce point pour la courbe $y=ax^2+bx+c$ en fonction de $a$, $b$ et $c$. Regarde la figure \ref{FigTrouverSommet}.
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-3.2,-2)(3.2,3.2)
+  \psaxes[dotsep=1pt]{->}(0,0)(-3.2,-2)(3.2,3.2)
+	\psset{PointSymbol=none, PointName=none}
+
+%%% La parabole et calcul de la hauteur du sommet
+   \FPeval{\FPpa}{1}
+   \FPeval{\FPpb}{0-1}
+   \FPeval{\FPpc}{0-1}
+   \def\Fn{x 2 exp x sub 1 sub}
+   \FPeval{\FPSy}{0-(\FPpb*\FPpb-4*\FPpa*\FPpc)/(4*\FPpa)}
+   \FPeval{\FPSx}{0-\FPpb/(2*\FPpa)}
+	\pstGeonode(\FPSx,\FPSy){S}
+%%%
+	\psplot{-1.5}{2.5}{\Fn}
+  \pstGeonode(0,0){O}(-3,0){Ag}(0,1){Uy}		% Ag est le paramètre qui donne jusqu'où on trace les horizontales.
+  \pstGeonode(0,1.5){Ph}				% Ph est la hauteur de l'horizontale trop haute  
+  \pstHomO[HomCoef=-1]{O}{Ag}[Ad]
+  \pstTranslation{O}{Ad}{Uy,Ph}[Uyd,Phd]
+  \pstTranslation{O}{Ag}{Uy,Ph}[Uyg,Phg]
+	\psline[linecolor=red](Phg)(Phd)
+  \pstInterFL[PointSymbol=*]{\Fn}{Phg}{Phd}{-1.5}{Ih1}		% Ih1 et Ih2 sont les coordonnées d'intersection avec la parabole 
+  \pstInterFL[PointSymbol=*]{\Fn}{Phg}{Phd}{2}{Ih2}		% de l'horizontale trop haute
+  \pstGeonode(0,-1.8){Pb}				% Pb est la hauteur de l'horizontale trop basse  
+  \pstTranslation{Ph}{Pb}{Phg,Phd}[Pbg,Pbd]
+	\psline[linecolor=red](Pbg)(Pbd)
+  \pstProjectionOrth{Pbd}{Phd}{S}{Sd}	% Le bout de lu segment tangent est donné par la projection du sommet sur la verticale en Ad
+  \pstProjectionOrth{Pbg}{Phg}{S}{Sg}
+	\psline[linecolor=green](Sg)(Sd)
+	\psdots(S)				% Il faut mettre le point du sommet après avoir tracé la tangente
+	\pstMarquePoint{S}{0.3;-90}{$S$}
+\end{pspicture}
+\caption{Étude de la position du sommet de la parabole.}\label{FigTrouverSommet}
+\end{figure}
+Les deux lignes horizontales rouges sont trop haute et trop basses. La première a deux points d'intersections avec la parabole tandis que la seconde n'en a pas. La droite horizontale verte par contre est exactement à la hauteur du sommet : elle a un et un seul point d'intersection avec la parabole. Essayons de trouver ce point de façon analytique.
+
+Les abcisses $x_1$ et $x_2$ d'intersection entre la parabole $f(x)=ax^2+bx+c$ et la droite horizontale à la hauteur $y_S$ sont données par les racines de l'équation $ax^2+bx+c=y_S$, ce qui revient à
+\[ 
+  ax^2+bx+c-y_S=0.
+\]
+Le discriminant de cette équation est $\rho=b^2-4a(c-y_S)$. Affin qu'il n'y ait qu'une seule solution, on demande que ce discriminant soit nul. Trouver la hauteur $y_S$ du sommet de la parabole revient donc à résoudre l'équation
+\[ 
+  b^2-4a(c-y_S)=0
+\]
+par rapport à $y_S$. La solution est $y_S=c-\frac{ b^2 }{ 4a }$ qui peut être récrite en mettant les deux termes au même dénominateur sous la forme
+\begin{equation}
+	y_S=\frac{ 4ac-b^2 }{ 4a }=-\frac{ \rho }{ 4a }.
+\end{equation}
+Nous savons maintenant la hauteur du sommet. Il faut encore voir l'abcisse. Pour cela ce n'est pas très compliqué : il faut voir pour quel $x$, la fonction $f$ a la valeur $y_S$. En d'autres termes, il faut résoudre l'équation $f(x)=y_S$ :
+\[ 
+  ax^2+bx+c=\frac{ 4ac-b^2 }{ 4a }.
+\]
+Cela reste une équation du second degré comme d'habitude. Et même une équation de type facile parce c'est gagné d'avance que le discriminant va être nul : on a construit le sommet de telle manière à ce que la parabole ne passe qu'une fois par la hauteur $y_S$. La solution est 
+\[ 
+  x_S=-\frac{ b }{ 2a }.
+\]
+Finalement, on écrit les coordonnées du sommet :
+\begin{equation}
+S=\left( -\frac{ b }{ 2a },-\frac{ \rho }{ 4a } \right).
+\end{equation}
+
+%  Note pour moi-même : il faut pomper dans Wikipedia
+%http://fr.wikiversity.org/wiki/Cours_de_mathématiques_de_première_STI/Fonctions_polynômes_du_second_degré_(ou_trinômes)
+%http://fr.wikipedia.org/wiki/Fonction_du_second_degré
+%
+% ...
+%
+% et être content de la GNU-FDL !
+ 
+\section{Étude de signe d'une fonction}
+%--------------------------------------
+
+Pour qu'une fonction change de signe, il faut qu'elle passe par zéro (voir figure~\ref{FigValzerInter}). Donc la technique pour faire un tableau de signe constitue à
+\begin{enumerate}
+\item trouver où la fonction s'annule; ces zéros de la fonction coupent $\eR$ en différentes zones
+\item trouver, dans chaque zone, le signe. Pour cela, le plus simple est souvent de choisir un nombre dans la zone et de voir si la fonction est positive ou négative.
+\end{enumerate}
+
+\begin{exemple}
+La fonction $f\colon x\mapsto x^2-1$ s'annule en $x_1=-1$ et $x_2=1$. Nous découpons donc $\eR$ en trois zones : 
+\begin{itemize}
+\item avant $-1$,
+\item entre $-1$ et $1$,
+\item après $1$.
+\end{itemize}
+Pour savoir le signe de $f$ dans la première zone, on choisit par exemple $x=-10$ et on voit que $f(-10)=99$. Donc $f$ est positive dans la première zone. Dans la seconde zone, on choisit $x=0$, et on voit que $f(0)=-1$, ce qui fait que $f$ est négative dans la seconde zone. En prenant $f(10)=99$, on voit que $f$ est à nouveau positive dans la troisième zone.
+\end{exemple}
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-0.9,-2.5)(3.2,3.2)
+  \psaxes[dotsep=1pt]{->}(0,0)(-0.9,-2.5)(3.2,3.2)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{x 2 exp x sub 1 sub}
+	\psplot{0}{1}{\Fn}
+	\psplot[linestyle=dashed]{1}{2}{\Fn}
+	\psplot{2}{2.5}{\Fn}
+\end{pspicture}
+\caption{Avant $1$, la fonction est négative; après $2$ elle est positive. C'est qu'entre les deux, elle a dû passer par zéro. Cela sera démontré de façon rigoureuse par le théorème \ref{ThoValInter}.}\label{FigValzerInter}
+
+\end{figure}
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+

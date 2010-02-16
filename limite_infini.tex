@@ -1,0 +1,319 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\begin{abstract}
+Ce chapitre se découpe de la façon suivante : d'abord nous voyons comment on définit le concept de limite quand il y a de l'infini en jeu; limites en l'infini ou vers l'infini. Cela permet de s'habituer à manipuler des conditions qui contiennent des $\forall$, des $\exists$, des $\epsilon$ et des $\delta$ dans  des situations simples\ldots ou disons, si pas simples, en tout cas attractives. C'est attractif hein l'infini ?
+
+Ensuite, au lieu de continuer avec les limites dans les autres cas, nous en profitons pour traiter la continuité en détail.
+
+Le reste de la manière sur les limites est alors vu dans l'optique du lien entre limite et continuité, et en particulier le principe de prolongement par continuité.
+\end{abstract}
+
+
+\section{Limites avec des infinis}
+%++++++++++++++++++++++++++++++++++
+
+Le concept de limite est essentiellement fait pour traiter l'infini. Regarde par exemple les figures \ref{FigUnSurx}, \ref{FigFnLimCinq}, et \ref{FigUnSurxCarr}. À tous les coups, la fonction dessinée a un comportement qui a quelque chose à voir avec l'infini : parfois c'est la fonction qui devient presque plate quand on regarde les $x$ très grands, parfois c'est la fonction elle-même qui devient très grande quand on regarde des $x$ tout proches d'un certain nombre. Nous allons donc commencer par définir les limites quand il y a de l'infini en jeu.
+
+Mais ce qui est génial, c'est qu'il y a un bonus\label{PgBonusLimite}. Quand tu vois la fonction $\frac{ x+4 }{ 3x^2+10x-8 }$, la première chose que tu fais, c'est de dire qu'il y a une condition d'existence $x\neq -4$ et $x\neq 2/3$. Mais quand même, tu flaires une arnaque parce que $3x^2+10x-8=(x+4)(3x-2)$, ce qui fait que tu te dis qu'on doit pouvoir simplifier :
+\[ 
+ f(x)= \frac{ x+4 }{ 3x^2+10x-8 }=\frac{ x+4 }{ (x+4)(3x-2) }=\frac{ 1 }{ 3x-2 },
+\]
+ce qui fait que la condition d'existence $x\neq -4$ n'en est pas vraiment une. Nous allons voir que notre travail sur les limites va nous permettre de dire que dans ce cas, on peut effectivement jarter la condition d'existence et dire que dans un certain sens, $f(-4)=-1/14$.
+
+\subsection{Conversation avec mon ordinateur}
+%--------------------------------------------
+
+Voici d'ailleurs un extrait d'une conversation que j'ai eut avec mon ordinateur, et plus précisément avec le logiciel \href{http://fr.wikipedia.org/wiki/Maxima}{wxMaxima}\footnote{Dont je te recommande chaudement l'utilisation pour résoudre tes devoirs de math. Ce logiciel étant un \href{http://fr.wikipedia.org/wiki/Logiciel_libre}{logiciel libre}, tu peux le télécharger et l'installer sans payer ni demander quoi que ce soit à qui que ce soit sans avoir peur de pirater; c'est légal et c'est fait pour.}, en préparant ces notes.
+
+Je dis :
+\begin{center}
+\texttt{ f(x)\!:=(x+4)/(3*x\textasciicircum 2+10*x-8)}
+\end{center}
+Il répond
+\begin{equation}		\label{EqOrdiRefuse}
+  f(x):= \frac{ x+4 }{ 3x^2+10x-8 },
+\end{equation}
+c'est à dire : \og j'ai bien compris que tu veux définir comme ça la fonction $f$\fg. Alors moi je tente ma chance et je lui demande :
+\begin{center}
+\texttt{f(-4)},
+\end{center}
+et mon ordinateur me répond très élégamment que\\
+\texttt{Division by 0\\ \#0: f(x=-4)\\-- an error. Quitting. To debug this try debugmode(true);\\}
+c'est à dire qu'il refuse de faire le calcul que je lui demande pour cause de division par zéro. Qu'à cela ne tienne, je lui donne l'ordre
+\begin{center}
+\texttt{radcan(f(x))},
+\end{center}
+ c'est à dire que je lui demande poliment de simplifier la fonction $f$. Sans surprise, mon ordinateur me répond
+\[ 
+  \frac{ 1 }{ 3x-2 }.
+\]
+C'est alors que j'essaye de l'arnaquer et redemande
+\begin{center}
+\texttt{f(-4)},
+\end{center}
+mais mon ordinateur m'a vu venir et me répond encore une fois que j'ai demandé une division par zéro :\\
+\texttt{Division by 0\\ \#0: f(x=-4)\\-- an error. Quitting. To debug this try debugmode(true);\\}
+Il a donc retenu que même si $f(x)$ est égal à $1/(3x-2)$, il reste malgré tout derrière une condition d'existence qui provient de la définition initiale de $f$.
+
+Dans quelque pages, nous allons devenir plus malin que mon ordinateur.
+ 
+\subsection{Limites du côté de l'infini}
+%----------------------------------------
+
+Regarde le graphe de la fonction $x\to 1/x$ sur la figure \ref{FigUnSurx}. Tu remarques que c'est une fonction qui décrois assez vite quand on avance dans les $x$. Regarde aussi la figure \ref{FigUnSurxLoin} qui représente la même fonction un peu plus loin.
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-0.9,-0.9)(11,5)
+  \psaxes[dotsep=1pt]{->}(0,0)(-0.9,-0.9)(11,5)
+	%\psframe(-0.9,-0.9)(11,5)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{1 x div}
+	\psplot[linecolor=red]{0.2}{10}{\Fn}
+\end{pspicture}
+\caption{La fonction $f(x)=1/x$ du côté des positifs. Ça devient vite petit hein ?}\label{FigUnSurx}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+	\psset{yunit=10cm}
+\begin{pspicture}(9,-0.1)(20.3,0.2)
+	\psaxes[Dx=1,Dy=0.1,Ox=10](10,0)(10,0)(20,0.15)
+      \psplot[linecolor= cyan]{10}{20}{ 1 x div }
+	%\psframe[linecolor=blue](9,-0.1)(20.3,0.2)
+\end{pspicture}
+\caption{La fonction $f(x)=1/x$, entre $10$ et $20$. On voit qu'elle ne descend plus très vite, mais qu'elle continue à descendre.}\label{FigUnSurxLoin}
+\end{figure}
+
+
+Maintenant en regardant cette fonction, nous allons essayer de donner un sens à l'affirmation \og\emph{la fonction $x\to 1/x$ tend vers zéro quand $x$ tend vers l'infini}\fg.
+
+La première constatation facile est de voir que plus $x$ est grand, plus $f(x)$ est petit. Cela ne suffit pas pour dire conclure que $f(x)$ tends vers zéro. En effet, la fonction $\frac{ 1 }{ x }+1$ est aussi de plus en plus petite, mais elle reste toujours plus grande que $1$. Affin de pouvoir dire que $f(x)$ tend vers zéro, nous remarquons que quand $x$ est de plus en plus grand, le graphe de $f$ vient s'écraser sur l'axe $y=0$.
+\begin{itemize}
+\multido{\n=1+1}{5}{\FPeval{x}{10^(\n)}\FPeval{y}{1/\x}\FPround{\x}{\x}{0}\FPround{\y}{\y}{\n}%
+\item Quand $x=\x$, la fonction passe en-dessous de \y\ et y reste,
+}
+\end{itemize}
+mais partir de là, ça devient un peu longuet à écrire. Heureusement on peut continuer avec des puissances de $10$.
+\begin{itemize}
+\multido{\n=6+1}{8}{%
+\item Quand $x=10^{\n}$, la fonction passe en-dessous de $10^{-\n}$ et y reste,%
+}
+\end{itemize}
+et maintenant on a compris comment ça se passe : 
+\begin{quote}
+la fonction $x\to 1/x$ devient aussi petite que l'on veut pourvu qu'on aille assez loin.
+\end{quote}
+C'est exactement cette idée que l'on met dans {\bf l'essai} de définition suivant
+\begin{definition}\label{DefLimzepositinf}
+On dit que la fonction positive $x\to f(x)$ \emph{tend vers zéro lorsque $x$ tend vers l'infini} si pour tout $\epsilon >0$, il existe un $r$ tel que $x>r$ implique $f(x)<\epsilon$. En formule compacte :
+\begin{equation}
+\forall \epsilon>0,\,\exists\, r|\,(x>r)\Rightarrow f(x)<\epsilon.
+\end{equation}
+\end{definition}
+Cette définition ne fonctionne en fait pas. Pourquoi ? Pense bêtement à la fonction $f(x)=-x$ représentée sur la figure \ref{FigConterexMx}. Ce n'est évidement pas une fonction dont tu dirais qu'elle tend vers zéro quand $x$ tend vers l'infini. Et pourtant, elle vérifie la condition donnée dans l'essai de définition.
+
+\begin{figure}[ht]
+\centering
+\psset{yunit=0.5, xunit=0.5}
+\begin{pspicture}(-5.9,-5.9)(5,5)
+  \psaxes[dotsep=1pt, Dx=2, Dy=2]{->}(0,0)(-5.9,-5.9)(5,5)
+	%\psframe(-0.9,-0.9)(11,5)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{x -1 mul} 
+	\psplot[linecolor=red]{-3}{3}{\Fn}
+	\psplot[linecolor=red, linestyle=dashed]{-3}{-5}{\Fn}
+	\psplot[linecolor=red, linestyle=dashed]{3}{5}{\Fn}
+\end{pspicture}
+\caption{La fonction $f(x)=-x$. Elle n'a pas l'air de tendre vers zéro, et pourtant elle vérifie l'essai de définition \ref{DefLimzepositinf}. }\label{FigConterexMx}
+\end{figure}
+Le problème de cet exemple est que la fonction devient négative et est donc toujours plus petite que le $\epsilon$ choisit. Réfléchissons donc maintenant à comment adapter la définition \ref{DefLimzepositinf} au cas d'une fonction pas nécessairement positive. Prenons par exemple une fonction qui tourne autour de zéro, tout en s'y écrasant inéluctablement. Une telle fonction est représentée à la figure \ref{FigUnSursinx}.
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(-1,-6)(12,6)
+  \psaxes[dotsep=1pt]{->}(0,0)(-0.9,-3.9)(11,5)
+	%\psframe(-0.9,-0.9)(11,5)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{x 3.1415 div 180 mul 5 mul sin x div 3 mul}
+	\def\Gn{3 x div}
+	\def\Hn{-3 x div}
+	\psplot[linecolor=red,plotpoints=5000]{0.5}{12}{\Fn}
+	\psplot[linecolor=blue]{0.5}{12}{\Gn}
+	\psplot[linecolor=blue]{0.5}{12}{\Hn}
+%\psframe[linecolor=blue](-1,-6)(12,6)
+\end{pspicture}
+\caption{La fonction $f(x)=3\sin(x)/x$ en rouge qui s'écrase sur zéro parce qu'elle est encadrée par $3/x$ et $-3/x$}\label{FigUnSursinx}
+\end{figure}
+
+Visuellement, c'est clair qu'on va dire que la fonction $2\sin(x)/x$ tend vers zéro quand $x$ tend vers l'infini, mais comment le formaliser ? L'idée qui nous sauve, c'est de remarquer que ce qui compte, c'est que la distance entre zéro et la fonction est de plus en plus petite. Que cette distance soit vers le haut ou vers le bas, ça n'a pas tellement d'importance. Nous posons donc la définition suivante (tu peux oublier la définition \ref{DefLimzepositinf}) :
+\begin{definition}
+On dit que la fonction $f(x)$ \defe{tend vers $0$ quand $x$ tend vers l'infini}{} si pour toute nombre $\epsilon$, la distance entre $f(x)$ et l'axe $y=0$ devient plus petit que $\epsilon$ à partir d'un certain moment et reste plus petit. En notations compactes :
+\begin{equation}			\label{CondLimzerInf}
+\forall\epsilon>0,\exists r\in \eR\text{ tel que } (x>r)\Rightarrow | f(x) |\leq\epsilon.
+\end{equation}
+Dans ce cas, on note
+\begin{equation}
+\lim_{x\to\infty}f(x)=0.
+\end{equation}
+\end{definition}
+
+Nous avons inventé cette définition en regardant deux exemples. Si nous ne nous sommes pas trompé, il faut qu'au moins la définition fonctionne dans les deux exemples. Prouvons cela.
+
+\begin{proposition}		\label{Propusxlimzerinf}
+La fonction $f(x)=1/x$ tend vers zéro quand $x$ tend vers l'infini.
+\end{proposition}
+
+\begin{proof}
+Prenons un $\epsilon>0$ quelconque et prouvons que quand $x$ est assez grand, alors $f(x)\leq\epsilon$. Cela revient à résoudre l'inéquation
+\[ 
+  \frac{ 1 }{ x }\leq\epsilon
+\]
+dont la solution est $x\geq \frac{1}{ \epsilon }$. Ce $1/\epsilon$ est le $r$ dont on parle dans la condition \eqref{CondLimzerInf}. En effet, par construction quand $x>\frac{1}{ \epsilon }$, on a $| f(x) |\leq\epsilon$.
+\end{proof}
+
+
+\begin{proposition}
+La fonction $f(x)=\frac{ \sin(x) }{ x }$ tend vers zéro quand $x$ tend vers l'infini.
+\end{proposition}
+
+\begin{proof}
+Étant donné que $| \sin(x) |\leq 1$ pour tout $x$, on a que $| f(x) |\leq \frac{ 1 }{ x }$ pour tout $x$. Nous venons de démontrer à la proposition \ref{Propusxlimzerinf} que pour tout $\epsilon$, il existait un $r$ (en l'occurrence $r=1/\epsilon$) tel qu'au-delà de $r$, on ait toujours $\frac{1}{ x }\leq\epsilon$. Tout l'astuce est de remarquer que pour le même $r$, on a la même chose pour $| f(x) |$ : dès que $x>\frac{ 1 }{ \epsilon }$, on a
+\[ 
+  | f(x) |=\frac{ |\sin(x)| }{ x }\leq \frac{1}{ x }\leq \epsilon.
+\]
+\end{proof}
+
+Quand on a compris ce qu'il se passe jusqu'ici, la définition suivante ne dois pas étonner grand monde.
+
+\begin{definition}
+On dit que la fonction $f(x)$ \defe{tend vers $0$ quand $x$ tend vers \emph{moins} l'infini}{} si pour tout $\epsilon>0$, il existe un $r$ tel que $f(x)$ soit plus petit que $\epsilon$ dès que $x$ est \emph{plus petit} que $r$. En formules compacte :
+\begin{equation}
+\forall\epsilon>0,\exists r\in\eR\tq (x\leq r)\Rightarrow | f(x) |\leq \epsilon.
+\end{equation}
+Nous noterons ce fait par
+\begin{equation}
+\lim_{x\to-\infty}f(x)=0.
+\end{equation}
+
+\end{definition}
+
+Nous allons prouver que la fonction $f(x)=1/x$ est dans ce cas. Avant la démonstration, jette un \oe il sur la figure \ref{FigUnSurxNeg}.
+
+\begin{figure}[ht]
+\centering
+\begin{pspicture}(0.9,0.9)(-11,-5)
+  \psaxes[dotsep=1pt]{->}(0,0)(0.9,0.9)(-11,-5)
+	%\psframe(-0.9,-0.9)(11,5)
+	\psset{PointSymbol=none, PointName=none}
+	\def\Fn{1 x div}
+	\psplot[linecolor=red,plotpoints=10000]{-0.2}{-10}{\Fn}
+\end{pspicture}
+\caption{La fonction $f(x)=1/x$ du côté des négatifs. Elle est du même tonneau que celle de la figure \ref{FigUnSurx}, mais à l'envers.}\label{FigUnSurxNeg}
+\end{figure}
+
+\begin{proposition}
+La fonction $f(x)=1/x$ tend vers zéro quand $x$ tend vers moins l'infini.
+\end{proposition}
+
+\begin{proof}
+Soir $\epsilon>0$ et prouvons que si on est assez loin vers la gauche, alors $| f(x) |\leq\epsilon$. La réponse est $r=-1/\epsilon$. Affin de prouver ça, nous allons devoir jouer avec $| f(x) |=\frac{1}{ | x | }$. On a ceci :
+
+\begin{equation}
+x<-\frac{ 1 }{ \epsilon }\Rightarrow
+| x |>\frac{1}{ \epsilon }\Rightarrow
+\frac{1}{ | x | }<\epsilon
+\end{equation}
+où la première implication est jute une multiplication par $-1$ : étant donné que $x$ est négatif, $-x=| x |$. En utilisant ce résultat, nous trouvons que quand $x$ est plus petit que $-1/\epsilon$,
+\[ 
+  | f(x) |=\frac{1}{ | x | }<\epsilon,
+\]
+ce qui conclu la preuve.
+
+\end{proof}
+
+Il faut maintenant se rendre compte qu'il y a des fonctions qui ne tendent pas vers zéro quand $x$ tend vers plus ou moins l'infini. La figure \ref{FigFnLimCinq} montre par exemple la fonction
+\[ 
+  \frac{ 5x^2+3x+1 }{ x^2-4x+7 }.
+\]
+
+\begin{figure}[ht]
+\centering
+\psset{yunit=0.5,xunit=0.1}
+\begin{pspicture}(-50,-1.5)(50,15)
+	%\psframe(-50,-1.5)(50,15)
+	\psset{PointSymbol=none, PointName=none}
+	\newcommand{\Fn}{ x 2 exp 5 mul x 3 mul add 1 add   x 2 exp  x -4 mul add 7 add div}
+	\psplot[linecolor=red,plotpoints=10000]{-50}{50}{\Fn}
+	\psline[linecolor=blue](-50,5)(50,5)
+  \psaxes[dotsep=1pt,Dx=20,Dy=2]{->}(0,0)(-50,0)(50,15)
+\end{pspicture}
+\caption{Une fonction dont la limite en $\pm\infty$ n'est manifestement pas zéro.}\label{FigFnLimCinq}
+\end{figure}
+
+À vue de nez, on a plutôt envie de dire que la limite de cette fonction est $5$ tant à l'infini qu'à moins l'infini. On a envie de dire que 
+\begin{align}
+\lim_{x\to -\infty}f(x)&=-5		&\lim_{x\to\infty}f(x)=5.
+\end{align}
+En fait, quand on regarde le dessin, ce qu'on voit, c'est que le graphe vient s'écraser sur la ligne $y=5$. C'est à dire que la distance entre $f(x)$ et $5$ devient de plus en plus petite. D'où la définition
+\begin{definition}
+On dit que la fonction $x\to f(x)$ \defe{tend vers $a$ quand $x$ tend vers l'infini}{} si pour tout $\epsilon>0$, il existe un $r\in \eR$ tel que dès que $x$ est plus grand que $r$, alors la distance entre $f(x)$ et $a$ est plus petite que $\epsilon$. En formule compacte,
+\[ 
+  \forall \epsilon>0,\exists r\in\eR\tq (x>r)\Rightarrow | f(x)-a |\leq \epsilon.
+\]
+La définition de $f(x)$ qui \defe{tend vers $a$ quand $x$ tend vers moins l'infini}{} est 
+\[ 
+  \forall \epsilon>0,\exists r\in\eR\tq (x<r)\Rightarrow | f(x)-a |\leq \epsilon.
+\]
+On écrit respectivement
+\begin{align}
+\lim_{x\to\infty}f(x)=a&&\text{et}&&\lim_{x\to -\infty}f(x)=a.
+\end{align}
+\end{definition}
+
+Maintenant nous sommes capabes d'exprimer clairement ce que signifie que $f(x)$ tend vers un nombre quand $x$ tend vers plus ou moins l'infini. Que dire de la fonction représentée à la figure \ref{FigExenvieinfinf} ?
+\begin{figure}[ht]
+\centering
+\psset{yunit=0.005,xunit=0.7}
+\begin{pspicture}(-8,-1024)(8,1024)
+	\psset{PointSymbol=none, PointName=none}
+  	\psaxes[dotsep=1pt,Dx=2,Dy=200]{->}(0,0)(-7.9,-999)(8,1000)
+	\newcommand{\Fn}{x SINH}
+	\psplot[linecolor=red,plotpoints=10000]{-7.6246}{7.6246}{\Fn}
+	%\psframe[linecolor=blue](-8,-1024)(8,1024)
+\end{pspicture}
+\caption{Une fonction dont on a envie de dire que la limite en l'infini est l'infini : $\lim_{x\to\infty}f(x)=\infty$, et que la limite en moins l'infini vaut moins l'infini : $\lim_{x\to-\infty}f(x)=-\infty$.}\label{FigExenvieinfinf}
+\end{figure}
+Cette fonction a comme propriété qu'elle dépasse n'importe quelle valeur donnée. Par exemple :
+\renewcommand{\Vbidon}{10}		% Vbidon dit jusqu'à combien il faut aller faire le multido
+\begin{itemize}
+\multido{\n=1+1}{\Vbidon}{\FPeval{x}{\n}\FPeval{y}{ (exp(x)-exp(-x))/2  }\FPround{\x}{\x}{0}\FPround{\y}{\y}{0}%
+\item Quand $x=\x$, la fonction passe au-dessus de \y\ et y reste\ifthenelse{\n=\Vbidon}{.}{,}		% L'intérrêt du Vbidon est de pouvoir tester si il faut une virgule ou un point à la fin de la phrase.
+}
+\end{itemize}
+Et le même genre de comportement se voit du côté des négatifs :
+\begin{itemize}
+\multido{\n=1+1}{\Vbidon}{\FPeval{x}{\n}\FPeval{y}{ (exp(x)-exp(-x))/2  }\FPround{\x}{\x}{0}\FPround{\y}{\y}{0}%
+\item Quand $x=-\x$, la fonction passe en-dessous de -\y\ et y reste\ifthenelse{\n=\Vbidon}{.}{,}		
+}
+\end{itemize}
+
+Nous allons donc dire que la fonction $f$ tend vers l'infini quand $x$ tend vers l'infini si pour chaque valeur $M$, la fonction passe au-dessus de $M$ à partir d'un certain moment et y reste.
+\begin{definition}
+Nous disons que la fonction $x\to f(x)$ \defe{tend vers l'infini quand $x$ tend vers l'infini}{} si
+\begin{equation}
+\forall M\in\eR,\exists x_0\in\eR\tq (x>x_0)\Rightarrow f(x)\geq M.
+\end{equation}
+Dans ce cas, on écrit que $\lim_{x\to\infty}f(x)=\infty$.
+\end{definition}
+Dans le même ordre d'idée, on défini $\lim_{x\to-\infty}f(x)=-\infty$ si 
+\begin{equation}
+\forall M\in\eR,\exists x_0\in\eR\tq (x<x_0)\Rightarrow f(x)\leq M.
+\end{equation}
+
+\Exo{203}
+
+
