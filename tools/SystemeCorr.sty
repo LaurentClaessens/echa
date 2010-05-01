@@ -48,10 +48,18 @@
 % Le \immediate vient de la discussion fctt [2]
 
 % The following uses xstring in order to replace specific characters by %xx codes.
+% See the table http://www.utf8-chartable.de/
 \newcommand{\MakeUTFPerCent}[1]{% 
    \StrSubstitute{#1}({\%28}[\result]% 
    \expandafter\StrSubstitute\expandafter{\result}){\%29}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{à}{\%C3\%A0}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{â}{\%C3\%A2}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{ç}{\%C3\%A7}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{è}{\%C3\%A8}[\result]% 
    \expandafter\StrSubstitute\expandafter{\result}{é}{\%C3\%A9}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{ê}{\%C3\%AA}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{ù}{\%C3\%B9}[\result]% 
+   \expandafter\StrSubstitute\expandafter{\result}{û}{\%C3\%BB}[\result]% 
    \expandafter\StrSubstitute\expandafter{\result}_{\_}[\result]% 
 } 
 %------------------------
