@@ -118,9 +118,9 @@ Avec ça, on peut calculer le travail de la force :
   W=F\Delta x=(ma)(\frac{mat^2}{2m})=\frac{ma^2t^2}{2}.
 \]
 Question énergie cinétique, on sait que la vitesse atteinte est $v=at$, et donc l'énergie cinétique est
-\[
-  E_c=\frac{mv^2}{2}=\frac{ma^2t^2}{2}=W.
-\]
+\begin{equation}		\label{EqErgCinParTravailForce}
+ 	E_c=\frac{mv^2}{2}=\frac{ma^2t^2}{2}=W.
+\end{equation}
 Tout est cohérent; pas mal hein !
 
 On peut être encore plus précis en disant que le travail d'une force est l'énergie que la force donne à un objet, et pas seulement son énergie cinétique. Afin de voir ça, nous allons étudier plus en détail comment fonctionne le travail de la gravitation. Mais avant ça, donnons deux petits bonus. Le travail qu'on a accompli permet déjà de comprendre un objet mystérieux que tu as peut-être étudié l'année passée : le levier hydraulique. Il permet aussi de calculer plus simplement le mouvement sur un plan incliné.
@@ -275,10 +275,43 @@ Le travail effectué pendant une certaine durée par la résultante des forces a
 \begin{probleme}
 	Considérons un train au repos. Si il voulais accélérer jusqu'à la vitesse $v$, cela lui coûterait une énergie $mv^2/2$. Si il voulais accélérer jusqu'à la vitesse $2v$, cela lui coûterais une énergie $4mv^2/2$ (c'est à dire le quadruple, et non le double !).
 
-	Mettons donc que le train dépense une énergie $mv^2/2$ pour accélérer jusqu'à la vitesse $v$. À ce moment, il a le droit de se considérer au repos en vertu du principe de relativité. 
-\end{probleme}
-<++>
+	Mettons donc que le train dépense une énergie $mv^2/2$ pour accélérer jusqu'à la vitesse $v$. À ce moment, il a le droit de se considérer au repos en vertu du principe de relativité. Bon, il se dit au repos. Maintenant, il a le droit de vouloir accélérer jusqu'à la vitesse $v$; cela lui coûtera une énergie cinétique $mv^2/2$.
 
+	Au finale le train sera parvenu à la vitesse $2v$ en dépensant une énergie $2mv^2/2$.
+\end{probleme}
+
+La première clef pour comprendre le paradoxe est qu'il n'est pas correct de raisonner en se disant que ce sont les vitesses quoi «coûtent» de l'énergie. Ce sont les accélérations (et plus précisément les forces) qui demandent de l'énergie.
+
+Comment se passe donc l'accélération ? Quel est le travail de la force ? Comme nous l'avons vu pour prouver la formule \eqref{EqErgCinParTravailForce} de l'énergie cinétique, le $mv^2/2$ dont on parle tout le temps est le produit de la force par le déplacement. Or qui fournit la force qui fait accélérer le train ? C'est le sol qui réagit au frottement des roues qui tournent.
+
+Lorsque le train avance à la vitesse $v$ et que nous effectuons un changement de référentiel pour voir le train au repos, nous devons comprendre que nous avons comme conséquence que le sol avance maintenant à la vitesse $-v$ ! Voila qui va modifier le calcul du travail de la force du sol sur les roues du train.
+
+Pour accélérer d'une vitesse $v$ à l'aide d'une force $F$, il faut un temps
+\begin{equation}
+	\Delta t=\frac{ mv }{ F }.
+\end{equation}
+Durant ce temps le déplacement a été de
+\begin{equation}
+	d=\frac{ q\Delta t^2 }{ 2 }
+\end{equation}
+avec $a=F/m$. NON !! \emph{Justement pas !} Cela est, certes, le déplacement \emph{du train} dans son nouveau référentiel. Mais ce que nous souhaitons calculer est le déplacement \emph{du point d'application de la force}.
+
+Or le point d'application de la force est sur le rail qui file à la vitesse initiale $-v$ et qui a une accélération $a=-F/m$. Le déplacement correct dont il faut tenir compte pour calculer le travail de la force dans le référentiel du train est
+\begin{equation}
+	d=-v\Delta t-\frac{ a\Delta t^2 }{ 2 }
+\end{equation}
+avec $a=-F/m$ et $\Delta t=mv/F$. En remplaçant et en mettant au même dénominateur,
+\begin{equation}
+	\begin{aligned}[]
+		d&=-\frac{ mv^2 }{ F }-\frac{ F }{ m }\frac{ m^2v^2 }{ 2F^2 }\\
+		&=-3\frac{ mv^2 }{ 2F }.
+	\end{aligned}
+\end{equation}
+Finalement\footnote{Peux-tu expliquer pourquoi il est noté $W=-Fd$ et non $W=Fd$ ?}
+\begin{equation}
+	W=-Fd=3\frac{ mv^2 }{ 2 }.
+\end{equation}
+L'énergie que cela coûte au train de passer de la vitesse zéro à la vitesse $v$ dans le référentiel où le rail avance à la vitesse $-v$ est donc bien $3mv^2/2$, et non $mv^2/2$.
 
 \subsection{Exemples}
 %//////////////////////
