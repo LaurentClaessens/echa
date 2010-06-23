@@ -1,0 +1,34 @@
+ COMMENT COMPILER le cours ?
+-----------------------------
+
+En termes de logiciels, il faut essentiellement une distribution LaTeX munie de pstricks. 
+
+*   Le script ran_exo.py  crée les exercices et les corrigés sur les trinômes du second degré. Ils sont générés au hasard (sous certaines contraintes). Si les exercices tels qu'ils sont vous plaisent, vous ne devez pas lancer ce script.
+
+*   Le script figures_echa.py crée les fichiers *.pstricks. Vous ne devez pas spécialement le lancer. Mais vous en avez besoin pour modifier ces figures efficacement. Il dépends du module phystricks.py
+
+
+ AMÉLIORER LE COURS
+--------------------
+
+Pour créer un nouvel exercice, le plus propre est de créer un fichier exoXX.tex avec les autres et un fichier corXX.tex correspondant. Il suffit de taper \Exo{458} pour que le fichier ./exo458 soit inclut à cet endroit. Les références croisées cliquables de l'un à l'autre sont automatiques.
+
+Pour créer les fichier exoXX.tex et corrXX.tex, il y a les scripts ./cree_c.sh, cree_e.sh et cree_exo.sh qui respectivement créent un fichier de correction vide, un fichier d'exercice vide et les deux. L'appel est simple :
+$ ./cree_exo.sh 781
+crée les fichiers corr781.tex et exo781.tex contenant ce qu'il faut y compris les label correctement numérotés.
+
+
+
+*   Le scipt cree_exo.sh crée un squelette de fichieir LaTeX d'exercice et de corrigé. Il s'appuie sur cree_c.sh et crée_e.sh.
+*   Le code pstricks de certaines figures est généré par le script figures_echa.py.
+
+Pour le reste, c'est du LaTeX normal je crois.
+
+REMARQUES, SUGGESTIONS ET COMMENTAIRES :
+---------------------------------------
+
+Je suis encore un débutant complet en python, donc si tu as des suggestions pour rendre mon code plus portable (il est portable en ce sens qu'il fonctionne correctement sur les ordinateurs sur lesquels je travaille), je suis preneur.
+
+Toute questions à 
+moky.math (chez) gmail (point) com
+
