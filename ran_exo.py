@@ -533,6 +533,10 @@ def Cree_Fichiers (type,vars):
 	vars.fCorr.file.write("".join(vars.StrFichierC))
 	vars.fCorr.file.close()
 
+for i in range(0,10):
+	print Alea(0,234,1).entier()
+
+quit()
 
 ################# Création de l'exercice 200 ###########################
 ####                des exercices de type 1             #######
