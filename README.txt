@@ -1,4 +1,5 @@
 Les sources du document sont à télécharger sur gitorious
+Ne pas oublier le fichier de style exocorr.sty
 
 COMPILATION FACILE
 
