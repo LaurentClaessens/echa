@@ -10,11 +10,13 @@
 \makeindex
 
 \begin{document}
-\corrPosition{1}
+\corrPosition{2}
 
 %\input{pre_texte}
 \input{garde}
 
+% TODO : il faut refaire toutes les figures pour qu'on puisse directement compiler en pdf.
+% TODO : une fois que les figures sont bien faites, il faut fusioner avec smath.
 
 \tableofcontents
 
@@ -86,9 +88,6 @@
 \renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
 \renewcommand{\thenumtho}{\Alph{section}.\arabic{numtho}}
 \renewcommand{\thesection}{\Alph{section}}
-
-
-\corrChapitre{Corrigés systématiques}		% C'est ici que viennent les corrigés si \corrPolitique{1}
 
 	\input{faq}
 	\input{fdl-1.3.tex}
