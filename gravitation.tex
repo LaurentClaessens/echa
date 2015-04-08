@@ -1,5 +1,5 @@
 % This is part of Un soupçon de physique, sans être agressif pour autant
-% Copyright (C) 2006-2010
+% Copyright (C) 2006-2010,2015
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -231,7 +231,6 @@ Notre équation $y(x)$ est donc
 	y(x)=h-\frac{ gx^2 }{ v_0^2 }.
 \end{equation}
 
-
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Problème informatique}
 %---------------------------------------------------------------------------------------------------------------------------
@@ -242,7 +241,8 @@ Notre équation $y(x)$ est donc
 
 Évidement, créer les droites et les flèches, c'est facile. Tu peux par contre te demander comment créer la courbe pour que ce soit à l'échelle~: tu peux mesurer que la courbe descend de $\unit{1.5}{\centi\meter}$ sur une distance de $\unit{2}{\centi\meter}$, ce qui est l'échelle $1/200$ par rapport à l'énoncé.
 
-Si tu as deux sous de curiosité informatique, tu téléchargeras les sources de ce document \href{http://student.ulb.ac.be/~lclaesse/physique-math.tar.gz}{ici}, et tu regarderas dans le fichier \texttt{figures\_echa.py} la fonction \texttt{figure\_Matrix}\footnote{Sans dec, si tu aimes l'informatique, je te conseille de regarder ce fichier : ça te fera découvrir une manière de faire des dessins que tu ne soupçonnais pas dans tes rêves les plus fous !}.
+Si tu as deux sous de curiosité informatique, tu téléchargeras les sources de ce document \href{https://github.com/LaurentClaessens/echa}{ici}, et tu regarderas dans le fichier \texttt{figures\_echa.py} la fonction \texttt{figure\_Matrix}\footnote{Sans dec, si tu aimes l'informatique, je te conseille de regarder ce fichier : ça te fera découvrir une manière de faire des dessins que tu ne soupçonnais pas dans tes rêves les plus fous !}.
+https://github.com/LaurentClaessens/echa
 
 Les lignes qui nous intéressent sont les suivantes~:
 \begin{quote}
@@ -264,7 +264,6 @@ Les lignes qui définissent $g$, $h$ et $d$ ne sont pas mystérieuses : il s'agi
 	\end{align}
 \end{subequations}
 D'abord, on pose $\Delta h=3$, ce qui correspond à l'énoncé du problème. La dernière ligne n'est rien d'autre que l'équation \eqref{EqfDexpourtirhorizontal}. La subtilité est que la valeur de $v_0$ est posée \emph{avant} de donner $f$ parce que $f$ a besoin de $v_0$. Mais il n'empèche que la valeur \eqref{SubEqVZeroMatrix} est choisie pour être la solution de l'équation $f(d)=h-\Delta h$.
-
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Le tir oblique}

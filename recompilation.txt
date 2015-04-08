@@ -1,0 +1,12 @@
+Pour cause de figures en pstricks, il faut compiler ce document en plusieurs passes.
+Pour donner une idée, il n'y a pas de biblio.
+
+
+latex echa.tex
+dvipdf echa.dvi         18s
+
+Il y a peut-être moyen d'utiliser la chaine manuelle
+dvips -t a4 echa.dvi
+ps2pdf echa.ps               2minutes 25
+
+Note : le fichier intermédiaire ps semble à peu près impossible à ouvrir.
