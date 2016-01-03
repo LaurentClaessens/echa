@@ -1,0 +1,202 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\documentclass[a4paper,12pt]{book}
+
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{cases}
+
+
+\usepackage{eso-pic}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-eucl}
+\usepackage{pst-plot}
+\usepackage{pst-math}
+\usepackage{pstricks-add}
+
+
+\usepackage{multido}
+\usepackage{fp}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{graphicx}
+
+
+% La macro ValeurFonction
+% #1	est le nom de la fonction à calculer. Cette dernière doit être une macro à un argument du genre 3*#1+5/#1
+% #2	est la valeur de la variable en laquelle on veut calculer la fonction
+% #3	est le nom de la variable FP dans laquelle le résultat sera écrit.
+\newcommand{\ValeurFonction}[3]{\FPeval{#3}{#1{#2}}}
+
+
+% La macro pstPointSurCourbe
+% #1	est le nom de la fonction
+% #2	est le x où l'on veut le point
+% #3	est le nom du point pstricks qui sera en x sur la courbe.
+\newcommand{\pstPointSurCourbe}[3]{%
+\ValeurFonction{#1}{#2}{inter}
+\pstGeonode(#2,\inter){#3}
+}
+
+
+% La macro \pstMarquePoint prend les arguments suivants :
+% - 1 est optionnel : il donne le style de point qui va arriver
+% - 2 est le point (au sens pstrick) qui doit être marqué
+% - 3 est la position où va se trouver la marque par rapport au point pstrick. Typiquement c'est (0.3;90) en coordonnées polaires
+% - 4 est ce qu'on va y noter
+\newcommand{\pstMarquePoint}[4][PointSymbol=none]{%
+\rput(#2){\rput(#3){#4}}				% Mettre le symbole du point là où il doit être
+\pstGeonode[#1](#2){mpinter}				% Cette ligne fait apparaître un point à l'endroit que l'on marque.
+							%   étant donné le \psset{PointSymbol=none} dans lequel toutes les figures se trouvent,
+							%   ceci ne fait pas grand chose si on ne donne pas à \pstMarquePoint l'argument optionnel
+							%   du type PointSymbol=* par exemple.
+}
+
+% La macro pstLigneLongueur
+% #1	Optionnel : ce sont les parametres de tracé
+% #2	Premier point de la ligne
+% #3	Second point de la ligne
+% #4	Longueur de la ligne souhaitée
+%
+%   Cela trace une droite de longueur spécifiée qui passe par les deux points donnés. 
+\newcommand{\pstLigneLongueur}[4][]{%
+   \pstMiddleAB{#2}{#3}{interC}						% Trouver le milieu du segment donné
+   \pstInterLC[Diameter=\pstDistVal{#4}]{#2}{#3}{interC}{}{interP}{interQ}		% Points d'intersection entre la droite et le cercle de diamètre #4
+   \pstLineAB[#1]{interP}{interQ}
+}
+
+\begin{document}
+
+%
+%	L'environement ParamsTanApproxDerr contient les paramètres des figures à tracer pour mon approx de dérivation
+%	L'environement FigTanApproxDerr est l'environement de figure elle-même. Elle est censée se trouver à l'intérieur de ParamsTanApproxDerr.
+%
+
+
+% \Fn est la fonction au sens où \Fn{a} donne l'expression de la fonction avec a. Pour calculer la valeur de la fonction en 4, il faut donner \Fn{4} à FPeval. C'est ce que fait la macro \ValeurFonction.
+% \psFn est la fonction à donner à \psplot. \psFn est l'expression de Fn donnée avec x.
+\newenvironment{ParamsTanApproxDerr}[1]{%
+	\newcommand{\Fn}[1]{(-3)/(##1)+5}								%-3/x + 5
+	\newcommand{\psFn}{\Fn{x}}
+	\FPeval{Px}{1}
+	\FPeval{Qx}{8}
+
+	% Les deux macros suivantes donnent les coordonnées où doivent être placés les labels des points Q0, Q1, ... Y'a rien à faire : ils doivent être mis à la main.
+	\newcommand{\CoorR}[1]{
+		\ifnum ##1=0 0.3\fi
+		\ifnum ##1=1 0.3\fi
+		\ifnum ##1=2 0.3\fi
+		\ifnum ##1=3 0.5\fi
+		\ifnum ##1=4 0.5\fi
+		\ifnum ##1=5 0.5\fi
+		\ifnum ##1=6 0.5\fi
+		\ifnum ##1=7 0.5\fi
+	}
+	\newcommand{\CoorA}[1]{%
+		\ifnum ##1=0 -90\fi
+		\ifnum ##1=1 -90\fi
+		\ifnum ##1=2 -90\fi
+		\ifnum ##1=3 -90\fi
+		\ifnum ##1=4 -90\fi
+		\ifnum ##1=5 -90\fi
+		\ifnum ##1=6 -45\fi
+		\ifnum ##1=7 -45\fi
+	}
+	% La macro qui suit donne la couleur du tracé de l'approximation de tangente.
+	% 	Ici c'est important de ne pas mettre d'espace entre la couleur et le \fi, sinon cet espace est prit comme faisant partie du nom de la couleur
+	%	et alors xcolor se plaint de ne pas la connaître.
+	%	typiquement on a ceci : ! Package xcolor Error: Undefined color `red '.
+	\newcommand{\CoulTan}[1]{%
+		\ifnum ##1=0 blue\fi
+		\ifnum ##1=1 blue\fi
+		\ifnum ##1=2 blue\fi
+		\ifnum ##1=3 blue\fi
+		\ifnum ##1=4 blue\fi
+		\ifnum ##1=5 blue\fi
+		\ifnum ##1=6 blue\fi
+		\ifnum ##1=7 blue\fi
+	}
+
+	% J'ai besoin de la bounding box en vrai et en échelle parce que les axes sont tracés après avoir imposé l'échelle, ce qui fait que, eux, doivent être donnés par les nombres non mis à l'échelle.
+	% La bounding box est (-0.9,-1,1)(11,5)
+	\FPeval{BBbgx}{(-0.9)}
+	\FPeval{BBbgy}{(-1.1)}
+	\FPeval{BBhdx}{10}
+	\FPeval{BBhdy}{5}
+
+	% Je la recalcule en fonction de l'échelle donnée
+	\FPeval{eBBbgx}{0+\BBbgx*#1}
+	\FPeval{eBBbgy}{0+\BBbgy*#1}
+	\FPeval{eBBhdx}{0+\BBhdx*#1}
+	\FPeval{eBBhdy}{0+\BBhdy*#1}
+
+	\newenvironment{FigTanApproxDerr}{
+		\begin{pspicture}(\eBBbgx,\eBBbgy)(\eBBhdx,\eBBhdy)
+			\psset{algebraic=true, PointSymbol=none, PointName=none, xunit=#1cm, yunit=#1cm}
+
+			% Mettre les points sur la courbe
+			\pstPointSurCourbe{\Fn}{\Px}{P}
+			\pstPointSurCourbe{\Fn}{\Qx}{Q}
+   
+			% Définir les vecteurs de base de mon système de coordonnées
+			\pstGeonode(0,0){O}(1,0){X}(0,1){Y}
+
+			% Construire le point I qui est à l'angle du rectangle donné par P et Q.
+			\pstTranslation{O}{X}{P}[PX]
+			\pstTranslation{O}{Y}{Q}[QY]
+			\pstInterLL{P}{PX}{Q}{QY}{I}
+
+			% Placer les points où les Delta x et Delta y vont être mit 
+			\pstMiddleAB{P}{I}{Del}
+			\pstMiddleAB{Q}{I}{ff}
+
+			% Dessiner les axes et tracer la courbe.
+			\psaxes[dotsep=1pt]{->}(0,0)(\BBbgx,\BBbgy)(\BBhdx,\BBhdy)
+			\psplot{0.5}{9}{\psFn}
+		}				% Fin de l'ouverture de l'environnement FigTanApproxDerr
+		{\end{pspicture}}		% Fin de la fermeture de l'environnement FigTanApproxDerr
+}						% Fin de l'ouverture de l'environement ParamsTanApproxDerr
+{}						% Fin de la fermenture de l'environement ParamsTanApproxDerr 
+
+
+\begin{center}
+	\begin{ParamsTanApproxDerr}{0.5}
+		\begin{FigTanApproxDerr}
+		   	\pstMarquePoint[PointSymbol=*]{P}{0.3;0}{$P$}
+		\end{FigTanApproxDerr}
+	\end{ParamsTanApproxDerr}
+\end{center}
+
+\begin{figure}[ht]
+\centering
+	\begin{ParamsTanApproxDerr}{0.5}
+		\FPeval{NumPoints}{8}		% Note qu'avec n points, ils sont numérotés de 0 à n-1, comme le veux une vieille tradition en informatique.
+		\FPeval{Intervalle}{(\Qx-\Px)/\NumPoints}
+		\multido{\n=0+1}{\NumPoints}{%
+			\subfigure{
+				\begin{FigTanApproxDerr}
+					\FPeval{Qix}{\Qx-(\n*\Intervalle)}
+					\pstMarquePoint[PointSymbol=*]{P}{0.3;145}{$P$}
+					\pstPointSurCourbe{\Fn}{\Qix}{Qi\n}
+					\pstMarquePoint[PointSymbol=*]{Qi\n}{\CoorR{\n};\CoorA{\n}}{$Q_{\n}$}
+					\FPeval{Qix}{\Qix+1}	
+					\pstLigneLongueur[linecolor=\CoulTan{\n}]{P}{Qi\n}{7}
+				\end{FigTanApproxDerr}
+			}	% Fin de la sous-figure.
+		}	% Fin du multido
+	\end{ParamsTanApproxDerr}
+\caption{Plus le second point d'intersection avec la courbe s'approche de $P$, plus la droite ressemble à la tangente.}\label{FigTanApproxSuite}
+\end{figure}
+
+
+\end{document}
+

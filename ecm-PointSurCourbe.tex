@@ -1,0 +1,54 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\documentclass[a4paper,12pt]{book}
+
+\usepackage{fp}
+
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-eucl}
+\usepackage{pst-plot}
+\usepackage{pst-math}
+\usepackage{pstricks-add}
+
+% La macro ValeurFonction
+% #1	est le nom de la fonction à calculer. Cette dernière doit être une macro à un argument du genre 3*#1+5/#1
+% #2	est la valeur de la variable en laquelle on veut calculer la fonction
+% #3	est le nom de la variable FP dans laquelle le résultat sera écrit.
+\newcommand{\ValeurFonction}[3]{\FPeval{#3}{#1{#2}}}
+
+% La macro pstPointSurCourbe
+% #1	est le nom de la fonction
+% #2	est le x où l'on veut le point
+% #3	est le nom du point pstricks qui sera en x sur la courbe.
+\newcommand{\pstPointSurCourbe}[3]{%
+\ValeurFonction{#1}{#2}{inter}
+\pstGeonode(#2,\inter){#3}
+}
+
+
+% \Fn est la fonction au sens où \Fn{a} donne l'expression de la fonction avec a. Pour calculer la valeur de la fonction en 4, il faut donner \Fn{4} à FPeval. C'est ce que fait la macro \ValeurFonction.
+\newcommand{\Fn}[1]{((0-3)/(#1))+5}								%-3/x + 5     
+% \psFn est la fonction à donner à \psplot. \psFn est l'expression de Fn donnée avec x.
+\newcommand{\psFn}{\Fn{x}}
+
+
+\begin{document}
+
+%\begin{pspicture}(-0.9,-1,1)(11,5)
+%    \psset{algebraic=true}		% Ceci est le secret pour que FP et pstricks utilisent la même syntaxe.
+%	\psplot[linecolor=cyan]{0.5}{8}{\psFn}
+%	\pstPointSurCourbe{\Fn}{1}{P}
+%\end{pspicture}
+
+\renewcommand{\Fn}[1]{#1^2}    
+\ValeurFonction{\Fn}{3}{inter}
+Je sais la valeur de
+$f(3)=\inter$,
+et arrondie ça donne \FPround{\rond}{\inter}{3} $f(3)\sim\rond$.
+
+\end{document}

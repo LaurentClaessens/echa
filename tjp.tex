@@ -1,0 +1,75 @@
+
+\documentclass[a4paper,12pt]{book}
+%\documentclass[a4paper,12pt,draft]{book}
+
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\newtheorem{exercice}{Exercice}			% Les exercices ne se numérotent pas avec les autres, pour que les références soient plus faciles à suivre dans la partie corrigée.
+
+
+\newenvironment{corrige}[1]{\par\bigskip\noindent \label{corr#1}\par\nopagebreak}{}
+\newcommand{\corrref}[1]{\par Corrigé à la page \pageref{corr#1}.}
+
+\begin{document}
+
+\newwrite\test
+\openout\test=corr			% Les choses écrites par \write\test arrivent dans le fichier corr.tex, et non dans corr; le .tex est ajouté automatiquement.
+
+
+\subsection{Exercices}
+%---------------------
+
+Prenons maintenant quelque exemples plus mathématiques. Quels sont les cas où une fonction peut ne pas être définie ? Il y en a essentiellement deux pour l'instant (mais d'autres cas viendront) :
+\begin{itemize}
+\item dénominateur nul,
+\item nombre strictement négatif sous la racine.
+\end{itemize}
+Donc dès que tu vois une fraction, tu exclu du domaine ce qui annule le dénominateur, et dès que tu vois une racine, tu exclu ce qui rends négative l'expression sous la racine.
+
+ Les trinômes suivants ont deux racines entières entre -10 et 10. Trouves les. 
+\begin{align*}
+f_{1}(x)&=8x^2-96x+280&f_{2}(x)&=-7x^2+49x\\
+f_{3}(x)&=x^2-6x-27&f_{4}(x)&=7x^2-21x\\
+f_{5}(x)&=5x^2-25x-30&f_{6}(x)&=-9x^2-9x+270\\
+f_{7}(x)&=7x^2-105x+350&f_{8}(x)&=7x^2+42x+56\\
+f_{9}(x)&=-5x^2-15x+270&f_{10}(x)&=6x^2-18x-324
+\end{align*}
+
+\write\test{\string\input{ecmI}}
+
+\begin{align*}
+S_{1}&=\left\{-3,-\frac{16}{5}\right\}&S_{2}&=\left\{\frac{1}{9},-\frac{21}{5}\right\}\\
+S_{3}&=\left\{1,-\frac{1}{9}\right\}&S_{4}&=\left\{-\frac{31}{10},-3\right\}\\
+S_{5}&=\left\{-\frac{2}{3},-\frac{5}{4}\right\}&S_{6}&=\left\{-\frac{11}{5},-\frac{4}{5}\right\}\\
+S_{7}&=\left\{-\frac{3}{2},-\frac{5}{4}\right\}&S_{8}&=\left\{-\frac{27}{7},\frac{35}{9}\right\}\\
+S_{9}&=\left\{\frac{20}{7},\frac{25}{6}\right\}&S_{10}&=\left\{4,\frac{9}{4}\right\}
+\end{align*}
+
+\write\test{\string\input{ecmI}}
+
+\begin{align*}
+S_{1}&=\emptyset&S_{2}&=\left\{\frac{4-\sqrt{11}}{5},\frac{4+\sqrt{11}}{5}\right\}\\
+S_{3}&=\left\{\frac{-3-\sqrt{29}}{2},\frac{-3+\sqrt{29}}{2}\right\}&S_{4}&=\left\{-1,-1\right\}\\
+S_{5}&=\left\{\frac{3}{7},1\right\}&S_{6}&=\emptyset\\
+S_{7}&=\emptyset&S_{8}&=\emptyset\\
+S_{9}&=\emptyset&S_{10}&=\left\{-\frac{1}{2}+\frac{1}{6}\sqrt{93},-\frac{1}{2}-\frac{1}{6}\sqrt{93}\right\}
+\end{align*}
+
+\write\test{\string\input{ecmI}}
+
+\section{Correction}
+
+\input{corr}
+
+
+\end{document}
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+

@@ -1,0 +1,33 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
+\documentclass[a4paper,12pt]{book}
+
+\usepackage{fp}
+\usepackage{ifthen}
+\usepackage{multido}
+
+\usepackage{pstricks}
+\usepackage{pst-eucl}
+
+\begin{document}
+
+
+\newenvironment{EssUn}[1]{
+	\newcommand{\Commande}[2]{Les paramètres de la commande sont ##1 et ##2 et j'ai aussi \bloblo}
+	Le paramètre passé pour l'environement est #1
+	\FPeval{bloblo}{4}
+}
+{}
+
+\begin{EssUn}{3}
+
+\Commande{Essai}{ReEssai}
+
+\end{EssUn}
+
+\end{document}
+

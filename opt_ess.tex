@@ -1,0 +1,409 @@
+% Ce fichier contient toutes sortes de test pour pstricks et FP.
+
+\FPeval{l}{5*\FPpi/4}
+La variable $l$ qui vaut \l\ est plus
+\FPifgt{\l}{10}{grande}\else{petite}\fi\ que 10.
+J'ai fini mon test.
+
+% #1 est le point où le rayon va traverser l'interface
+% #2 est un autre point de l'interface
+% #3 est la distance à laquelle le rayon part
+% #4 est l'angle avec lequel il arrive (angle en degré avec la normale)
+% #5 est le temps depuis lequel il est parti
+% #6 est la vitesse de la lumière dans le second milieu; celle dans le premier est 1.
+% #7 est le nom du point pstricks de départ; c'est cette macro qui la place
+% #8 est le nom du point pstricks d'arrivée.
+\newcommand{\parclum}[8]{%
+\FPeval{AngleNorRad}{\FPpi*#4/180}
+\FPeval{AngleTgRad}{\FPpi/2-\AngleNorRad}
+\FPeval{AngleTgDeg}{#4+90}
+
+\FPround{\AngleTgDeg}{\AngleTgDeg}{3}
+\FPround{\AngleTgRad}{\AngleTgRad}{3}
+\FPround{\AngleNorRad}{\AngleNorRad}{3}
+
+   \pstRotation[RotAngle=\AngleTgDeg]{#1}{#2}[lsept]
+   \rput(E){\pstGeonode(#3;0){inter}}					% Place un point à une distance #3 de E pour ensuite construire le cercle correspondant
+   \pstInterLC[Radius=\pstDistAB{E}{inter}]{#1}{lsept}{#1}{}{#7}{interF}
+
+
+\FPiflt{#5}{#3}{%		Le cas où le temps est plus petit que la distance est facile et est traité ici
+   \rput(P){\pstGeonode(#5;0){inter}}	
+   \pstInterLC[Radius=\pstDistAB{#7}{inter}]{#7}{#1}{#7}{}{F}{#8}
+  
+		}		% fin de la possibilité où le temps est plus court que le trajet
+\else{%
+   \FPeval{trest}{(#3-#5)/#6}	% Le temps qu'il reste à voyager au moment où le rayon arrive à l'interface, divisé en l'indice de réfraction pour normaliser à un.
+   \rput(P){\pstGeonode(\trest;0){inter}}	
+   \pstInterLC[Radius=\pstDistAB{#7}{inter}]{#7}{#1}{#7}{}{interF}{#8}
+		}\fi		% fin de la possibilité où le temps est plus grand que le trajet, et fin du FPiflt par la même occasion.
+
+}		% fin de \parclum
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-1,-1)(2,1)
+% \psframe[linecolor=blue](-1,-1)(2,1)
+	\psset{PointSymbol=none, PointName=none}
+
+   \pstGeonode(0,0){E}(-1,0){A}
+
+   \pstLineAB[nodesepA=-1,nodesepB=-2]{A}{E}
+\multido{\r=0+0.1}{20}{%
+	\parclum{E}{A}{1}{25}{\r}{0.5}{P}{B}
+	\pstRayon{A}{B}
+			}  % Fin du multido
+\end{pspicture}
+\caption{Mon \oe uvre d'art actuelle}\label{fig_refr_pm}
+\end{figure}
+
+\newcommand{\placefigfrontsdeux}[4]{%		Cette commande place les fronts d'ondes 
+				%		Le premier paramètre dit la distance du premier front à la surface
+				%		Le second la distance entre deux fronts.
+				%		Le troisième est la distance entre deux rayons
+				%		Le quatrième paramètre donne l'angle avec la surface AB	
+	\pstGeonode(-1,0){A}(2,0){B}(0,0){O}(1,0){Ox}(0,1){Oy}
+	\pstMiddleAB{A}{B}{C}
+
+	\FPeval{angleun}{180-#4}
+	\FPeval{angledeux}{\angleun-90}
+	\FPround{\angleun}{\angleun}{3}			% Je ne garde que 3 décimales, sinon les opérations plus loin se plaignent.
+	\FPround{\angledeux}{\angledeux}{3}
+	
+ 	\rput(C){\rput(#1;\angleun){\pstGeonode(0,0){p}}}
+   	\rput(p){\rput(#3;\angledeux){\pstGeonode(0,0){pd}}}
+   	\rput(p){\rput(#2;\angleun){\pstGeonode(0,0){q}}} 
+
+	\pstTransHom{p}{pd}{p}{-1}{pg}			% Placer le rayon à gauche de p
+	\pstTranslation{p}{q}{q}[r]
+
+	\pstTranslation{p}{pd}{q}[qd]
+	\pstTranslation{p}{pg}{q}[qg]
+	\pstTranslation{p}{pd}{r}[rd]
+	\pstTranslation{p}{pg}{r}[rg]
+
+}				% Fin de placefigfronts_deux
+
+\newcommand{\tracefigfrontdeux}{%
+   \pstLineAB[nodesepA=-1,nodesepB=-2]{A}{B}
+\pstRayon{r}{q}
+\pstRayon{q}{p}
+\pstRayon{rg}{qg}
+\pstRayon{qg}{pg}
+\pstRayon{rd}{qd}
+\pstRayon{qd}{pd}
+
+{\psset{linecolor=red}
+ \psline(p)(pd)
+ \psline(p)(pg)
+}
+
+{\psset{linecolor=green}
+ \psline(q)(qd)
+ \psline(q)(qg)
+}
+{\psset{linecolor=yellow}
+ \psline(r)(rd)
+ \psline(r)(rg)
+}
+			}	% fin de tracefigfrontdeux
+
+\newcommand{\angleapprpche}{45}
+\newcommand{\distdeuxfronts}{1}
+\newcommand{\distprem}{2}
+\newcommand{\distdeuxrayo}{1.3}
+
+\begin{figure}[h]
+\centering
+\subfigure[Avant d'arriver à la surface de l'eau, tout avance en un bloc.]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+\placefigfrontsdeux{\distprem}{\distdeuxrayo}{\distdeuxfronts}{\angleapprpche}
+
+\tracefigfrontdeux
+
+\label{ssfig_front_bloc}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+% ------- ss figure ---------
+\subfigure[Le  premier rayon  arrive à la surface. Il va commencer à ralentir tandis que les deux autres continueront à la même vitesse pendant encore un peu de temps.]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+
+% Pour cette sous-figure-ci, l'art est de placer le rayon central à la distance qu'il faut pour que le premier rayon soit juste sur l'interface. C'est pour cela que l'on utilise FPeval. Un peu de trigono élémentaire.
+
+	\FPeval{distpre}{\distdeuxfronts/tan(\FPpi*\angleapprpche/180)}
+	\placefigfrontsdeux{\distpre}{\distdeuxrayo}{\distdeuxfronts}{\angleapprpche}
+\tracefigfrontdeux
+\label{ainventer}
+\end{pspicture}
+}
+%---- fin de ss figure ----------
+
+% ------- ss figure ---------
+\subfigure[Ceci est ce qui ne se passe pas !]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+
+% Pour cette sous-figure-ci, l'art est de décaller le premier rayon pour qu'il ne soit pas aussi loin que les autres. Il faut un peu le décaller
+
+	\placefigfrontsdeux{0}{\distdeuxrayo}{\distdeuxfronts}{\angleapprpche}
+
+\tracefigfrontdeux
+\label{ainventer}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%---- fin de ss figure ----------
+% ------- ss figure ---------
+\subfigure[Ceci est ce qu'il se passe.]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+
+% Pour cette sous-figure-ci, l'art est de décaller le premier rayon pour qu'il ne soit pas aussi loin que les autres. Il faut un peu le décaller. Je vais raccourcir de moitié la partie de ce rayon sous l'eau. Pour ça, c'est parti avec des intersections de droites et tout.
+
+	\placefigfrontsdeux{0}{\distdeuxrayo}{\distdeuxfronts}{\angleapprpche}
+	
+\pstInterLL{A}{B}{pg}{qg}{m}			% Le point m est l'endroit où le rayon entre sous l'eau
+\pstHomO[HomCoef=0.5]{pg}{m}[pg]
+
+
+\tracefigfrontdeux
+\label{ainventer}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%---- fin de ss figure ----------
+% ------- ss figure ---------
+\subfigure[La situation un peu plus tard.]{%
+\begin{pspicture}(-2,-1)(2,1.5)
+	\psset{PointSymbol=none, PointName=none}
+
+
+	\placefigfrontsdeux{-1}{\distdeuxrayo}{\distdeuxfronts}{\angleapprpche}
+	
+\pstInterLL{A}{B}{pg}{qg}{m}			% Le point m est l'endroit où le premier rayon entre sous l'eau
+\pstHomO[HomCoef=0.5]{pg}{m}[pg]
+
+\pstInterLL{A}{B}{p}{q}{n}			% Le point n est l'endroit où le second rayon entre sous l'eau
+\pstHomO[HomCoef=0.5]{p}{n}[p]
+
+\tracefigfrontdeux
+\label{ainventer}
+\end{pspicture}
+}						% Fermeture de la sous-figure
+%---- fin de ss figure ----------
+\caption{Explication géométrique de la réfraction}\label{fig_frontrefract_deux}
+\end{figure}
+
+
+% #1 est le point où le rayon va traverser l'interface
+% #2 est un autre point de l'interface
+% #3 est la distance à laquelle le rayon part
+% #4 est l'angle avec lequel il arrive (angle en degré avec la normale)
+% #5 est le temps depuis lequel il est parti
+% #6 est la vitesse de la lumière dans le second milieu; celle dans le premier est 1.
+% #7 est le nom du point pstricks de départ; c'est cette macro qui la place
+% #8 est le nom du point pstricks d'arrivée.
+\newcommand{\parclum}[8]{%
+\FPeval{AngleNorRad}{\FPpi*#4/180}
+\FPeval{AngleTgRad}{\FPpi/2-\AngleNorRad}
+\FPeval{AngleTgDeg}{#4+90}
+
+\FPround{\AngleTgDeg}{\AngleTgDeg}{3}
+\FPround{\AngleTgRad}{\AngleTgRad}{3}
+\FPround{\AngleNorRad}{\AngleNorRad}{3}
+
+   \pstRotation[RotAngle=\AngleTgDeg]{#1}{#2}[lsept]
+   \rput(E){\pstGeonode(#3;0){inter}}					% Place un point à une distance #3 de E pour ensuite construire le cercle correspondant
+   \pstInterLC[Radius=\pstDistAB{E}{inter}]{#1}{lsept}{#1}{}{#7}{interF}
+
+
+\FPiflt{#5}{#3}{%		Le cas où le temps est plus petit que la distance est facile et est traité ici
+   \rput(P){\pstGeonode(#5;0){inter}}	
+   \pstInterLC[Radius=\pstDistAB{#7}{inter}]{#7}{#1}{#7}{}{F}{#8}
+  
+		}		% fin de la possibilité où le temps est plus court que le trajet
+\else{%
+   \FPeval{trest}{(#3-#5)/#6}	% Le temps qu'il reste à voyager au moment où le rayon arrive à l'interface, divisé en l'indice de réfraction pour normaliser à un.
+   \rput(P){\pstGeonode(\trest;0){inter}}	
+   \pstInterLC[Radius=\pstDistAB{#7}{inter}]{#7}{#1}{#7}{}{interF}{#8}
+		}\fi		% fin de la possibilité où le temps est plus grand que le trajet, et fin du FPiflt par la même occasion.
+
+}		% fin de \parclum
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(-1,-1)(2,1)
+% \psframe[linecolor=blue](-1,-1)(2,1)
+	\psset{PointSymbol=none, PointName=none}
+
+   \pstGeonode(0,0){E}(-1,0){A}
+
+   \pstLineAB[nodesepA=-1,nodesepB=-2]{A}{E}
+\multido{\r=0+0.1}{20}{%
+	\parclum{E}{A}{1}{25}{\r}{0.5}{P}{B}
+	\pstRayon{A}{B}
+			}  % Fin du multido
+\end{pspicture}
+\caption{Mon \oe uvre d'art actuelle}\label{fig_refr_pm}
+\end{figure}
+
+%---------------------------------------------------------------------------------------------------------------------------
+					\subsection{Les figures des dérivées avant le script python}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
+
+%
+%	L'environement ParamsTanApproxDerr contient les paramètres des figures à tracer pour mon approx de dérivation
+%	L'environement FigTanApproxDerr est l'environement de figure elle-même. Elle est censée se trouver à l'intérieur de ParamsTanApproxDerr.
+%
+
+
+% \Fn est la fonction au sens où \Fn{a} donne l'expression de la fonction avec a. Pour calculer la valeur de la fonction en 4, il faut donner \Fn{4} à FPeval. C'est ce que fait la macro \ValeurFonction.
+% \psFn est la fonction à donner à \psplot. \psFn est l'expression de Fn donnée avec x.
+\newenvironment{ParamsTanApproxDerr}[1]{%
+	\newcommand{\Fn}[1]{(-3)/(##1)+5}								%-3/x + 5
+	\newcommand{\psFn}{\Fn{x}}
+	\FPeval{Px}{1}
+	\FPeval{Qx}{8}
+
+	% Les deux macros suivantes donnent les coordonnées où doivent être placés les labels des points Q0, Q1, ... Y'a rien à faire : ils doivent être mis à la main.
+	\newcommand{\CoorR}[1]{
+		\ifnum ##1=0 0.3\fi
+		\ifnum ##1=1 0.3\fi
+		\ifnum ##1=2 0.3\fi
+		\ifnum ##1=3 0.5\fi
+		\ifnum ##1=4 0.5\fi
+		\ifnum ##1=5 0.5\fi
+		\ifnum ##1=6 0.5\fi
+		\ifnum ##1=7 0.5\fi
+	}
+	\newcommand{\CoorA}[1]{%
+		\ifnum ##1=0 -90\fi
+		\ifnum ##1=1 -90\fi
+		\ifnum ##1=2 -90\fi
+		\ifnum ##1=3 -90\fi
+		\ifnum ##1=4 -90\fi
+		\ifnum ##1=5 -90\fi
+		\ifnum ##1=6 -45\fi
+		\ifnum ##1=7 -45\fi
+	}
+	% La macro qui suit donne la couleur du tracé de l'approximation de tangente.
+	% 	Ici c'est important de ne pas mettre d'espace entre la couleur et le \fi, sinon cet espace est prit comme faisant partie du nom de la couleur
+	%	et alors xcolor se plaint de ne pas la connaître.
+	%	typiquement on a ceci : ! Package xcolor Error: Undefined color `red '.
+	\newcommand{\CoulTan}[1]{%
+		\ifnum ##1=0 blue\fi
+		\ifnum ##1=1 blue\fi
+		\ifnum ##1=2 blue\fi
+		\ifnum ##1=3 blue\fi
+		\ifnum ##1=4 blue\fi
+		\ifnum ##1=5 blue\fi
+		\ifnum ##1=6 blue\fi
+		\ifnum ##1=7 blue\fi
+	}
+
+	% J'ai besoin de la bounding box en vrai et en échelle parce que les axes sont tracés après avoir imposé l'échelle, ce qui fait que, eux, doivent être donnés par les nombres non mis à l'échelle.
+	% La bounding box est (-0.9,-1,1)(11,5)
+	\FPeval{BBbgx}{(-0.9)}
+	\FPeval{BBbgy}{(-1.1)}
+	\FPeval{BBhdx}{10}
+	\FPeval{BBhdy}{5}
+
+	% Je la recalcule en fonction de l'échelle donnée
+	\FPeval{eBBbgx}{0+\BBbgx*#1}
+	\FPeval{eBBbgy}{0+\BBbgy*#1}
+	\FPeval{eBBhdx}{0+\BBhdx*#1}
+	\FPeval{eBBhdy}{0+\BBhdy*#1}
+
+	\newenvironment{FigTanApproxDerr}{
+		\begin{pspicture}(\eBBbgx,\eBBbgy)(\eBBhdx,\eBBhdy)
+			\psset{algebraic=true, PointSymbol=none, PointName=none, xunit=#1cm, yunit=#1cm}
+
+			% Mettre les points sur la courbe
+			\pstPointSurCourbe{\Fn}{\Px}{P}
+			\pstPointSurCourbe{\Fn}{\Qx}{Q}
+   
+			% Définir les vecteurs de base de mon système de coordonnées
+			\pstGeonode(0,0){O}(1,0){X}(0,1){Y}
+
+			% Construire le point I qui est à l'angle du rectangle donné par P et Q.
+			\pstTranslation{O}{X}{P}[PX]
+			\pstTranslation{O}{Y}{Q}[QY]
+			\pstInterLL{P}{PX}{Q}{QY}{I}
+
+			% Placer les points où les Delta x et Delta y vont être mit 
+			\pstMiddleAB{P}{I}{Del}
+			\pstMiddleAB{Q}{I}{ff}
+
+			% Dessiner les axes et tracer la courbe.
+			\psaxes[dotsep=1pt]{->}(0,0)(\BBbgx,\BBbgy)(\BBhdx,\BBhdy)
+			\psplot{0.5}{9}{\psFn}
+		}				% Fin de l'ouverture de l'environnement FigTanApproxDerr
+		{\end{pspicture}}		% Fin de la fermeture de l'environnement FigTanApproxDerr
+}						% Fin de l'ouverture de l'environement ParamsTanApproxDerr
+{}						% Fin de la fermenture de l'environement ParamsTanApproxDerr 
+Passons maintenant à tout autre chose, mais toujours dans l'utilisation de la notion de limite pour résoudre des problèmes intéressants. Comment trouver l'équation de la tangente à la courbe $y=f(x)$ au point $(x_0,f(x_0))$ ?
+
+Essayons de trouver la tangente au point $P$ donné de la courbe suivante :
+\begin{center}
+	\begin{ParamsTanApproxDerr}{0.5}
+		\begin{FigTanApproxDerr}
+		   	\pstMarquePoint[PointSymbol=*]{P}{0.3;0}{$P$}
+		\end{FigTanApproxDerr}
+	\end{ParamsTanApproxDerr}
+\end{center}
+La tangente est la droite qui touche la courbe en un seul point sans la traverser. Affin de la construire, nous allons dessiner des droites qui touchent la courbe en $P$ et un autre point $Q$, et nous allons voir ce qu'il se passe quand $Q$ est très proche de $P$. Cela donnera une droite qui, certes, touchera la courbe en deux points, mais en deux point \emph{tellement proche que c'est comme si c'étaient les mêmes}. Tu sens que la notion de limite va encore venir.
+
+Nous avons placé le point $P$ en $x=x_P$ et le point $Q$ un peu plus loin $x=x_P+\Delta x$. En d'autres termes leurs coordonnées sont
+\begin{align}
+	P=\big(x_P,f(x_P)\big)&& Q=\big(x_P+\Delta x,f(x_P+\Delta x)\big).
+\end{align}
+Le coefficient angulaire de la droite qui passe par ces deux points est donné par
+\begin{equation}
+	\frac{ f(x+\Delta x)-f(x) }{ \Delta x },
+\end{equation}
+comme tu devrais le savoir sans même regarder le dessin ci-dessous.
+\begin{center}
+	\begin{ParamsTanApproxDerr}{1}
+		\begin{FigTanApproxDerr}
+		   	\pstMarquePoint[PointSymbol=*]{Q}{0.3;90}{$Q$}
+   			\pstMarquePoint[PointSymbol=*]{P}{0.3;180}{$P$}
+			\ncline[linestyle=dashed]{<->}{P}{I}
+			\ncline[linestyle=dashed]{<->}{Q}{I}
+			\pstMarquePoint{Del}{0.3;-90}{$\Delta x$}
+			\pstMarquePoint{ff}{2;0}{$f(x+\Delta x)-f(x)$}
+		\end{FigTanApproxDerr}
+	\end{ParamsTanApproxDerr}
+\end{center}
+Et bang ! Encore le même rapport. Si tu regardes la figure \ref{FigTanApproxSuite}, tu verras que réellement en faisant tendre $\Delta x$ vers zéro on obtient la tangente.
+
+
+\begin{figure}[ht]
+\centering
+	\begin{ParamsTanApproxDerr}{0.5}
+		\FPeval{NumPoints}{8}		% Note qu'avec n points, ils sont numérotés de 0 à n-1, comme le veux une vieille tradition en informatique.
+		\FPeval{Intervalle}{(\Qx-\Px)/\NumPoints}
+		\multido{\n=0+1}{\NumPoints}{%
+			\subfigure{
+				\begin{FigTanApproxDerr}
+					\FPeval{Qix}{\Qx-(\n*\Intervalle)}
+					\pstMarquePoint[PointSymbol=*]{P}{0.3;145}{$P$}
+					\pstPointSurCourbe{\Fn}{\Qix}{Qi\n}
+					\pstMarquePoint[PointSymbol=*]{Qi\n}{\CoorR{\n};\CoorA{\n}}{$Q_{\n}$}
+					\FPeval{Qix}{\Qix+1}	
+					\pstLigneLongueur[linecolor=\CoulTan{\n}]{P}{Qi\n}{7}
+				\end{FigTanApproxDerr}
+			}	% Fin de la sous-figure.
+		}	% Fin du multido
+	\end{ParamsTanApproxDerr}
+\caption{Plus le second point d'intersection avec la courbe s'approche de $P$, plus la droite ressemble à la tangente.}\label{FigTanApproxSuite}
+\end{figure}
+
+
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
