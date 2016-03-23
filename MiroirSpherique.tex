@@ -1,12 +1,11 @@
 % This is part of Un soupçon de physique, sans être agressif pour autant
-% Copyright (C) 2006-2009
+% Copyright (C) 2006-2009,2016
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
-
 \section{Miroirs sphériques}
 %---------------------------
-%http://fr.wikipedia.org/wiki/Miroir_sphérique
+
 Cette section va parler de \href{http://fr.wikipedia.org/wiki/Miroir_sphérique}{miroirs sphériques}. Ce sont des calottes sphériques. Selon que la surface intérieure ou extérieure est réfléchissante, le miroir est dit \defe{concave}{} ou \defe{convexe}{}.
 
 L'optique des miroirs sphériques se résume en trois règles simples.
@@ -29,59 +28,13 @@ Le foyer dont il est question dans la seconde loi se trouve sur l'axe principal 
 où $R$ est le rayon du miroir. La figure \ref{FigPasageFoyer} montre des rayons lumineux qui sont réfléchis vers le foyer.
 
 
-\newcommand{\PreFigPassagefoyer}{%
-\pstGeonode(0,0){C}(-3,0){Pm}(1.5,0.5){A}(1.5,-0.5){B}
-\pstTranslation{Pm}{C}{C}[Pml]
-\pstMiroirSph{C}{Pm}{A}{F}{AmP}{AmPl}{AmC}{AmCl}{iA}
-\pstTraceMiroirSph{C}{Pm}{F}{55}{S1}{S2}
-
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-}
-
 \begin{figure}
 \centering
 \subfigure[Passage réel, miroir concave]{%
-\begin{pspicture}(-3,-3)(2,3)
- %\psframe[linecolor=cyan](-3,-3)(2,3)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigPassagefoyer
-
-	\psline[linecolor=lightgray](Pm)(Pml)
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-
-	\pstRayon[linecolor=green]{A}{AmP}
-	\pstRayon[linecolor=green]{AmP}{iA}
-
-	\pstRayon[linecolor=blue]{B}{BmP}
-	\pstRayon[linecolor=blue]{BmP}{iB}
-
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;45}{$A$}
-	\pstMarquePoint[PointSymbol=*]{B}{0.3;45}{$B$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;270}{$F$}
-\end{pspicture}
+    \includegraphics{fig12694_1.png}
 }
 \subfigure[Passage virtuel, miroir convexe]{%
-\begin{pspicture}(-6,-3)(3,3)
- %\psframe[linecolor=magenta](-6,-3)(3,3)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigPassagefoyer
-
-	\psline[linecolor=lightgray](Pm)(Pml)
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-
-	\pstTranslation{C}{Pm}{Pm}[Bd]
-	\pstRotation[RotAngle=90]{F}{C}[Cp]
-	\pstTranslation{F}{Bd}{Cp}[Bp]
-
-\multido{\r=-0.9+0.3}{7}{%
-	\pstHomO[HomCoef=\r]{Bd}{Bp}[B]	
-	\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}	
-	\pstRayon[linecolor=cyan]{B}{BmP}\pstRayon[linecolor=cyan]{BmP}{BmPl}
-	\psline[linestyle=dotted](BmP)(F)
-			}  % Fin du multido
-
-\end{pspicture}
+    \includegraphics{fig12694_1.png}
 }
 \caption{Miroir sphérique : admirez comme tous les rayons parallèles à l'axe se réfléchissent en passant par le foyer !}  \label{FigPasageFoyer}
 \end{figure}
@@ -89,123 +42,33 @@ où $R$ est le rayon du miroir. La figure \ref{FigPasageFoyer} montre des rayons
 \subsection{Construction de l'image d'un objet}
 %----------------------------------------------
 
-Muni des lois de la page \pageref{PgLoiMirSph}, nous sommes à même de construire l'image d'un objet $AB$. La figure \ref{FigMiroirSpherique} donne un exemple de la construction de l'image d'un point. Lorsqu'on a un segment $AB$ dont il faut calculer l'image, le plus simple est de choisir l'axe optique de telle façon à contenir le point $A$ et être perpendiculaire à $AB$. %Tu reliras cette phrase après avoir regardé la figure \ref{FigChoixAxe}. 
-%En attendant oublie cette histoire de choix d'axe principal et regarde la figure \ref{FigCasConcaves}.
+Muni des lois de la page \pageref{PgLoiMirSph}, nous sommes à même de construire l'image d'un objet $AB$. La figure \ref{FigMiroirSpherique} donne un exemple de la construction de l'image d'un point. Lorsqu'on a un segment $AB$ dont il faut calculer l'image, le plus simple est de choisir l'axe optique de telle façon à contenir le point $A$ et être perpendiculaire à $AB$. 
 
-
-\newcommand{\PreFigMS}{%
-\pstGeonode(0,0){C}(-3,0){Pm}(1.5,1.5){A}(1,-0.5){B}
-\pstTranslation{Pm}{C}{C}[Pml]
-\pstMiroirSph{C}{Pm}{A}{F}{AmP}{AmPl}{AmC}{AmCl}{iA}
-\pstTraceMiroirSph{C}{Pm}{F}{55}{S1}{S2}
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-}
 \begin{figure}
 \centering
-\begin{pspicture}(-4,-2.5)(3,2.5)
-% \psframe[linecolor=blue](-4,-2.5)(3,2.5)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigMS
-
-
-	\psline[linecolor=lightgray](Pm)(Pml)
-
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-	\pstRayon[linecolor=green]{A}{AmP}
-	\pstRayon[linecolor=green]{AmP}{iA}
-	\pstRayon[linecolor=green]{A}{AmC}
-	\pstRayon[linecolor=green]{AmC}{iA}
-
-	\pstRayon[linecolor=blue]{B}{BmP}
-	\pstRayon[linecolor=blue]{BmP}{iB}
-	\pstRayon[linecolor=blue]{B}{BmC}
-	\pstRayon[linecolor=blue]{BmC}{iB}
-
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;270}{$C$}
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;45}{$A$}
-	\pstMarquePoint[PointSymbol=*]{B}{0.3;45}{$B$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;270}{$F$}
-	\pstMarquePoint[PointSymbol=*]{iA}{0.3;270}{$A'$}
-	\pstMarquePoint[PointSymbol=*]{iB}{0.3;90}{$B'$}
-\end{pspicture}
-
+    \includegraphics{fig29073_1.png}
 \caption{Miroir sphérique : deux exemples de construction d'images de points. Un peu confus hein ? Essaie de refaire le dessin toi-même, et ça te paraîtra plus simple.}  \label{FigMiroirSpherique}
 \end{figure}
 
 Regardons pas à pas la construction de la figure \ref{FigConcUn}. Sur la figure \ref{FigConcUnPara}, nous avons tracé le rayon issu de $B$, et trouvé son intersection avec le miroir. En vertu d'une des lois (laquelle ?) de la page \ref{PgLoiMirSph}, ce rayon va se refléter en passant par le foyer (qui se trouve, rappelons-le, au milieu du segment d'axe optique joignant le centre du miroir et le miroir), comme montré sur la figure \ref{FigConcUnFoyer}. Pour terminer de fixer l'objet, on construit l'autre chemin facile : celui du rayon issu de $B$ qui tombe sur le miroir en passant par le centre. Celui-là est dessiné sur la figure \ref{FigConcUnCentre}.
 
-\newcommand{\PreFigConcUn}{%
-\pstGeonode(0,0){C}(2,0){A}(2,1){B}(-3,0){Pm}
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-\pstTraceMiroirSph{C}{Pm}{F}{40}{S1}{S2}
-	\pstHomO[HomCoef=2]{BmP}{F}[iBPl]
-	
-	}
-
-% Tracé des choses communes à tous les dessins
-\newcommand{\PreFigConcUnTr}{%
-\psline[linewidth=0.1](A)(B)
-\pstHomO[HomCoef=1.5]{C}{A}[Al]
-	\psline[linecolor=lightgray](Pm)(Al)
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;270}{$A$}
-	\pstMarquePoint[PointSymbol=*]{B}{0.3;0}{$B$}
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;90}{$C$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;220}{$F$}
-	\pstMarquePoint[PointSymbol=*]{BmP}{0.3;180}{$I$}
-
-}
-
 \begin{figure}
 \centering
 \subfigure[D'abord, tracer le rayon issu de $A$ parallèlement à l'axe optique, et trouver le point $I$ où ce rayon tombe sur le miroir]{%
-\begin{pspicture}(-3.3,-2.5)(3,2.5)
-% \psframe[linecolor=magenta](-4,-2.5)(3,2.5)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigConcUn
-
-	\pstRayon{B}{BmP}
-	\PreFigConcUnTr
-\end{pspicture}
+    \includegraphics{fig7954_1.png}
 \label{FigConcUnPara}
 }
 \subfigure[Ce rayon se reflète en passant par le foyer]{%
-\begin{pspicture}(-3.3,-2.5)(3,2.5)
-% \psframe[linecolor=magenta](-4,-2.5)(3,2.5)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigConcUn
-
-	\pstRayon{B}{BmP}\pstRayon{BmP}{iBPl}
-\PreFigConcUnTr
-\end{pspicture}
+    \includegraphics{fig7954_2.png}
 \label{FigConcUnFoyer}
 }
 \subfigure[Le rayon issu de $B$ passant par le centre optique est reflété sur lui-même.]{%
-\begin{pspicture}(-3.3,-2.5)(3,2.5)
-% \psframe[linecolor=magenta](-4,-2.5)(3,2.5)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigConcUn
-
-	\pstRayon{B}{BmP}\pstRayon{BmP}{iBPl}\pstRayon{B}{BmC}\pstRayon{BmC}{iB}
-\PreFigConcUnTr
+    \includegraphics{fig7954_3.png}
 \label{FigConcUnCentre}
-\end{pspicture}
 }
 \subfigure[L'intersection des deux rayons donne l'image de $B$, et permet de construire l'image de l'objet]{%
-\begin{pspicture}(-3.3,-2.5)(3,2.5)
-% \psframe[linecolor=magenta](-3.3,-2.5)(3,2.5)
-	\psset{PointSymbol=none, PointName=none}
-	\PreFigConcUn
-
-	\pstRayon{B}{BmP}\pstRayon{BmP}{iBPl}\pstRayon{B}{BmC}\pstRayon{BmC}{iB}
-\PreFigConcUnTr
-	\pstMarquePoint[PointSymbol=*]{iB}{0.3;270}{$B'$}
-	\psline[linewidth=0.1](A)(B)
-	\pstProjectionOrth{C}{A}{iB}{iA}
-	\pstMarquePoint[PointSymbol=*]{iA}{0.3;90}{$A'$}
-\psline[linewidth=0.1](iA)(iB)
+    \includegraphics{fig7954_4.png}
 \label{FigConcUnReponse}
-\end{pspicture}
 }
 \caption{Construction de l'image d'un objet}  \label{FigConcUn}
 \end{figure}
@@ -217,90 +80,14 @@ Il faut en particulier remarquer le passage virtuel sur la figure \ref{FigCasCon
 \begin{figure}
 \centering
 \subfigure[Si l'objet se trouve au-delà du centre de courbure, l'image est renversée et plus petite que l'objet. De plus l'image est faire de rayons issus de l'objet lui-même, elle est donc réelle.]{
-\begin{pspicture}(-3.3,-2.5)(3,2.5)
-	\psset{PointSymbol=none, PointName=none}
- %\psframe[linecolor=cyan](-3.3,-2.5)(3,2.5)
-\pstGeonode(0,0){C}(2,0){A}(2,1){B}(-3,0){Pm}
-
-\pstTraceMiroirSph{C}{Pm}{F}{55}{S1}{S2}
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-\pstProjectionOrth{Pm}{C}{iB}{iA}
-
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-	\pstHomO[HomCoef=1.5]{C}{A}[Al]
-	\pstHomO[HomCoef=2]{BmP}{iB}[iBl]
-	\psline[linecolor=lightgray](Pm)(Al)
-\pstRayon{B}{BmP}\pstRayon{BmP}{iBl}\pstRayon{B}{BmC}\pstRayon{BmC}{iB}
-\psline[linewidth=0.05]{->}(iA)(iB)
-\psline[linewidth=0.05]{->}(A)(B)
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;270}{$A$}
-	\pstMarquePoint{B}{0.3;0}{$B$}
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;90}{$C$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;220}{$F$}
-	\pstMarquePoint{iB}{0.3;270}{$B'$}
-	\pstMarquePoint[PointSymbol=*]{iA}{0.3;90}{$A'$}
-	%\pstMarquePoint[PointSymbol=*]{S}{0.3;90}{$Pm$}
-\end{pspicture}
+    \includegraphics{fig28708_1.png}
 \label{SubFigAudela}
 }
 \subfigure[Si l'objet se trouve entre le centre de courbure et le foyer, l'image est renversée, plus grande que l'objet et réelle.]{
-\begin{pspicture}(-3.3,-2.5)(5,2.5)
- %\psframe[linecolor=cyan](-3.3,-2.5)(5,2.5)
-	\psset{PointSymbol=none, PointName=none}
-\pstGeonode(0,0){C}(-1,0){A}(-1,0.5){B}(-3,0){Pm}
-
-\pstTraceMiroirSph{C}{Pm}{F}{35}{S1}{S2}
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-\pstInterLC{B}{C}{C}{Pm}{BmC}{BmC2}				% Ceci est parce que pstMiroirSph choisit le mauvais point d'intersection avec le miroir
-\pstProjectionOrth{Pm}{C}{iB}{iA}
-
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-	\pstHomO[HomCoef=1.5]{C}{iA}[Al]
-	\pstHomO[HomCoef=1.1]{BmP}{iB}[iBl]
-	\pstHomO[HomCoef=1.2]{C}{iB}[iBCl]
-	\psline[linecolor=lightgray](Pm)(Al)
-\pstRayon{B}{BmP}\pstRayon{BmP}{iBl}\pstRayon{B}{BmC}\pstRayon{BmC}{iBCl}
-\psline[linewidth=0.05]{->}(iA)(iB)
-\psline[linewidth=0.05]{->}(A)(B)
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;270}{$A$}
-	\pstMarquePoint{B}{0.3;0}{$B$}
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;90}{$C$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;220}{$F$}
-	\pstMarquePoint{iB}{0.3;270}{$B'$}
-	\pstMarquePoint[PointSymbol=*]{iA}{0.3;90}{$A'$}
-\end{pspicture}
+    \includegraphics{fig28708_3.png}
 }
 \subfigure[Si l'objet se trouve entre le foyer et le miroir, l'image est droite, plus grande que l'objet et virtuelle. Les lignes en traits discontinus ne correspondent pas à un trajet que la lumière suit réellement : il n'y a pas de lumière à cet endroit.]{
-\begin{pspicture}(-5.8,-2)(1,3)
- %\psframe[linecolor=cyan](-5.8,-2)(1,3)
-	\psset{PointSymbol=none, PointName=none}
-\pstGeonode(0,0){C}(-2,0){A}(-2,1){B}(-3,0){Pm}
-
-\pstTraceMiroirSph{C}{Pm}{F}{35}{S1}{S2}
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-\pstInterLC{B}{C}{C}{Pm}{BmC}{BmC2}				% Ceci est parce que pstMiroirSph choisit le mauvais point d'intersection avec le miroir
-\pstProjectionOrth{Pm}{C}{iB}{iA}
-
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-	\pstHomO[HomCoef=1.1]{C}{iA}[Al]
-	\pstHomO[HomCoef=1.5]{BmP}{iB}[iBl]
-	\pstHomO[HomCoef=1.2]{C}{iB}[iBCl]
-	\pstHomO[HomCoef=1.2]{B}{C}[BCl]
-	\pstHomO[HomCoef=2.5]{BmP}{F}[EFl]
-	\psline[linecolor=lightgray](Pm)(C)
-	\psline[linecolor=lightgray,linestyle=dashed](Pm)(Al)
-\pstRayon{B}{BmP}\pstRayon[linestyle=dashed]{BmP}{iBl}\pstRayon{B}{BmC}\pstRayon[linestyle=dashed]{BmC}{iBCl}
-\pstRayon{B}{BCl}\pstRayon{BmP}{EFl}
-
-\psline[linewidth=0.05]{->}(iA)(iB)
-\psline[linewidth=0.05]{->}(A)(B)
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;270}{$A$}
-	\pstMarquePoint{B}{0.3;0}{$B$}
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;90}{$C$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;270}{$F$}
-	\pstMarquePoint{iB}{0.3;90}{$B'$}
-	\pstMarquePoint[PointSymbol=*]{iA}{0.3;270}{$A'$}
-\end{pspicture}
+    \includegraphics{fig28708_3.png}
 \label{FigCasConcavesa}
 }
 \caption{Différents cas possibles avec un miroir concave.}  \label{FigCasConcaves}
@@ -336,56 +123,8 @@ où $d'=\| SA' \|$ est la distance entre le miroir et l'image de l'objet, $d=\| 
 \end{align*}
 Le rapport $h'/h$ est souvent appelé l'\defe{agrandissement}{} du miroir.
 
-
 \begin{figure}
 \centering
-\begin{pspicture}(-2,-3)(6,4.7)
-   %\psframe[linecolor=cyan](-2,-3)(6,4.7)
-   \psset{PointSymbol=none,PointName=none}
-	\pstGeonode(0,0){C}(3,0){Pm}(5,0){A}(5,2){B}
-		
-\pstTraceMiroirSph{C}{Pm}{F}{55}{S1}{S2}
-\pstMiroirSph{C}{Pm}{B}{F}{BmP}{BmPl}{BmC}{BmCl}{iB}
-\pstInterLC{B}{C}{C}{Pm}{BmC}{BmC2}				
-\pstProjectionOrth{Pm}{C}{iB}{iA}
-
-	\pstArcOAB[linecolor=red]{C}{S1}{S2}
-	\pstHomO[HomCoef=1.2]{Pm}{C}[PmCl]
-	\pstHomO[HomCoef=1.2]{Pm}{A}[PmAl]
-	\psline[linecolor=lightgray](Pm)(PmCl)
-	\psline[linecolor=lightgray,linestyle=dashed](Pm)(PmAl)
-
-	\pstHomO[HomCoef=2.2]{iB}{BmP}[iBBmpl]
-	\pstHomO[HomCoef=2.2]{BmP}{F}[BmPFl]
-\pstRayon[linecolor=blue]{B}{BmP}
-\pstRayon[linecolor=blue]{BmP}{iBBmpl}
-\pstRayon[linecolor=blue,linestyle=dotted]{BmP}{BmPFl}
-	
-	\pstHomO[HomCoef=1.5]{BmC}{B}[BmCBl]
-	\pstHomO[HomCoef=1.5]{BmC}{C}[BmCiBl]
-\pstRayon[linecolor=green]{B}{BmC}
-\pstRayon[linecolor=green]{BmC}{BmCBl}
-\pstRayon[linecolor=green,linestyle=dashed]{BmC}{BmCiBl}
-
-\psline[linewidth=0.05]{->}(iA)(iB)
-\psline[linewidth=0.05]{->}(A)(B)
-	\pstMarquePoint[PointSymbol=*]{A}{0.3;270}{$A$}
-	\pstMarquePoint{B}{0.3;0}{$B$}
-	\pstMarquePoint[PointSymbol=*]{C}{0.3;90}{$C$}
-	\pstMarquePoint[PointSymbol=*]{F}{0.3;135}{$F$}
-	\pstMarquePoint{iB}{0.3;135}{$B'$}
-	\pstMarquePoint[PointSymbol=*]{iA}{0.3;270}{$A'$}
-
-
-\end{pspicture}
-
+\includegraphics{fig27144_1.png}
 \caption{L'image est droite, plus petite que l'objet et virtuelle.}  \label{FigConvexeEx}
 \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%   Ici tu dois mettre une figure labellée FigChoixAxe qui montre un exemple traviol
-%
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-
