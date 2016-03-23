@@ -1,3 +1,9 @@
+% This is part of Un soupçon de physique, sans être agressif pour autant
+% Copyright (C) 2006-2009,2016
+%   Laurent Claessens
+% See the file fdl-1.3.txt for copying conditions.
+
+
 \subsection{Loi de Snell-Descartes et vitesse de la lumière}   \label{SubsecSnellVitesse}
 %-----------------------------------------------------------
 
@@ -21,106 +27,28 @@ Mars se trouve à \unit{227\,900\,000}{\kilo\meter} du Soleil. Quelle est la dis
 \subsubsection{Physique de la réfraction}
 %-------------------------------------
 
-\newcommand{\prefigcalcrefr}{%
-\pstGeonode(0,0){A}(2,0){B}			% Définition de la droite d'interface
-\pstHomO[HomCoef=-1]{A}{B}[B']			
-\pstHomO[HomCoef=2]{A}{B}[A']
-\pstRotation[RotAngle=-50]{A}{B'}[r1]		% Angle d'incidence
-\pstTransHom{A}{r1}{B}{1}{r2}
-\pstRotation[RotAngle=90]{A}{r1}[pl]
-\pstInterLL{A}{pl}{B}{r2}{C}
-\pstTransHom{C}{B}{A}{0.5}{Cl}			% Vitesse de la lumière dans le milieu
-\pstInterLC{B'}{A'}{A}{Cl}{C1}{C2}
-%\pstInterCC{B}{A}{A}{Cl}{t1}{t2}
-\pstTangenteOPM{A}{Cl}{B}{t2}{t1}
-%\pstInterLL{A}{B}{pg}{qg}{m}			
-%\pstTransHom{p}{pd}{p}{-1}{pg}			
-%\pstRotation[RotAngle=90]{O}{P}[Qi]
-%\pstRotation[RotAngle=180]{O}{P}[R]
-%\pstHomO[HomCoef=-1]{O}{Q}[S]
-%\pstRotation[RotAngle=-20]{O}{R}[Ri]		
-%    \pstDioptre{O}{P}{Ri}{0.9}{2}{Rs}{Re}	
-}
-
 \begin{figure}[ht]
 \centering
 
-%\subfigure[Le tout]{%
-%\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-2,-1)(4,2)
-%	\psset{PointSymbol=none, PointName=none}
-%	\prefigcalcrefr
-%
-%	\psline[linecolor=blue](B')(A')
-%	\pstRayon{r1}{A}\pstRayon{r2}{B}
-%	\psline(A)(C)
-%	\pstArcOAB{A}{C1}{C2}
-%	\psline(B)(t1)
-%	\pstRayon{A}{t1}
-%\label{letout}
-%\end{pspicture}
-%}
-%
 \subfigure[Le trait bleu pointillé représente le trajet que le rayon $B$ doit encore parcourir avant d'arriver sur l'interface au moment où le rayon $B$ vient d'y arriver]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefr
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{C}
-	\psline[linecolor=green](A)(C)
-	\psline[linecolor=blue, linestyle=dashed](C)(B)
 \label{lepremier}
-\end{pspicture}
+\includegraphics{fig3832_1.png}
 }
 %
 \subfigure[Où le rayon $A$ a-t-il pu aller durant ce temps ?]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefr
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{B}
-	\pstMarquePoint{B}{0.3;-90}{$Q$}
-	\psline[linecolor=green](A)(C)
-	\pstArcOAB[linecolor=red]{A}{C1}{C2}
+\includegraphics{fig3832_2.png}
 \label{ledeux}
-\end{pspicture}
 }
 %
 \subfigure[Pas correct]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefr
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{B}
-	\psline[linecolor=green](A)(C)
-	\pstArcOAB[linecolor=red]{A}{C1}{C2}
-	\pstRayon{A}{Cl}
-	\psline[linecolor=green](Cl)(B)
+\includegraphics{fig3832_3.png}
 \label{lepasbon}
-\end{pspicture}
-} % Cette refermure est celle de la pspicture qui forme la sous-figure.
+} 
 %
 \subfigure[Correct]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefr
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{B}
-	\psline[linecolor=green](A)(C)
-	\pstArcOAB[linecolor=red]{A}{C1}{C2}
-	\pstRayon{A}{t1}
-	\psline[linecolor=green](t1)(B)
+\includegraphics{fig3832_4.png}
 \label{lebon}
-\end{pspicture}
-} % Cette refermure est celle de la pspicture qui forme la sous-figure.
+}
 
 \caption{Réfraction : étude de la physique du phénomène.}\label{fig_refr_phyz}
 \end{figure}
@@ -147,77 +75,22 @@ Maintenant qu'on a compris comment les rayons se comportent lors d'un changement
 
 Nous reprenons l'argument de la tangente pour dessiner la figure \ref{latroisrefl}.
 
-\newcommand{\prefigcalcrefl}{%
-\pstGeonode(0,0){A}(2,0){B}			% Définition de la droite d'interface
-\pstHomO[HomCoef=-1]{A}{B}[B']			
-\pstHomO[HomCoef=2]{A}{B}[A']
-\pstRotation[RotAngle=-70]{A}{B'}[r1]		% Angle d'incidence
-\pstTransHom{A}{r1}{B}{1}{r2}
-\pstRotation[RotAngle=90]{A}{r1}[pl]
-\pstInterLL{A}{pl}{B}{r2}{C}
-\pstTransHom{C}{B}{A}{1}{Cl}			% Vitesse de la lumière dans le milieu
-\pstInterLC{B'}{A'}{A}{Cl}{C1}{C2}
-%\pstInterCC{B}{A}{A}{Cl}{t1}{t2}
-\pstTangenteOPM{A}{Cl}{B}{t2}{t1}
-%\pstInterLL{A}{B}{pg}{qg}{m}			
-%\pstTransHom{p}{pd}{p}{-1}{pg}			
-%\pstRotation[RotAngle=90]{O}{P}[Qi]
-%\pstRotation[RotAngle=180]{O}{P}[R]
-%\pstHomO[HomCoef=-1]{O}{Q}[S]
-%\pstRotation[RotAngle=-20]{O}{R}[Ri]		
-%    \pstDioptre{O}{P}{Ri}{0.9}{2}{Rs}{Re}	
-}
-
-
 \begin{figure}[ht]
 \centering
 
 \subfigure[Le trait bleu pointillé représente le trajet que le rayon $B$ doit encore parcourir avant d'arriver sur l'interface au moment où le rayon $B$ vient d'y arriver]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefl
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{C}
-	\psline[linecolor=green](A)(C)
-	\psline[linecolor=blue, linestyle=dashed](C)(B)
+\includegraphics{fig22788_1.png}
 \label{lepremierrefl}
-\end{pspicture}
 }
 %
 \subfigure[Le rayon a pu se réfléchir en allant vers un des points du cercle rouge. Mais cette fois, le cercle a un rayon de la même taille que le trajet bleu de la figure \ref{lepremierrefl} parce que la réflexion se fait dans le même milieu que l'incidence]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefl
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{B}
-	\psline[linecolor=green](A)(C)
-	\pstArcOAB[linecolor=red]{A}{C2}{C1}
+\includegraphics{fig22788_2.png}
 \label{lesecondrefl}
-\end{pspicture}
 }
 %
 \subfigure[Le rayon $A$ se réfléchit de telle façon à ce que le front d'onde soit tangent au cercle rouge]{%
-\begin{pspicture}(-2,-1)(4,2)
-% \psframe[linecolor=blue](-1,-1)(2,1)
-	\psset{PointSymbol=none, PointName=none}
-\prefigcalcrefl
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{B}
-	\pstRayon{A}{t2}
-	\psline[linecolor=green](A)(C)
-	\pstArcOAB[linecolor=red]{A}{C2}{C1}
-	\psline[linecolor=green](B)(t2)
-	\pstMarquePoint{t2}{0.3;90}{$P$}
-	\pstMarquePoint{A}{0.3;-90}{$Q$}
-	\pstMarquePoint{B}{0.3;-90}{$R$}
-	\pstMarquePoint{C}{0.3;70}{$S$}
+\includegraphics{fig22788_3.png}
 \label{latroisrefl}
-\end{pspicture}
 }
 %
 \caption{Réflexion : étude de la physique du phénomène.}\label{fig_refl_pm}
@@ -253,51 +126,8 @@ Dans cette ligne, nous avons d'abord utilisé l'égalité trigonométrique comme
 
 Une faute que l'on pourrait commettre est la suivante : étant donné que le front d'onde est toujours perpendiculaire au rayon, il faut que $\overrightarrow{CB}$ soit perpendiculaire à $\overrightarrow{DB}$, de sorte que $\alpha'+\beta=90$. Ce n'est pas le cas parce qu'en fait le front d'onde $CB$ dessiné n'est valable qu'à l'intérieur du milieu du bas, tandis que le rayon $DB$ est encore dans le premier milieu.
 
-\newcommand{\prefigcalcrefrDeux}{%
-\pstGeonode(0,0){A}(2,0){B}			% Définition de la droite d'interface
-\pstHomO[HomCoef=-0.8]{A}{B}[B']		% Prolonge à gauche et détermine le départ des rayons lumineux
-\pstHomO[HomCoef=1.5]{A}{B}[A']			% On prolonge à droite
-\pstRotation[RotAngle=-50]{A}{B'}[r1]		% Angle d'incidence
-\pstTransHom{A}{r1}{B}{1}{r2}
-\pstRotation[RotAngle=90]{A}{r1}[pl]
-\pstRotation[RotAngle=90]{A}{B}[All]
-\pstHomO[HomCoef=0.5]{A}{All}[Al]
-\pstRotation[RotAngle=90]{B}{A}[Bll]
-\pstHomO[HomCoef=0.5]{B}{Bll}[Bl]
-\pstHomO[HomCoef=2]{Al}{A}[Al']			
-\pstHomO[HomCoef=2]{Bl}{B}[Bl']			
-\pstInterLL{A}{pl}{B}{r2}{C}
-\pstTransHom{C}{B}{A}{0.5}{Cl}			% Vitesse de la lumière dans le milieu
-\pstInterLC{B'}{A'}{A}{Cl}{C1}{C2}
-\pstTangenteOPM{A}{Cl}{B}{t2}{t1}
-}
 \begin{figure}
-\begin{pspicture}(-4,-2.5)(7.5,3)
- %\psframe[linecolor=blue](-4,-2.5)(7.5,3)
-	\psset{PointSymbol=none, PointName=none,unit=2.5cm,LabelSep=0.5}
-	\prefigcalcrefrDeux
-
-	\psline(B')(A')
-	\pstRayon{r1}{A}\pstRayon{r2}{B}
-	\psline[linecolor=green](A)(C)
-%	\pstArcOAB[linecolor=red]{A}{C1}{C2}
-	\pstRayon{A}{t1}
-	\psline[linecolor=green](t1)(B)
-	\psline(Al)(Al')
-	\psline(Bl)(Bl')
-
-	\pstMarquePoint{A}{0.15;-120}{$A$}
-	\pstMarquePoint{t1}{0.15;-90}{$C$}
-	\pstMarquePoint{B}{0.15;-60}{$B$}
-	\pstMarquePoint{C}{0.15;0}{$D$}
-
-	\pstMarkAngle[linecolor=blue]{Al}{A}{r1}{$\alpha$}
-	\pstMarkAngle[linecolor=blue]{Al'}{A}{t1}{$\beta$}
-	\pstMarkAngle[linecolor=red]{t1}{A}{B}{$\beta'$}
-	\pstMarkAngle[linecolor=blue]{A}{B}{t1}{$\beta$}
-	\pstMarkAngle[linecolor=red]{C}{B}{A}{$\alpha'$}
-\end{pspicture}
-
+    \includegraphics{fig1617_1.png}
 \caption{La réfraction}\label{figRefracGeom}
 \end{figure}
 
@@ -332,61 +162,16 @@ Si $n_{2/1}>1$, on a que $\sin\hat\imath>\sin\hat r$, et donc $\hat\imath>\hat r
 \item Un rayon lumineux passant d'un milieu plus réfringent dans un milieu moins réfringent s'écarte de la normale.
 \end{enumerate}
 
-
-\newcommand{\PreFigRefingeance}{%
-\pstGeonode(0,0){O}(2,0){P}
-\pstRotation[RotAngle=90]{O}{P}[Qi]
-\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
-\pstRotation[RotAngle=180]{O}{P}[R]
-\pstHomO[HomCoef=-1]{O}{Q}[S]
-\pstRotation[RotAngle=-45]{O}{R}[Ri]		% Je place le rayon incident avec un certain angle avec le plan. Oui oui, c'est pas la convention qui dit qu'on compte par rapport à la normale.
-						% mais chuuuut. L'élève ne va pas lire les sources de son cours.
-}
-
-
 \begin{figure}[ht]
 \centering
 \subfigure[Le milieu $1$ est plus réfringent que le milieu $2$.]{%
-\begin{pspicture}(-2,-1)(2,1.5)
-	\psset{PointSymbol=none, PointName=none}
-\PreFigRefingeance
-    \pstDioptre{O}{P}{Ri}{1}{0.8}{Rs}{Re}	% La passage par le dioptre
-
-   \psline(R)(P)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-   \pstRayon{Ri}{O}
-   \pstRayon{O}{Re}
-
-   \pstMarkAngle{S}{O}{Re}{$\hat r$}
-   \pstMarkAngle{Q}{O}{Ri}{$\hat\imath$}
-   \pstMarquePoint{P}{0.3;110}{$n_{1}$}
-   \pstMarquePoint{P}{0.3;-110}{$n_{2}$}
+    \includegraphics{fig1848_1.png}
 \label{SubFigRefrUn}
-\end{pspicture}
 }
 %
 \subfigure[Le milieu $2$ est plus réfringent que le milieu $1$.]{%
-\begin{pspicture}(-2,-2)(2,1.5)
-	\psset{PointSymbol=none, PointName=none}
-\PreFigRefingeance
-
-    \pstDioptre{O}{P}{Ri}{1}{2.5}{Rs}{Re}	% La passage par le dioptre
-
-   \psline(R)(P)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-   \pstRayon{Ri}{O}
-   \pstRayon{O}{Re}
-
-   \pstMarkAngle{S}{O}{Re}{$\hat r$}
-   \pstMarkAngle{Q}{O}{Ri}{$\hat\imath$}
-   \pstMarquePoint{P}{0.3;110}{$n_{1}$}
-   \pstMarquePoint{P}{0.3;-110}{$n_{2}$}
+    \includegraphics{fig1848_2.png}
 \label{SubFigRefrDeux}
-\end{pspicture}
 }
 \caption{Second milieu plus ou moins réfringent que le premier.}\label{FigRefringence}
 \end{figure}
@@ -403,114 +188,20 @@ Maintenant on place le point $D$ à $3$ unités de $O$, et on trace la perpendic
   \frac{ 4 }{ 3 }=\frac{ \| BC \| }{ \| BD \| }=\frac{ \| BC \|\,/\,\| BA' \| }{ \| BD \|\,/\,\| BE \| }=\frac{ \sin\hat\imath }{ \sin\hat r }.
 \]
 
-
-\newcommand{\PreFigConstruction}{%
-\pstGeonode(0,0){O}(2,0){P}
-\pstRotation[RotAngle=90]{O}{P}[Qi]
-\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
-\pstRotation[RotAngle=180]{O}{P}[R]
-\pstHomO[HomCoef=-1]{O}{Q}[S]
-\pstRotation[RotAngle=30]{O}{P}[Pi]		% Je place le rayon incident avec un certain angle avec le plan. Oui oui, c'est pas la convention qui dit qu'on compte par rapport à la normale.
-						% mais chuuuut. L'élève ne va pas lire les sources de son cours.
-\pstHomO[HomCoef=1.5]{O}{Pi}[Pil]
-\pstHomO[HomCoef=1.2]{O}{R}[Rl]
-\pstHomO[HomCoef=1.2]{O}{P}[Pl]
-
-\pstTransHom{O}{R}{Q}{1}{T}
-\pstTransHom{O}{P}{S}{1}{U}
-
-\pstDecompForce{O}{Pi}{O}{P}{O}{Q}{C}{C'}
-\pstHomO[HomCoef=-0.75]{O}{C}[D]
-\pstTransHom{O}{S}{D}{1}{El}
-\pstInterLC{D}{El}{O}{Pi}{E'}{E}
-
-    \pstDioptre{O}{P}{Pi}{1}{1.333}{Rs}{Re}	% La passage par le dioptre
-}
-
 \begin{figure}[ht]
 \centering
 \subfigure[Comment construire le rayon réfracté dans cette situation ?]{%
-\begin{pspicture}(-3,-2)(3,2)
-%\psframe[linecolor=blue](-3,-2)(3,2)
-	\psset{PointSymbol=none, PointName=none}
-\PreFigConstruction
-
-   \psline(Rl)(Pl)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-   \pstRayon{Pil}{O}
-
-   \pstMarkAngle{Pil}{O}{Q}{$\hat\imath$}
-   \pstMarquePoint{T}{0.3;110}{$n_{1}=1$}
-   \pstMarquePoint{U}{0.3;-110}{$n_{2}=4/3$}
-	\pstMarquePoint{Pil}{0.3;90}{$A$}
-	\pstMarquePoint{O}{0.3;-45}{$O$}
-	\pstMarquePoint{Rl}{0.3;-90}{$X$}
-	\pstMarquePoint{Pl}{0.3;-90}{$Y$}
+    \includegraphics{fig30125_1.png}
 \label{SubFigConstructionUn}
-\end{pspicture}
 }
 %
 \subfigure[Une première étape de la construction]{%
-\begin{pspicture}(-3,-2)(3,2)
- %\psframe[linecolor=blue](-3,-2)(3,2)
-	\psset{PointSymbol=none, PointName=none}
-\PreFigConstruction
-
-   \psline(Rl)(Pl)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-   \pstRayon{Pi}{O}
-	\psline[linecolor=blue,linestyle=dashed](Pi)(Pil)
-	\psline[linestyle=dashed](Pi)(C)
-	\pstCircleOA[linecolor=red,linestyle=dotted]{O}{Pi}
-
-   \pstMarkAngle{Pil}{O}{Q}{$\hat\imath$}
-	\pstMarquePoint{T}{0.3;110}{$n_{1}=1$}
-	\pstMarquePoint{U}{0.3;-110}{$n_{2}=4/3$}
-	\pstMarquePoint{Pil}{0.3;90}{$A$}
-	\pstMarquePoint{O}{0.3;-45}{$O$}
-	\pstMarquePoint{Rl}{0.3;-90}{$X$}
-	\pstMarquePoint{Pl}{0.3;-90}{$Y$}
-	\pstMarquePoint{Pi}{0.4;160}{$A'$}
-	\pstMarquePoint{C}{0.3;-90}{$C$}
+    \includegraphics{fig30125_2.png}
 \label{SubFigConstructionDeux}
-\end{pspicture}
 }
 \subfigure[La solution]{%
-\begin{pspicture}(-3,-2)(3,2)
- %\psframe[linecolor=blue](-3,-2)(3,2)
-	\psset{PointSymbol=none, PointName=none}
-\PreFigConstruction
-
-   \psline(Rl)(Pl)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-   \pstRayon{Pi}{O}
-   \pstRayon{O}{E}
-	\psline[linecolor=blue,linestyle=dashed](Pi)(Pil)
-	\psline[linestyle=dashed](Pi)(C)
-	\psline[linestyle=dashed](D)(E)
-	\pstCircleOA[linecolor=red,linestyle=dotted]{O}{Pi}
-
-   \pstMarkAngle{Pil}{O}{Q}{$\hat\imath$}
-   \pstMarkAngle{E}{O}{S}{$\hat r$}
-	\pstMarquePoint{T}{0.3;110}{$n_{1}=1$}
-	\pstMarquePoint{U}{0.3;-110}{$n_{2}=4/3$}
-	\pstMarquePoint{Pil}{0.3;90}{$A$}
-	\pstMarquePoint{O}{0.3;-45}{$O$}
-	\pstMarquePoint{Rl}{0.3;-90}{$X$}
-	\pstMarquePoint{Pl}{0.3;-90}{$Y$}
-	\pstMarquePoint{Pi}{0.4;160}{$A'$}
-	\pstMarquePoint{C}{0.3;-90}{$C$}
-	\pstMarquePoint{D}{0.3;90}{$D$}
-	\pstMarquePoint{E}{0.3;210}{$E$}
-
+    \includegraphics{fig30125_3.png}
 \label{SubFigConstructionTrois}
-\end{pspicture}
 }
 \caption{Construction géométrique d'un rayon réfracté.}\label{FigConstruction}
 \end{figure}
@@ -530,66 +221,9 @@ En général, à chaque fois que l'on passe d'un milieu moins réfringent vers u
 \]
 voir la figure \ref{FigRasants}. 
 
-\newcommand{\PreFigAngleAugmente}{%
-\pstGeonode(0,0){O}(2,0){P}
-\pstRotation[RotAngle=90]{O}{P}[Qi]
-\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
-\pstRotation[RotAngle=180]{O}{P}[R]
-\pstHomO[HomCoef=-1]{O}{Q}[S]
-
-%\def\interIndiceUn{0.75}
-\def\interIndiceUn{0.99}
-\def\interIndiceDeux{1}
-
-\pstRotation[RotAngle=-18]{O}{R}[Ri]		% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre{O}{P}{Ri}{\interIndiceUn}{\interIndiceDeux}{Ris}{Rie}	% La passage par le dioptre
-
-\pstRotation[RotAngle=-36]{O}{R}[Rj]		% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre{O}{P}{Rj}{\interIndiceUn}{\interIndiceDeux}{Rjs}{Rje}	% La passage par le dioptre
-
-\pstRotation[RotAngle=-54]{O}{R}[Rk]		% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre{O}{P}{Rk}{\interIndiceUn}{\interIndiceDeux}{Rks}{Rke}	% La passage par le dioptre
-
-\pstRotation[RotAngle=-72]{O}{R}[Rl]		% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre{O}{P}{Rl}{\interIndiceUn}{\interIndiceDeux}{Rls}{Rle}	% La passage par le dioptre
-
-\pstRotation[RotAngle=-90]{O}{R}[Rm]		% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre{O}{P}{Rm}{\interIndiceUn}{\interIndiceDeux}{Rms}{Rme}	% La passage par le dioptre
-
-\pstRotation[RotAngle=0]{O}{R}[Rn]		% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre{O}{P}{Rn}{\interIndiceUn}{\interIndiceDeux}{Rns}{Rne}	% La passage par le dioptre
-}
-
-
 \begin{figure}[ht]
 \centering
-\begin{pspicture}(-2,-2)(2,2)
-%\psframe[linecolor=green](-2,-2)(2,2)
-	\psset{PointSymbol=none, PointName=none}
-\PreFigAngleAugmente
-
-   \psline(R)(P)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-   \pstRayon[linecolor=cyan]{Ri}{O}
-   \pstRayon[linecolor=cyan]{O}{Rie}
-
-   \pstRayon[linecolor=green]{Rj}{O}
-   \pstRayon[linecolor=green]{O}{Rje}
-
-   \pstRayon[linecolor=blue]{Rk}{O}
-   \pstRayon[linecolor=blue]{O}{Rke}
-
-   \pstRayon[linecolor=gray]{Rl}{O}
-   \pstRayon[linecolor=gray]{O}{Rle}
-
-   \pstRayon[linecolor=magenta]{Rm}{O}
-   \pstRayon[linecolor=magenta]{O}{Rme}
-
-   \pstRayon[linecolor=yellow]{Rn}{O}
-   \pstRayon[linecolor=yellow]{O}{Rne}
-\end{pspicture}
+\includegraphics{fig20947_1.png}
 \caption{Comment des rayons incidents de plus en plus rasants se réfractent.} \label{FigRasants}
 \end{figure}
 
@@ -613,69 +247,18 @@ Au cas où $\sin\hat r>1$, on ne peut pas trouver de $\hat r$, et le phénomène
 Si vous voulez expérimenter la réflexion totale à la piscine, est-ce qu'il vous faut une lampe de poche qui résiste à l'eau ? En d'autres termes, allez-vous mettre la lampe sous l'eau et regarder la lumière qui sort de l'eau, ou bien mettre la lampe en dehors de l'eau et regarder la lumière qui rentre dans l'eau ? Le phénomène va-t-il être observé quand la lampe est presque parallèle à l'eau, ou bien au contraire quand elle est presque perpendiculaire ?
 \end{exercice}
 
-
-\newcommand{\PreFigReflTot}{%
-	\psset{PointSymbol=none, PointName=none}
-\pstGeonode(0,0){O}(2,0){P}
-\pstRotation[RotAngle=90]{O}{P}[Qi]
-\pstHomO[HomCoef=0.5]{O}{Qi}[Q]
-\pstRotation[RotAngle=180]{O}{P}[R]
-\pstHomO[HomCoef=-1]{O}{Q}[S]
-
-
-}
 \begin{figure}[ht]
 \centering
 \subfigure[Un rayon sort de l'eau avec un angle relativement petit par rapport à la normale.]{%
-\begin{pspicture}(-2,-2)(2,1)
-\PreFigReflTot
-\pstRotation[RotAngle=70]{O}{R}[Ri]				% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre[Re]{O}{P}{Ri}{1.333}{1}{Rs}{interRe}		% La passage par le dioptre
-
-   \pstRayon{Ri}{O}
-   \pstRayon{O}{Re}
-   \pstRayon{O}{Rs}
-
-   \psline(R)(P)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-\end{pspicture}
+    \includegraphics{fig3707_1.png}
 }						% Cette fermeture est celle de la sous-figure.
 %
 \subfigure[Le rayon arrive avec un angle maximum, le rayon réfracté existe encore mais rase l'interface. Bonne chance pour réaliser ça dans une piscine ou à la mer, à cause des vagues !]{%
-\begin{pspicture}(-2,-2)(2,1)
- %\psframe[linecolor=blue](-2,-2)(2,1)
-\PreFigReflTot
-\pstRotation[RotAngle=41.4]{O}{R}[Ri]				% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre[Re]{O}{P}{Ri}{1.333}{1}{Rs}{interRe}		% La passage par le dioptre
-
-   \pstRayon{Ri}{O}
-   \pstRayon{O}{Re}
-   \pstRayon{O}{Rs}
-
-   \psline(R)(P)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-\end{pspicture}
+    \includegraphics{fig3707_2.png}
 }
 %
 \subfigure[Maintenant l'angle est trop grand, il n'y a plus de rayon réfracté.]{%
-\begin{pspicture}(-2,-2)(2,1)
-\PreFigReflTot
-\pstRotation[RotAngle=30]{O}{R}[Ri]				% Je place le rayon incident avec un certain angle avec le plan
-    \pstDioptre[Re]{O}{P}{Ri}{1.333}{1}{Rs}{interRe}		% La passage par le dioptre
-
-   \pstRayon{Ri}{O}
-   \pstRayon{O}{Re}
-   \pstRayon{O}{Rs}
-
-   \psline(R)(P)
-   \psline[linecolor=lightgray](O)(Q)
-   \psline[linecolor=lightgray](O)(S)
-
-\end{pspicture}
+    \includegraphics{fig3707_3.png}
 }
 \caption{Phénomène de réflexion totale}\label{FigReflTot}
 \end{figure}
@@ -684,7 +267,7 @@ L'équation \eqref{EqVarharrsinimath} donne $\hat r$ par la formule  \label{PgEx
 \[ 
   \hat r=\arcsin\Big( \frac{ \sin\hat\imath }{ n_{2/1} } \Big).
 \]
-Il est remarquable de comprendre que le phénomène de réflexion totale est une manifestation physique tout à fait palpable de la condition d'existence $| x |\leq1$ pour la fonction $x\mapsto\arcsin x$ qur tu auras vue dans un cours de math que tu croyais être complètement inutile et abstrait. Eh bien non : cette condition d'existence a un contenu physique, la nature la respecte. C'est un fait très général en science : il semble que la nature s'amuse à suivre des lois mathématiques de façon très rigoureuse. 
+Il est remarquable de comprendre que le phénomène de réflexion totale est une manifestation physique tout à fait palpable de la condition d'existence $| x |\leq1$ pour la fonction $x\mapsto\arcsin x$ que tu auras vue dans un cours de math que tu croyais être complètement inutile et abstrait. Eh bien non : cette condition d'existence a un contenu physique, la nature la respecte. C'est un fait très général en science : il semble que la nature s'amuse à suivre des lois mathématiques de façon très rigoureuse. 
 
 \subsection{Exercices}
 %---------------------
@@ -693,9 +276,3 @@ Il est remarquable de comprendre que le phénomène de réflexion totale est une
 \Exo{104} 
 \Exo{105} 
 \Exo{106} 
-% This is part of Un soupçon de physique, sans être agressif pour autant
-% Copyright (C) 2006-2009
-%   Laurent Claessens
-% See the file fdl-1.3.txt for copying conditions.
-
-
